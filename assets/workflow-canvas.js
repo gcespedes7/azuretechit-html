@@ -1,278 +1,236 @@
-;(function () {
-  // ─── Tab data ────────────────────────────────────────────────────────────
-  const TABS = {
+// Azuretech homepage interactive workflow canvas
+// Tabs → different node graphs. Nodes are draggable; connections redraw live; Run button animates flow.
+
+(function () {
+  const NAVY = '#234B70';
+  const ORANGE = '#F79226';
+
+  // Graph schemas: each tab has nodes and edges
+  const GRAPHS = {
     it: {
       nodes: [
-        { id: 'trigger', x: 60,  y: 190, label: 'New Hire Form',   sub: 'Trigger',        color: '#F79226', type: 'trigger' },
-        { id: 'agent',   x: 300, y: 190, label: 'AI Agent',         sub: 'Route & Decide', color: '#8b5cf6', type: 'main'    },
-        { id: 'slack',   x: 540, y: 90,  label: 'Add to Slack',     sub: '#team-channel',  color: '#10b981', type: 'main'    },
-        { id: 'entra',   x: 540, y: 290, label: 'Update Profile',   sub: 'Entra ID',       color: '#3b82f6', type: 'main'    },
-        { id: 't1',      x: 160, y: 380, label: 'Anthropic',        sub: 'Tool',           color: '#F79226', type: 'tool'    },
-        { id: 't2',      x: 310, y: 380, label: 'Postgres',         sub: 'Tool',           color: '#3b82f6', type: 'tool'    },
-        { id: 't3',      x: 460, y: 380, label: 'Jira',             sub: 'Tool',           color: '#6366f1', type: 'tool'    },
+        { id: 'trigger', x: 60,  y: 200, label: 'Form submitted', kind: 'trigger', icon: 'form', meta: 'HR portal · webhook' },
+        { id: 'ai',      x: 290, y: 200, label: 'AI Agent',       kind: 'ai',      icon: 'bot',  meta: 'classify role · 200ms' },
+        { id: 'split',   x: 520, y: 200, label: 'Is manager?',    kind: 'logic',   icon: 'split',meta: 'branch' },
+        { id: 'slack',   x: 760, y: 110, label: 'Invite to Slack',kind: 'action',  icon: 'slack',meta: '#new-hires' },
+        { id: 'okta',    x: 760, y: 290, label: 'Provision access',kind: 'action', icon: 'key',  meta: 'Okta · Notion · 1Pass' },
+        { id: 'email',   x: 990, y: 200, label: 'Send welcome',   kind: 'action',  icon: 'mail', meta: 'Postmark · template' },
       ],
       edges: [
-        { from: 'trigger', to: 'agent'  },
-        { from: 'agent',   to: 'slack'  },
-        { from: 'agent',   to: 'entra'  },
-        { from: 'agent',   to: 't1'     },
-        { from: 'agent',   to: 't2'     },
-        { from: 'agent',   to: 't3'     },
+        ['trigger', 'ai'], ['ai', 'split'],
+        ['split', 'slack', 'true'], ['split', 'okta', 'false'],
+        ['slack', 'email'], ['okta', 'email'],
       ],
     },
     sec: {
       nodes: [
-        { id: 'alert',  x: 60,  y: 190, label: 'SIEM Alert',      sub: 'Trigger',        color: '#ef4444', type: 'trigger' },
-        { id: 'ai',     x: 300, y: 190, label: 'Security AI',     sub: 'Enrich & Score', color: '#8b5cf6', type: 'main'    },
-        { id: 'ticket', x: 540, y: 90,  label: 'Create Ticket',   sub: 'ServiceNow',     color: '#10b981', type: 'main'    },
-        { id: 'page',   x: 540, y: 290, label: 'Page Team',       sub: 'PagerDuty',      color: '#F79226', type: 'main'    },
-        { id: 't1',     x: 200, y: 380, label: 'VirusTotal',      sub: 'Tool',           color: '#ef4444', type: 'tool'    },
-        { id: 't2',     x: 370, y: 380, label: 'Splunk',          sub: 'Tool',           color: '#F79226', type: 'tool'    },
+        { id: 'alert',   x: 60,  y: 220, label: 'SIEM alert',     kind: 'trigger', icon: 'shield',  meta: 'Wazuh · severity ≥ 4' },
+        { id: 'enrich',  x: 290, y: 220, label: 'Enrich context', kind: 'ai',      icon: 'bot',     meta: 'VT · GreyNoise · CVE' },
+        { id: 'score',   x: 520, y: 220, label: 'Risk score',     kind: 'logic',   icon: 'gauge',   meta: '0–100 · threshold 70' },
+        { id: 'page',    x: 760, y: 140, label: 'Page on-call',   kind: 'action',  icon: 'bell',    meta: 'PagerDuty · P1' },
+        { id: 'ticket',  x: 760, y: 310, label: 'Open ticket',    kind: 'action',  icon: 'ticket',  meta: 'Jira · auto-assign' },
       ],
-      edges: [
-        { from: 'alert',  to: 'ai'     },
-        { from: 'ai',     to: 'ticket' },
-        { from: 'ai',     to: 'page'   },
-        { from: 'ai',     to: 't1'     },
-        { from: 'ai',     to: 't2'     },
-      ],
+      edges: [['alert', 'enrich'], ['enrich', 'score'], ['score', 'page', 'hi'], ['score', 'ticket', 'lo']],
     },
     sales: {
       nodes: [
-        { id: 'form',    x: 60,  y: 200, label: 'Inbound Form',   sub: 'Trigger',       color: '#F79226', type: 'trigger' },
-        { id: 'qualify', x: 290, y: 200, label: 'AI Qualify',     sub: 'Score & Route', color: '#8b5cf6', type: 'main'    },
-        { id: 'crm',     x: 530, y: 100, label: 'Update CRM',     sub: 'HubSpot',       color: '#10b981', type: 'main'    },
-        { id: 'notify',  x: 530, y: 300, label: 'Notify Rep',     sub: 'Slack DM',      color: '#3b82f6', type: 'main'    },
-        { id: 't1',      x: 280, y: 380, label: 'GPT-4',          sub: 'Tool',          color: '#10b981', type: 'tool'    },
+        { id: 'lead',    x: 60,  y: 220, label: 'Lead form',       kind: 'trigger', icon: 'form',   meta: 'Webflow · webhook' },
+        { id: 'clear',   x: 290, y: 220, label: 'Clearbit lookup', kind: 'ai',      icon: 'search', meta: 'firmographics' },
+        { id: 'qualify', x: 520, y: 220, label: 'ICP fit?',        kind: 'logic',   icon: 'split',  meta: 'LLM scoring' },
+        { id: 'crm',     x: 760, y: 140, label: 'Push to CRM',     kind: 'action',  icon: 'db',     meta: 'HubSpot · SDR' },
+        { id: 'nurture', x: 760, y: 310, label: 'Nurture flow',    kind: 'action',  icon: 'mail',   meta: 'drip · 21d' },
       ],
-      edges: [
-        { from: 'form',    to: 'qualify' },
-        { from: 'qualify', to: 'crm'     },
-        { from: 'qualify', to: 'notify'  },
-        { from: 'qualify', to: 't1'      },
-      ],
+      edges: [['lead', 'clear'], ['clear', 'qualify'], ['qualify', 'crm', 'yes'], ['qualify', 'nurture', 'no']],
     },
     care: {
       nodes: [
-        { id: 'inbox',    x: 60,  y: 200, label: 'Support Inbox',   sub: 'Email Trigger',   color: '#F79226', type: 'trigger' },
-        { id: 'classify', x: 290, y: 200, label: 'AI Classify',     sub: 'Label & Route',   color: '#8b5cf6', type: 'main'    },
-        { id: 'urgent',   x: 530, y: 100, label: 'Urgent Queue',    sub: 'High Priority',   color: '#ef4444', type: 'main'    },
-        { id: 'standard', x: 530, y: 300, label: 'Standard Queue',  sub: 'Normal Priority', color: '#10b981', type: 'main'    },
-        { id: 't1',       x: 200, y: 380, label: 'Zendesk',         sub: 'Tool',            color: '#3b82f6', type: 'tool'    },
-        { id: 't2',       x: 360, y: 380, label: 'Claude',          sub: 'Tool',            color: '#8b5cf6', type: 'tool'    },
+        { id: 'inbox',   x: 60,  y: 220, label: 'New email',       kind: 'trigger', icon: 'mail',   meta: 'support@ · IMAP' },
+        { id: 'class',   x: 290, y: 220, label: 'Classify intent', kind: 'ai',      icon: 'bot',    meta: 'GPT · 12 labels' },
+        { id: 'urgent',  x: 520, y: 220, label: 'Urgent?',         kind: 'logic',   icon: 'split',  meta: 'SLA · 2h' },
+        { id: 'route',   x: 760, y: 140, label: 'Route to team',   kind: 'action',  icon: 'users',  meta: 'Slack DM + assign' },
+        { id: 'reply',   x: 760, y: 310, label: 'Draft AI reply',  kind: 'action',  icon: 'pen',    meta: 'human-approved' },
       ],
-      edges: [
-        { from: 'inbox',    to: 'classify' },
-        { from: 'classify', to: 'urgent'   },
-        { from: 'classify', to: 'standard' },
-        { from: 'classify', to: 't1'       },
-        { from: 'classify', to: 't2'       },
-      ],
+      edges: [['inbox', 'class'], ['class', 'urgent'], ['urgent', 'route', 'yes'], ['urgent', 'reply', 'no']],
     },
-  }
+  };
 
-  // ─── State ───────────────────────────────────────────────────────────────
-  let activeTab = 'it'
-  let nodePositions = {}
-  let running = false
+  // Icon SVG set (small, sharp)
+  const ICONS = {
+    form:   '<path d="M7 3h10v4H7zM6 8h12v13H6z"/><path d="M9 12h6M9 16h6" stroke-linecap="round"/>',
+    bot:    '<rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 4v4M8 14v2M16 14v2M2 14h2M20 14h2" stroke-linecap="round"/>',
+    split:  '<path d="M16 3h5v5M3 3h5v5M12 22v-8a4 4 0 0 0-1.2-2.9L3 3M15 9l6-6" stroke-linecap="round" stroke-linejoin="round"/>',
+    slack:  '<rect x="13" y="2" width="3" height="8" rx="1.5"/><rect x="8" y="14" width="3" height="8" rx="1.5"/><rect x="14" y="13" width="8" height="3" rx="1.5"/><rect x="2" y="8" width="8" height="3" rx="1.5"/>',
+    key:    '<circle cx="8" cy="12" r="4"/><path d="M12 12h10M18 12v4M22 12v6" stroke-linecap="round"/>',
+    mail:   '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 7 9-7" stroke-linejoin="round"/>',
+    shield: '<path d="M12 2 4 5v7c0 5 3.5 8 8 10 4.5-2 8-5 8-10V5Z" stroke-linejoin="round"/>',
+    gauge:  '<path d="M12 14 8 8" stroke-linecap="round"/><circle cx="12" cy="14" r="8"/><path d="M4 14h2M18 14h2M12 4v2" stroke-linecap="round"/>',
+    bell:   '<path d="M18 16V11a6 6 0 1 0-12 0v5l-2 3h16l-2-3zM10 21a2 2 0 0 0 4 0" stroke-linejoin="round"/>',
+    ticket: '<path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4Z"/><path d="M12 5v14" stroke-dasharray="2 2"/>',
+    search: '<circle cx="11" cy="11" r="6"/><path d="m20 20-4.35-4.35" stroke-linecap="round"/>',
+    db:     '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>',
+    users:  '<circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M17 11a4 4 0 0 0 0-8M22 21c0-3-2-5-5-5.5" stroke-linecap="round"/>',
+    pen:    '<path d="M12 20h9M16 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" stroke-linejoin="round"/>',
+  };
 
-  // ─── DOM refs ────────────────────────────────────────────────────────────
-  const canvas  = document.getElementById('wf-canvas')
-  const svgEl   = document.getElementById('wf-connections')
-  const nodesEl = document.getElementById('wf-nodes')
-  const runBtn  = document.getElementById('wf-run-btn')
-  const tabBtns = document.querySelectorAll('[data-wf-tab]')
-  if (!canvas || !svgEl || !nodesEl) return
+  const KIND_STYLES = {
+    trigger: { accent: ORANGE, label: 'trigger' },
+    ai:      { accent: '#8b5cf6', label: 'ai' },
+    logic:   { accent: '#10b981', label: 'logic' },
+    action:  { accent: '#60a5fa', label: 'action' },
+  };
 
-  // ─── Render ──────────────────────────────────────────────────────────────
-  function render(tab) {
-    activeTab = tab
-    const data = TABS[tab]
-    nodesEl.innerHTML = ''
-    svgEl.innerHTML = ''
-    nodePositions = {}
+  let currentTab = 'it';
+  let nodes = JSON.parse(JSON.stringify(GRAPHS[currentTab].nodes));
+  let edges = GRAPHS[currentTab].edges;
 
-    const cw = canvas.offsetWidth || 800
-    const ch = canvas.offsetHeight || 480
-    const sx = cw / 700
-    const sy = ch / 480
+  const $nodes = document.getElementById('nodes');
+  const $conn  = document.getElementById('connections');
+  const $canvas = document.getElementById('canvas');
+  if (!$nodes || !$conn || !$canvas) return;
 
-    data.nodes.forEach(n => {
-      const px = n.x * sx
-      const py = n.y * sy
-      nodePositions[n.id] = { x: px, y: py }
-
-      const el = document.createElement('div')
-      const isTool = n.type === 'tool'
-      const size = isTool ? 72 : 160
-
-      el.id = 'wf-node-' + n.id
-      el.dataset.nodeId = n.id
-      el.style.cssText = `
-        position:absolute;
-        left:${px}px; top:${py}px;
-        width:${size}px;
-        transform:translate(-50%,-50%);
-        cursor:grab;
-        user-select:none;
-      `
-
-      if (isTool) {
-        el.innerHTML = `
-          <div style="
-            width:${size}px; height:${size}px;
-            border-radius:50%;
-            background:${n.color}18;
-            border:1.5px solid ${n.color}55;
-            display:flex; flex-direction:column;
-            align-items:center; justify-content:center;
-            font-size:10px; text-align:center;
-            color:#fff; line-height:1.3;
-            transition:border-color .2s, box-shadow .2s;
-          ">
-            <div style="font-weight:600; font-size:11px;">${n.label}</div>
-          </div>`
-      } else {
-        el.innerHTML = `
-          <div style="
-            border-left:3px solid ${n.color};
-            background:#12171f;
-            border-top:1px solid rgba(255,255,255,.08);
-            border-right:1px solid rgba(255,255,255,.08);
-            border-bottom:1px solid rgba(255,255,255,.08);
-            border-radius:10px;
-            padding:12px 14px;
-            transition:border-color .2s, box-shadow .2s;
-          ">
-            <div style="font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:${n.color}; margin-bottom:5px; font-family:monospace;">${n.sub}</div>
-            <div style="font-size:13px; font-weight:600; color:#fff; line-height:1.3;">${n.label}</div>
-            <div style="margin-top:6px; display:flex; align-items:center; gap:5px;">
-              <div style="width:6px;height:6px;border-radius:50%;background:${n.color};opacity:.7;"></div>
-              <div style="font-size:9px;color:rgba(255,255,255,.4);font-family:monospace;">active</div>
+  function renderNodes() {
+    $nodes.innerHTML = '';
+    nodes.forEach(n => {
+      const style = KIND_STYLES[n.kind];
+      const el = document.createElement('div');
+      el.className = 'workflow-node absolute bg-[#0f1620] border border-white/10 rounded-lg shadow-lg select-none';
+      el.style.left = n.x + 'px';
+      el.style.top = n.y + 'px';
+      el.style.width = '180px';
+      el.dataset.id = n.id;
+      el.innerHTML = `
+        <div class="absolute top-0 left-0 w-[3px] h-full rounded-l-lg" style="background:${style.accent}"></div>
+        <div class="p-4 pl-5">
+          <div class="flex items-start justify-between mb-3">
+            <div class="p-2 rounded-md border" style="background:${style.accent}14; border-color:${style.accent}33; color:${style.accent}">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${ICONS[n.icon] || ''}</svg>
             </div>
-          </div>`
+            <div class="mono text-[9px] tracking-[0.14em] uppercase opacity-60" style="color:${style.accent}">${style.label}</div>
+          </div>
+          <div class="text-white text-sm font-medium leading-tight">${n.label}</div>
+          <div class="mono text-[10px] text-white/45 mt-1.5 truncate">${n.meta}</div>
+        </div>
+        <div class="absolute right-0 top-1/2 -mr-1.5 w-3 h-3 bg-[#0b0f16] border-2 border-gray-600 rounded-full translate-y-[-50%]"></div>
+        <div class="absolute left-0 top-1/2 -ml-1.5 w-3 h-3 bg-[#0b0f16] border-2 border-gray-600 rounded-full translate-y-[-50%]"></div>
+      `;
+      $nodes.appendChild(el);
+      makeDraggable(el, n);
+    });
+  }
+
+  function renderEdges(activeIds) {
+    const cw = $canvas.clientWidth, ch = $canvas.clientHeight;
+    $conn.setAttribute('viewBox', `0 0 ${cw} ${ch}`);
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    while ($conn.firstChild) $conn.removeChild($conn.firstChild);
+    const el = (tag, attrs) => {
+      const n = document.createElementNS(SVG_NS, tag);
+      for (const k in attrs) n.setAttribute(k, attrs[k]);
+      return n;
+    };
+    edges.forEach(([a, b, label]) => {
+      const A = nodes.find(n => n.id === a);
+      const B = nodes.find(n => n.id === b);
+      if (!A || !B) return;
+      const x1 = A.x + 180, y1 = A.y + 40;
+      const x2 = B.x, y2 = B.y + 40;
+      const mx = (x1 + x2) / 2;
+      const d = `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
+      const isActive = activeIds && activeIds.includes(a) && activeIds.includes(b);
+      $conn.appendChild(el('path', { d, class: 'connection-line' + (isActive ? ' active' : '') }));
+      $conn.appendChild(el('circle', { cx: x1, cy: y1, r: 3, fill: isActive ? ORANGE : '#475569' }));
+      $conn.appendChild(el('circle', { cx: x2, cy: y2, r: 3, fill: isActive ? ORANGE : '#475569' }));
+      if (label) {
+        const lx = (x1 + x2) / 2 - 18, ly = (y1 + y2) / 2 - 8;
+        $conn.appendChild(el('rect', { x: lx, y: ly, width: 36, height: 16, rx: 4, fill: '#0b0f16', stroke: '#334155' }));
+        const t = el('text', { x: lx + 18, y: ly + 8, fill: '#94a3b8', 'font-size': 10, 'font-family': 'JetBrains Mono, monospace', 'text-anchor': 'middle', 'dominant-baseline': 'middle' });
+        t.textContent = label;
+        $conn.appendChild(t);
       }
-
-      makeDraggable(el)
-      nodesEl.appendChild(el)
-    })
-
-    drawEdges()
+    });
   }
 
-  // ─── Draw edges ──────────────────────────────────────────────────────────
-  function drawEdges() {
-    svgEl.innerHTML = ''
-    const data = TABS[activeTab]
-    const w = canvas.offsetWidth || 800
-    const h = canvas.offsetHeight || 480
-    svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`)
-    svgEl.setAttribute('width', '100%')
-    svgEl.setAttribute('height', '100%')
-
-    data.edges.forEach(edge => {
-      const a = nodePositions[edge.from]
-      const b = nodePositions[edge.to]
-      if (!a || !b) return
-
-      const dx = b.x - a.x
-      const cx1 = a.x + dx * 0.5
-      const cx2 = b.x - dx * 0.5
-
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
-      path.setAttribute('d', `M${a.x},${a.y} C${cx1},${a.y} ${cx2},${b.y} ${b.x},${b.y}`)
-      path.setAttribute('fill', 'none')
-      path.setAttribute('stroke', 'rgba(255,255,255,0.15)')
-      path.setAttribute('stroke-width', '1.5')
-      path.setAttribute('stroke-dasharray', '5 4')
-      path.dataset.from = edge.from
-      path.dataset.to = edge.to
-      svgEl.appendChild(path)
-    })
+  function makeDraggable(el, n) {
+    let startX, startY, origX, origY, dragging = false;
+    const onDown = (ev) => {
+      dragging = true;
+      const p = ev.touches ? ev.touches[0] : ev;
+      startX = p.clientX; startY = p.clientY; origX = n.x; origY = n.y;
+      el.style.zIndex = 20;
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+      document.addEventListener('touchmove', onMove, { passive: false });
+      document.addEventListener('touchend', onUp);
+    };
+    const onMove = (ev) => {
+      if (!dragging) return;
+      ev.preventDefault && ev.preventDefault();
+      const p = ev.touches ? ev.touches[0] : ev;
+      const dx = p.clientX - startX, dy = p.clientY - startY;
+      n.x = Math.max(0, Math.min($canvas.clientWidth - 180, origX + dx));
+      n.y = Math.max(0, Math.min($canvas.clientHeight - 90, origY + dy));
+      el.style.left = n.x + 'px'; el.style.top = n.y + 'px';
+      renderEdges();
+    };
+    const onUp = () => {
+      dragging = false; el.style.zIndex = '';
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+      document.removeEventListener('touchmove', onMove);
+      document.removeEventListener('touchend', onUp);
+    };
+    el.addEventListener('mousedown', onDown);
+    el.addEventListener('touchstart', onDown, { passive: true });
   }
 
-  // ─── Drag ────────────────────────────────────────────────────────────────
-  function makeDraggable(el) {
-    let startX, startY, origLeft, origTop
-
-    el.addEventListener('pointerdown', (e) => {
-      e.preventDefault()
-      el.setPointerCapture(e.pointerId)
-      el.style.cursor = 'grabbing'
-      el.style.zIndex = '10'
-      startX = e.clientX
-      startY = e.clientY
-      origLeft = parseFloat(el.style.left)
-      origTop  = parseFloat(el.style.top)
-    })
-
-    el.addEventListener('pointermove', (e) => {
-      if (!el.hasPointerCapture(e.pointerId)) return
-      const newLeft = origLeft + (e.clientX - startX)
-      const newTop  = origTop  + (e.clientY - startY)
-      el.style.left = newLeft + 'px'
-      el.style.top  = newTop  + 'px'
-      nodePositions[el.dataset.nodeId] = { x: newLeft, y: newTop }
-      drawEdges()
-    })
-
-    el.addEventListener('pointerup', (e) => {
-      el.style.cursor = 'grab'
-      el.style.zIndex = ''
-      el.releasePointerCapture(e.pointerId)
-    })
+  // Tab switching
+  function switchTab(t) {
+    currentTab = t;
+    nodes = JSON.parse(JSON.stringify(GRAPHS[t].nodes));
+    edges = GRAPHS[t].edges;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('tab-active', b.dataset.tab === t));
+    renderNodes();
+    renderEdges();
   }
+  document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => switchTab(b.dataset.tab)));
 
-  // ─── Run animation ───────────────────────────────────────────────────────
-  function runWorkflow() {
-    if (running) return
-    running = true
-    runBtn.textContent = 'Running\u2026'
-    runBtn.disabled = true
-
-    const paths = Array.from(svgEl.querySelectorAll('path'))
-    let i = 0
-
-    function animateNext() {
-      if (i >= paths.length) {
-        setTimeout(() => {
-          paths.forEach(p => {
-            p.setAttribute('stroke', 'rgba(255,255,255,0.15)')
-            p.setAttribute('stroke-width', '1.5')
-          })
-          runBtn.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Run workflow'
-          runBtn.disabled = false
-          running = false
-        }, 400)
-        return
+  // Run animation
+  function runFlow() {
+    const sequence = [];
+    const start = nodes[0].id;
+    const visited = new Set([start]);
+    sequence.push([start]);
+    let frontier = [start];
+    while (frontier.length) {
+      const next = [];
+      for (const id of frontier) {
+        edges.forEach(([a, b]) => { if (a === id && !visited.has(b)) { visited.add(b); next.push(b); } });
       }
-      const p = paths[i]
-      p.setAttribute('stroke', '#F79226')
-      p.setAttribute('stroke-width', '2.5')
-      setTimeout(() => {
-        p.setAttribute('stroke', 'rgba(255,255,255,0.35)')
-        i++
-        animateNext()
-      }, 180)
+      if (!next.length) break;
+      sequence.push([...frontier, ...next]);
+      frontier = next;
     }
-    animateNext()
+    let i = 0;
+    const step = () => {
+      if (i >= sequence.length) { setTimeout(() => renderEdges(), 800); return; }
+      renderEdges(sequence[i]);
+      // ping nodes
+      sequence[i].forEach(id => {
+        const el = $nodes.querySelector(`[data-id="${id}"]`);
+        if (el) {
+          el.animate([{ boxShadow: '0 0 0 0 rgba(247,146,38,0.6)' }, { boxShadow: '0 0 0 10px rgba(247,146,38,0)' }], { duration: 700 });
+        }
+      });
+      i++;
+      setTimeout(step, 520);
+    };
+    step();
   }
+  const runBtn = document.getElementById('run-btn');
+  if (runBtn) runBtn.addEventListener('click', runFlow);
 
-  // ─── Tab switching ───────────────────────────────────────────────────────
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('wf-tab-active'))
-      btn.classList.add('wf-tab-active')
-      render(btn.dataset.wfTab)
-    })
-  })
-
-  // ─── Run button ──────────────────────────────────────────────────────────
-  if (runBtn) runBtn.addEventListener('click', runWorkflow)
-
-  // ─── Redraw on resize ────────────────────────────────────────────────────
-  window.addEventListener('resize', () => render(activeTab))
-
-  // ─── Init ────────────────────────────────────────────────────────────────
-  render('it')
-})()
+  // Init + resize
+  renderNodes();
+  requestAnimationFrame(() => renderEdges());
+  window.addEventListener('resize', () => renderEdges());
+})();

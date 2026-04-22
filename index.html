@@ -100,24 +100,36 @@
         .bi-rule span:nth-child(1) { background: #234B70; }
         .bi-rule span:nth-child(2) { background: #F79226; }
 
-        /* Workflow section CSS vars */
-        :root {
-          --ink: #0E1621;
-          --ink-2: #161b22;
-          --orange-wf: #F79226;
-          --navy-wf: #234B70;
-        }
-
-        /* Dot grid background for canvas */
-        .wf-dot-grid {
-          background-image: radial-gradient(rgba(255,255,255,0.12) 1px, transparent 1px);
+        /* ——— Dot grid ——— */
+        .dot-grid {
+          background-image: radial-gradient(rgba(35,75,112,0.18) 1px, transparent 1px);
           background-size: 18px 18px;
         }
+        .dark .dot-grid {
+          background-image: radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1px);
+        }
 
-        /* Tab active state */
-        .wf-tab-active { background: rgba(247,146,38,0.1); }
-        .wf-tab-indicator { height: 2px; background: #F79226; transition: transform 0.35s; transform: scaleX(0); transform-origin: left; }
-        .wf-tab-active .wf-tab-indicator { transform: scaleX(1); }
+        /* ——— Workflow node ——— */
+        .workflow-node {
+          transition: box-shadow 0.2s, border-color 0.2s, transform 0.1s;
+          touch-action: none;
+        }
+        .workflow-node:hover { border-color: rgba(247,146,38,0.5) !important; box-shadow: 0 0 0 1px rgba(247,146,38,0.3); }
+        .workflow-node:active { cursor: grabbing; transform: scale(1.015); }
+        .connection-line { fill: none; stroke: #4a5568; stroke-width: 1.5; pointer-events: none; }
+        .dark .connection-line { stroke: #64748b; }
+        .connection-line.active { stroke: var(--orange); stroke-width: 2; }
+
+        /* ——— Tab active ——— */
+        .tab-btn { color: rgba(255,255,255,0.6); }
+        .tab-btn .text-sm { color: rgba(255,255,255,0.6); }
+        .tab-active { color: #fff; }
+        .tab-active .text-sm { color: #fff; }
+        .tab-active .tab-indicator { opacity: 1; }
+        .tab-indicator { opacity: 0; transition: opacity 0.25s; }
+
+        /* ——— Accent ——— */
+        .accent-bg { background-color: var(--accent, var(--orange)); }
     </style>
     <script src="https://www.aura.build/FxFilter.js"></script>
     <link id="all-fonts-link-font-geist" rel="stylesheet"
@@ -564,68 +576,49 @@
                 </div>
             </div>
 
+            <!-- Interactive Tabbed Workflow Canvas -->
+            <div class="relative w-full rounded-xl border border-white/10 shadow-2xl bg-[#0b0f16] overflow-hidden flex flex-col z-10 mt-12">
+              <div class="grid grid-cols-2 md:grid-cols-4 border-b border-white/10">
+                <button data-tab="it" class="tab-btn tab-active relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
+                  <div class="tab-indicator absolute inset-x-0 top-0 h-[2px] accent-bg"></div>
+                  <div class="eyebrow mb-1" style="color:#F79226">Ops</div>
+                  <div class="text-sm font-medium">On-board new hires</div>
+                  <div class="mono text-[10px] opacity-50 mt-1">5 tools · 11 steps · 14m saved</div>
+                </button>
+                <button data-tab="sec" class="tab-btn relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
+                  <div class="tab-indicator absolute inset-x-0 top-0 h-[2px] accent-bg"></div>
+                  <div class="eyebrow mb-1" style="color:#9fb8d9">Security</div>
+                  <div class="text-sm font-medium">Enrich alerts</div>
+                  <div class="mono text-[10px] opacity-50 mt-1">SIEM · 7 enrichers · 3m</div>
+                </button>
+                <button data-tab="sales" class="tab-btn relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
+                  <div class="tab-indicator absolute inset-x-0 top-0 h-[2px] accent-bg"></div>
+                  <div class="eyebrow mb-1" style="color:#9fb8d9">Sales</div>
+                  <div class="text-sm font-medium">Route inbound leads</div>
+                  <div class="mono text-[10px] opacity-50 mt-1">Form → AI → CRM · 90s</div>
+                </button>
+                <button data-tab="care" class="tab-btn relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
+                  <div class="tab-indicator absolute inset-x-0 top-0 h-[2px] accent-bg"></div>
+                  <div class="eyebrow mb-1" style="color:#9fb8d9">Client Care</div>
+                  <div class="text-sm font-medium">Triage support tickets</div>
+                  <div class="mono text-[10px] opacity-50 mt-1">Inbox → label → route</div>
+                </button>
+              </div>
+
+              <!-- Canvas -->
+              <div id="canvas" class="relative w-full h-[480px] md:h-[560px] cursor-grab select-none dot-grid overflow-hidden">
+                <svg id="connections" class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1200 560" preserveAspectRatio="none"></svg>
+                <div id="nodes" class="absolute inset-0"></div>
+                <div class="absolute bottom-4 left-4 mono text-[10px] text-white/40 tracking-[0.15em]">DRAG ANY NODE · CLICK RUN</div>
+                <button id="run-btn" class="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-full bg-[#F79226] text-[#0E1621] text-sm font-medium hover:bg-white transition cursor-pointer">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  Run workflow
+                </button>
+              </div>
+            </div>
+
         </div>
     </section>
-
-    <!-- WORKFLOW SIMULATOR -->
-    <section id="demo" class="relative py-24 md:py-32 bg-[#0E1621] text-white overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
-    <div class="flex items-end justify-between mb-10 md:mb-16 flex-wrap gap-4">
-      <div>
-        <div class="font-mono text-xs tracking-[0.18em] uppercase text-[#9fb8d9] mb-3">/ HOW IT WORKS</div>
-        <h2 class="font-semibold text-4xl md:text-5xl leading-tight tracking-tight max-w-2xl text-white">
-          A flow for every team —<br>
-          <span class="text-[#F79226] italic font-light">pick one to see it run.</span>
-        </h2>
-      </div>
-      <p class="max-w-sm text-white/60 text-sm leading-relaxed">
-        Drag the nodes. Each tab is a real automation we’ve built for a client.
-      </p>
-    </div>
-
-    <!-- Tab + Canvas container -->
-    <div class="border border-white/10 rounded-xl overflow-hidden bg-[#0b0f16]">
-      <!-- Tabs -->
-      <div class="grid grid-cols-2 md:grid-cols-4 border-b border-white/10" role="tablist">
-        <button data-wf-tab="it" class="wf-tab wf-tab-active relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
-          <div class="wf-tab-indicator absolute inset-x-0 top-0"></div>
-          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-[#F79226] mb-1">Ops</div>
-          <div class="text-sm font-medium">On-board new hires</div>
-          <div class="font-mono text-[10px] text-white/40 mt-1">5 tools · 11 steps · 14m saved</div>
-        </button>
-        <button data-wf-tab="sec" class="wf-tab relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
-          <div class="wf-tab-indicator absolute inset-x-0 top-0"></div>
-          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-[#9fb8d9] mb-1">Security</div>
-          <div class="text-sm font-medium">Enrich alerts</div>
-          <div class="font-mono text-[10px] text-white/40 mt-1">SIEM · 7 enrichers · 3m</div>
-        </button>
-        <button data-wf-tab="sales" class="wf-tab relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
-          <div class="wf-tab-indicator absolute inset-x-0 top-0"></div>
-          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-[#9fb8d9] mb-1">Sales</div>
-          <div class="text-sm font-medium">Route inbound leads</div>
-          <div class="font-mono text-[10px] text-white/40 mt-1">Form → AI → CRM · 90s</div>
-        </button>
-        <button data-wf-tab="care" class="wf-tab relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
-          <div class="wf-tab-indicator absolute inset-x-0 top-0"></div>
-          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-[#9fb8d9] mb-1">Client Care</div>
-          <div class="text-sm font-medium">Triage support tickets</div>
-          <div class="font-mono text-[10px] text-white/40 mt-1">Inbox → label → route</div>
-        </button>
-      </div>
-
-      <!-- Canvas -->
-      <div id="wf-canvas" class="relative w-full h-[480px] md:h-[560px] cursor-grab select-none wf-dot-grid overflow-hidden">
-        <svg id="wf-connections" class="absolute inset-0 w-full h-full pointer-events-none"></svg>
-        <div id="wf-nodes" class="absolute inset-0"></div>
-        <div class="absolute bottom-4 left-4 font-mono text-[10px] text-white/30 tracking-[0.15em] uppercase">Drag any node</div>
-        <button id="wf-run-btn" class="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-full bg-[#F79226] text-[#0E1621] text-sm font-medium hover:bg-white transition-colors">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          Run workflow
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
