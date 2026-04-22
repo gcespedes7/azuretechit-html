@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="html-root">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Integration &amp; Automation Services | Azuretech — Miami, FL</title>
+    <meta name="description" content="Miami-based AI integration specialists. We build custom AI chatbots, voice agents, and automation systems that eliminate manual work and connect your entire tech stack.">
+    <link rel="canonical" href="https://azuretechit.com/ai-integration.html">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "AI Integration & Consulting",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Azuretech",
+        "url": "https://azuretechit.com",
+        "telephone": "(786) 762-3499",
+        "address": { "@type": "PostalAddress", "addressLocality": "Miami", "addressRegion": "FL" }
+      },
+      "serviceType": ["AI Chatbots", "Voice AI Agents", "AI Automation", "Strategic AI Roadmap"],
+      "areaServed": { "@type": "City", "name": "Miami" },
+      "url": "https://azuretechit.com/ai-integration.html"
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' };
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        ::selection { background: #f0942e; color: #fff; }
+
+        /* Glass card for dark sections */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Smooth scroll-triggered fade-in */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <!-- Dark mode init (prevents flash) -->
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+
+<body class="bg-white dark:bg-[#0f1218] text-slate-900 dark:text-[#ebebeb] antialiased overflow-x-hidden transition-colors duration-300">
+
+    <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0f1218]/80 backdrop-blur-md transition-colors duration-300">
+        <div class="flex flex-wrap max-w-7xl mx-auto pt-4 px-6 pb-4 items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a320b6b1-77f0-4506-8214-fdb9509bc6a0_320w.png?w=800&q=80"
+                    class="w-auto h-14 object-cover" alt="Azuretech Logo">
+            </a>
+            <div class="flex lg:order-2 space-x-3 items-center">
+                <!-- Dark/Light Toggle -->
+                <button onclick="toggleTheme()"
+                    class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="hidden dark:block"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="block dark:hidden"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                </button>
+                <!-- CTA -->
+                <a href="contact.html"
+                    class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2">
+                    Book Consultation
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+                <!-- Mobile Hamburger -->
+                <button id="mobile-menu-btn" type="button"
+                    class="inline-flex dark:text-gray-400 lg:hidden hover:bg-gray-100 dark:hover:bg-white/5 focus:outline-none text-sm text-gray-500 w-10 h-10 rounded-lg p-2 items-center justify-center">
+                    <span class="sr-only">Open main menu</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+                </button>
+            </div>
+            <!-- Desktop Nav -->
+            <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent">
+                    <li><a href="automation.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Automation</a></li>
+                    <li><a href="ai-integration.html" class="block py-2 px-3 text-[#f0942e] rounded lg:bg-transparent lg:text-[#f0942e] lg:p-0" aria-current="page">AI Integration</a></li>
+                    <li><a href="web-design.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Web Design</a></li>
+                    <li><a href="social-media.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Social Media</a></li>
+                    <li><a href="about.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">About</a></li>
+                    <li><a href="contact.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Mobile Nav (hidden by default) -->
+            <div class="hidden w-full lg:hidden mt-4" id="mobile-menu">
+                <ul class="flex flex-col p-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 space-y-1">
+                    <li><a href="automation.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">Automation</a></li>
+                    <li><a href="ai-integration.html" class="block py-2 px-3 text-[#f0942e] bg-[#f0942e]/5 rounded font-semibold">AI Integration</a></li>
+                    <li><a href="web-design.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">Web Design</a></li>
+                    <li><a href="social-media.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">Social Media</a></li>
+                    <li><a href="about.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">About</a></li>
+                    <li><a href="contact.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════ HERO ═══════════════════════ -->
+    <section class="relative overflow-hidden bg-white dark:bg-[#0f1218] transition-colors duration-300 pt-40 pb-20 lg:pt-48 lg:pb-28">
+        <!-- Subtle grid bg -->
+        <div class="absolute inset-0 opacity-[0.035] dark:opacity-[0.06] pointer-events-none" style="background-size:40px 40px;background-image:linear-gradient(to right,currentColor 1px,transparent 1px),linear-gradient(to bottom,currentColor 1px,transparent 1px);mask-image:linear-gradient(to bottom,black 40%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,black 40%,transparent 100%)"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Copy -->
+                <div class="fade-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#395e8b]/5 dark:bg-[#395e8b]/10 border border-[#395e8b]/20 dark:border-[#395e8b]/30 text-[#547aa1] text-sm font-medium mb-6">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f0942e] opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#f0942e]"></span>
+                        </span>
+                        AI Integration &amp; Consulting
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-8">
+                        Intelligent <span class="text-[#f0942e]">Autonomy</span> for Your Operations.
+                    </h1>
+                    <p class="text-lg text-slate-500 dark:text-gray-400 max-w-lg mb-10 leading-relaxed">
+                        Scale your business with enterprise-grade AI systems. We bridge the gap between complex neural networks and seamless operational efficiency.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="contact.html"
+                            class="text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] font-medium rounded-lg text-base px-8 py-4 transition-all duration-300 inline-flex items-center gap-2">
+                            Book Your Free AI Readiness Audit
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Right: Visual -->
+                <div class="relative group fade-up" style="transition-delay:.15s">
+                    <div class="absolute inset-0 bg-[#f0942e]/10 rounded-full blur-3xl group-hover:bg-[#f0942e]/20 transition-all duration-700"></div>
+                    <div class="relative bg-white dark:bg-[#161b22] rounded-3xl p-3 shadow-xl dark:shadow-none border border-gray-200 dark:border-white/10 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&q=80"
+                            alt="AI system interface on laptop in dark environment"
+                            class="rounded-2xl w-full h-[420px] lg:h-[500px] object-cover group-hover:scale-[1.03] transition-transform duration-1000">
+                        <!-- Floating overlay card -->
+                        <div class="absolute bottom-8 left-8 right-8 p-6 bg-white/70 dark:bg-[#161b22]/80 backdrop-blur-xl rounded-2xl border border-gray-200/50 dark:border-white/10">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-[#f0942e] flex items-center justify-center text-white flex-shrink-0">
+                                    <i data-lucide="zap" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-lg text-slate-900 dark:text-white">Azuretech Core Engine</div>
+                                    <div class="text-xs text-slate-500 dark:text-gray-400 uppercase tracking-widest font-medium">Active Integration Layer</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 h-1.5 w-full bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-[#f0942e] w-2/3 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════ CORE OFFERINGS - BENTO GRID ═══════════════════════ -->
+    <section class="bg-gray-50 dark:bg-[#161b22] transition-colors duration-300 py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section header -->
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 fade-up">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
+                        What We Build — and Why It Works
+                    </h2>
+                    <p class="text-slate-500 dark:text-gray-400 text-lg">
+                        We don't bolt AI onto broken processes — we integrate it where it creates the most impact: lead qualification, customer support, content, and outreach.
+                    </p>
+                </div>
+                <div class="h-px flex-1 bg-gray-200 dark:bg-white/10 mx-8 hidden lg:block"></div>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+                <!-- ▎ AI Chatbots — 7 col -->
+                <div class="md:col-span-7 bg-white dark:bg-[#0f1218] border border-gray-200 dark:border-white/10 rounded-2xl p-10 flex flex-col justify-between group hover:shadow-xl dark:hover:shadow-none transition-all duration-500 fade-up">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-[#f0942e]/10 mb-8 flex items-center justify-center">
+                            <i data-lucide="message-square" class="w-7 h-7 text-[#f0942e]"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">AI Chatbots</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-lg mb-8 max-w-md leading-relaxed">
+                            24/7 lead qualification systems that convert visitors into scheduled meetings while you sleep. Handles objections, qualifies leads, and books calls — without human handoff.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm font-medium text-[#395e8b] dark:text-[#547aa1]">
+                                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Instant Response
+                            </li>
+                            <li class="flex items-center gap-2 text-sm font-medium text-[#395e8b] dark:text-[#547aa1]">
+                                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Multi-Language Support
+                            </li>
+                        </ul>
+                        <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center group-hover:bg-[#f0942e] group-hover:text-white text-slate-400 transition-all duration-300">
+                            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ▎ Voice AI Agents — 5 col, blue accent -->
+                <div class="md:col-span-5 bg-[#395e8b] text-white rounded-2xl p-10 flex flex-col justify-between relative overflow-hidden group fade-up" style="transition-delay:.1s">
+                    <div class="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+                    <div class="z-10">
+                        <div class="w-14 h-14 rounded-xl bg-white/15 mb-8 flex items-center justify-center">
+                            <i data-lucide="mic" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Voice AI Agents</h3>
+                        <p class="text-white/75 text-lg mb-8 leading-relaxed">
+                            Human-grade receptionist automation that manages inbound calls, scheduling, and basic support with zero latency.
+                        </p>
+                    </div>
+                    <a href="contact.html" class="bg-white text-[#395e8b] px-6 py-3 rounded-xl font-medium w-full hover:bg-white/90 transition-colors text-center inline-block">
+                        Explore Voice Tech
+                    </a>
+                </div>
+
+                <!-- ▎ Strategic AI Roadmap — full width, 12 col -->
+                <div class="md:col-span-12 bg-white dark:bg-[#0f1218] border border-gray-200 dark:border-white/10 rounded-2xl p-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center fade-up" style="transition-delay:.15s">
+                    <div>
+                        <span class="text-[#f0942e] font-medium text-sm tracking-widest uppercase mb-4 block">Guidance &amp; Strategy</span>
+                        <h3 class="text-3xl md:text-4xl font-semibold tracking-tight mb-6">Strategic AI Roadmap</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-lg mb-8 leading-relaxed">
+                            We audit your current operations, identify the highest-ROI opportunities, and build a phased implementation plan — no buzzwords, no vendor lock-in.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-xl border border-gray-100 dark:border-white/5">
+                                <div class="text-3xl font-semibold text-[#f0942e] mb-1">90%</div>
+                                <div class="text-xs text-slate-500 dark:text-gray-500 uppercase font-medium tracking-wide">Cost Reduction</div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-xl border border-gray-100 dark:border-white/5">
+                                <div class="text-3xl font-semibold text-[#395e8b] mb-1">4.5x</div>
+                                <div class="text-xs text-slate-500 dark:text-gray-500 uppercase font-medium tracking-wide">Throughput Gain</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
+                            alt="Multiple monitors displaying real-time data and AI system outputs"
+                            class="rounded-2xl h-80 w-full object-cover shadow-lg">
+                        <div class="absolute top-4 right-4 bg-[#f0942e] text-white p-3 rounded-xl shadow-xl">
+                            <i data-lucide="map" class="w-7 h-7"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════ OMNICHANNEL VISIBILITY (DARK BG) ═══════════════════════ -->
+    <section class="py-24 bg-[#0B0E14] text-white px-6 relative overflow-hidden">
+        <!-- Ambient glows -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[#f0942e] rounded-full blur-[150px]"></div>
+            <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#395e8b] rounded-full blur-[150px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16 fade-up">
+                <span class="text-[#f0942e] font-medium tracking-[0.25em] uppercase text-sm">Marketing Automation Core</span>
+                <h2 class="text-3xl md:text-5xl font-semibold mt-4 tracking-tight">AI-Driven Marketing, On Autopilot</h2>
+                <p class="text-white/50 mt-6 max-w-2xl mx-auto text-lg leading-relaxed">
+                    Extend your operational autonomy to the front lines of digital growth through synchronized marketing intelligence.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: Automated Content Workflows -->
+                <div class="glass-card p-10 rounded-2xl border border-white/10 group hover:bg-white/10 transition-all duration-500 fade-up">
+                    <div class="w-14 h-14 bg-[#f0942e]/15 rounded-xl flex items-center justify-center mb-8">
+                        <i data-lucide="calendar-clock" class="w-7 h-7 text-[#f0942e]"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Automated Content Workflows</h3>
+                    <p class="text-white/60 leading-relaxed">
+                        Our AI core maps out 30 days of cross-platform visibility, ensuring your brand stays top-of-mind across Google, LinkedIn, and Facebook without manual intervention.
+                    </p>
+                </div>
+
+                <!-- Card 2: AI-Assisted Generation -->
+                <div class="glass-card p-10 rounded-2xl border border-white/10 group hover:bg-white/10 transition-all duration-500 fade-up" style="transition-delay:.1s">
+                    <div class="w-14 h-14 bg-[#f0942e]/15 rounded-xl flex items-center justify-center mb-8">
+                        <i data-lucide="brain" class="w-7 h-7 text-[#f0942e]"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">AI-Assisted Generation</h3>
+                    <p class="text-white/60 leading-relaxed">
+                        Leverage high-performing copy and visual assets tailored specifically for each platform's unique algorithm to maximize engagement lift by up to 94%.
+                    </p>
+                </div>
+
+                <!-- Card 3: Email & SMS Logic -->
+                <div class="glass-card p-10 rounded-2xl border border-white/10 group hover:bg-white/10 transition-all duration-500 fade-up" style="transition-delay:.2s">
+                    <div class="w-14 h-14 bg-[#f0942e]/15 rounded-xl flex items-center justify-center mb-8">
+                        <i data-lucide="send" class="w-7 h-7 text-[#f0942e]"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Email &amp; SMS Logic</h3>
+                    <p class="text-white/60 leading-relaxed">
+                        Move beyond templates with hyper-segmented behavioral logic and urgent SMS funnels designed to drive conversion through real-time event alerts.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════ STATS BAR ═══════════════════════ -->
+    <section class="py-16 bg-[#0B0E14] border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold text-[#f0942e] mb-2">50+</div>
+                    <div class="text-sm text-white/50 uppercase tracking-widest font-medium">AI Systems Deployed</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-[#f0942e] mb-2">300+</div>
+                    <div class="text-sm text-white/50 uppercase tracking-widest font-medium">Hours Automated / Month</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-[#f0942e] mb-2">3 wks</div>
+                    <div class="text-sm text-white/50 uppercase tracking-widest font-medium">Avg. Deployment Time</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REPLACE WITH REAL TESTIMONIALS -->
+    <section class="py-24 bg-white dark:bg-[#0f1218] transition-colors duration-300 border-t border-slate-100 dark:border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <p class="text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-3">Client Results</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">What Our Clients Say</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/8 rounded-2xl p-8 relative shadow-sm">
+                    <div class="w-full h-0.5 bg-[#f0942e] absolute top-0 left-0 right-0 rounded-t-2xl"></div>
+                    <div class="text-6xl text-[#f0942e] opacity-20 font-serif leading-none mb-4">"</div>
+                    <blockquote class="text-lg text-slate-700 dark:text-gray-200 leading-relaxed mb-6 font-light">
+                        We were spending 4 hours a day qualifying leads manually. Now the AI handles it and only passes us meetings worth taking.
+                    </blockquote>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
+                        <div class="w-9 h-9 rounded-full bg-[#f0942e]/15 flex items-center justify-center text-[#f0942e] font-semibold text-sm">C</div>
+                        <cite class="not-italic">
+                            <div class="text-sm font-semibold text-slate-900 dark:text-white">Client Name</div>
+                            <div class="text-xs text-slate-400 dark:text-gray-500 uppercase tracking-widest mt-0.5">Role, Company</div>
+                        </cite>
+                    </div>
+                </div>
+                <div class="bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/8 rounded-2xl p-8 relative shadow-sm">
+                    <div class="w-full h-0.5 bg-[#f0942e] absolute top-0 left-0 right-0 rounded-t-2xl"></div>
+                    <div class="text-6xl text-[#f0942e] opacity-20 font-serif leading-none mb-4">"</div>
+                    <blockquote class="text-lg text-slate-700 dark:text-gray-200 leading-relaxed mb-6 font-light">
+                        The AI roadmap session alone was worth it — we finally knew exactly what to build and in what order. No more guessing.
+                    </blockquote>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
+                        <div class="w-9 h-9 rounded-full bg-[#f0942e]/15 flex items-center justify-center text-[#f0942e] font-semibold text-sm">C</div>
+                        <cite class="not-italic">
+                            <div class="text-sm font-semibold text-slate-900 dark:text-white">Client Name</div>
+                            <div class="text-xs text-slate-400 dark:text-gray-500 uppercase tracking-widest mt-0.5">Role, Company</div>
+                        </cite>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════ FAQ ═══════════════════════ -->
+    <section class="py-24 bg-slate-50 dark:bg-[#161b22] transition-colors duration-300 border-t border-slate-100 dark:border-white/5">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <p class="text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-3">Common Questions</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">AI Integration FAQ</h2>
+            </div>
+            <div class="space-y-3">
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        What does AI integration actually mean for a small business?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        It means connecting AI tools to the systems you already use — your CRM, email, calendar, website — so they work together automatically. You stop doing repetitive tasks manually, and the AI handles routing, follow-up, qualification, or content creation in the background.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        How is this different from just using ChatGPT?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        ChatGPT is a tool you interact with manually. AI integration means building systems that run on their own — triggering automatically when a lead fills out a form, an email arrives, or a deal moves in your CRM. No copy-pasting, no manual prompts.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        What tools do you integrate with?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        Most major business tools — HubSpot, GoHighLevel, Salesforce, Gmail, Outlook, Slack, Notion, Airtable, Google Sheets, WhatsApp, Calendly, and more. If it has an API or works with Zapier or Make, we can connect it to an AI layer.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        How long does an AI integration project typically take?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        Most projects go live in 2–4 weeks. A focused chatbot or lead qualification system can be deployed in under 2 weeks. Larger multi-system integrations with custom AI logic typically run 4–6 weeks depending on complexity and the number of tools involved.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        Do we need technical staff to maintain the systems you build?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        No. We build everything to run without a dedicated technical team. We handle ongoing monitoring and can adjust systems as your business grows. Most clients manage day-to-day use through simple dashboards with no coding required.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        What's the first step?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        Book a free AI Readiness Audit. We'll spend 30 minutes reviewing your current workflows, identify 2–3 high-impact automation opportunities, and tell you exactly what we'd build and why — before you commit to anything.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════ CTA SECTION ═══════════════════════ -->
+    <section class="px-6 py-24 bg-white dark:bg-[#0f1218] transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative bg-[#0B0E14] rounded-[2rem] p-12 md:p-24 overflow-hidden text-center fade-up">
+                <!-- Grid pattern -->
+                <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-size:32px 32px;background-image:radial-gradient(circle at 2px 2px,#e0e3e7 1px,transparent 0)"></div>
+                <!-- Glows -->
+                <div class="absolute -top-32 -left-32 w-96 h-96 bg-[#f0942e] rounded-full blur-[120px] opacity-20"></div>
+                <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-[#395e8b] rounded-full blur-[120px] opacity-20"></div>
+
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-8">
+                        Ready to Automate Your Competitive Edge?
+                    </h2>
+                    <p class="text-white/60 text-lg md:text-xl mb-12 leading-relaxed">
+                        Our team of AI engineers is ready to audit your current workflow and design a custom integration plan. No fluff, just results.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="contact.html"
+                            class="text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] font-medium rounded-xl text-lg px-10 py-4 transition-all duration-300 inline-flex items-center gap-2">
+                            Book Your Free Audit
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="about.html"
+                            class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-4 rounded-xl font-medium text-lg hover:bg-white/20 transition-all duration-300 inline-block">
+                            View Case Studies
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+    <footer class="dark:border-white/10 dark:bg-[#0b0e14] transition-colors duration-300 bg-slate-50 border-slate-200 border-t pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
+                <div class="col-span-2 lg:col-span-2 pr-8">
+                    <a href="index.html" class="flex items-center gap-2.5 mb-6 group">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a320b6b1-77f0-4506-8214-fdb9509bc6a0_320w.png?w=800&q=80"
+                            alt="Azuretech Logo" class="w-auto h-12 object-contain">
+                    </a>
+                    <p class="leading-relaxed dark:text-gray-400 text-sm text-slate-500 max-w-sm">
+                        We build the automation systems and AI infrastructure that help growing businesses do more with less.
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Services</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="automation.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Automation</a></li>
+                        <li><a href="ai-integration.html" class="text-sm text-[#f0942e] font-medium">AI Integration</a></li>
+                        <li><a href="web-design.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Web Design</a></li>
+                        <li><a href="social-media.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Social Media</a></li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Company</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="about.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-4 col-span-2 md:col-span-1">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Contact</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li class="text-sm text-slate-500 dark:text-gray-500">hello@azuretech.ai</li>
+                        <li class="text-sm text-slate-500 dark:text-gray-500">Miami, Florida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-sm text-slate-500 dark:text-gray-600">
+                    &copy; 2026 Azuretech LLC. All rights reserved.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-slate-400 hover:text-slate-600 dark:text-gray-600 dark:hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-slate-600 dark:text-gray-600 dark:hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-slate-600 dark:text-gray-600 dark:hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+    <script>
+        // Lucide icons
+        lucide.createIcons();
+
+        // Theme toggle
+        const htmlRoot = document.getElementById('html-root');
+        function toggleTheme() {
+            if (htmlRoot.classList.contains('dark')) {
+                htmlRoot.classList.remove('dark');
+            } else {
+                htmlRoot.classList.add('dark');
+            }
+        }
+
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Scroll-triggered fade-up animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>

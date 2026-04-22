@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="html-root">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Marketing &amp; Automation | Azuretech — Miami, FL</title>
+    <meta name="description" content="Eliminate manual posting overhead. Azuretech synchronizes your presence across Google, LinkedIn, and Facebook with automated content workflows and AI-assisted marketing — based in Miami, FL.">
+    <link rel="canonical" href="https://azuretechit.com/social-media.html">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Social Media Marketing & Automation",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Azuretech",
+        "url": "https://azuretechit.com",
+        "telephone": "(786) 762-3499",
+        "address": { "@type": "PostalAddress", "addressLocality": "Miami", "addressRegion": "FL" }
+      },
+      "serviceType": ["Social Media Marketing", "Content Automation", "Email Marketing", "SMS Marketing"],
+      "areaServed": { "@type": "City", "name": "Miami" },
+      "url": "https://azuretechit.com/social-media.html"
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' };
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        ::selection { background: #f0942e; color: #fff; }
+
+        /* Scroll-triggered fade-in */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero glow */
+        .hero-glow {
+            background: radial-gradient(ellipse 60% 50% at 50% 120%, rgba(240,148,46,0.12) 0%, transparent 70%);
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Subtle grid bg */
+        .bg-grid {
+            background-size: 60px 60px;
+            background-image:
+                linear-gradient(to right, rgba(57,94,139,0.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(57,94,139,0.06) 1px, transparent 1px);
+        }
+        .dark .bg-grid {
+            background-image:
+                linear-gradient(to right, rgba(57,94,139,0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(57,94,139,0.1) 1px, transparent 1px);
+        }
+
+        /* Progress bar animation */
+        .sync-bar {
+            animation: syncFill 2s ease-out forwards;
+            width: 0%;
+        }
+        @keyframes syncFill {
+            to { width: var(--target-width); }
+        }
+
+        /* Pulse dot */
+        .pulse-dot {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+    </style>
+    <script>
+        // Dark mode init — prefers-color-scheme fallback
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+
+<body class="bg-white dark:bg-[#0f1218] text-slate-900 dark:text-[#ebebeb] antialiased overflow-x-hidden transition-colors duration-300">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVBAR -->
+    <!-- ═══════════════════════════════════════════ -->
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0f1218]/80 backdrop-blur-md transition-colors duration-300">
+        <div class="flex flex-wrap max-w-7xl mx-auto py-4 px-6 items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a320b6b1-77f0-4506-8214-fdb9509bc6a0_320w.png?w=800&q=80"
+                    class="w-auto h-14 object-cover" alt="Azuretech Logo">
+            </a>
+            <div class="flex lg:order-2 space-x-3 items-center">
+                <!-- Dark Mode Toggle -->
+                <button
+                    onclick="document.documentElement.classList.toggle('dark');"
+                    class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="hidden dark:block">
+                        <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="block dark:hidden">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2"></path><path d="M12 20v2"></path>
+                        <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+                        <path d="M2 12h2"></path><path d="M20 12h2"></path>
+                        <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+                    </svg>
+                </button>
+                <!-- CTA Button -->
+                <a href="contact.html"
+                    class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2">
+                    Book Consultation
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                </a>
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-menu-btn" type="button"
+                    class="inline-flex dark:text-gray-400 lg:hidden hover:bg-gray-100 dark:hover:bg-white/5 focus:outline-none text-sm text-gray-500 w-10 h-10 rounded-lg p-2 items-center justify-center">
+                    <span class="sr-only">Open main menu</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Desktop Nav Links -->
+            <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-links">
+                <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent">
+                    <li>
+                        <a href="automation.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Automation</a>
+                    </li>
+                    <li>
+                        <a href="ai-integration.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">AI Integration</a>
+                    </li>
+                    <li>
+                        <a href="web-design.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Web Design</a>
+                    </li>
+                    <li>
+                        <a href="social-media.html"
+                            class="block py-2 px-3 text-[#f0942e] rounded lg:bg-transparent lg:text-[#f0942e] lg:p-0"
+                            aria-current="page">Social Media</a>
+                    </li>
+                    <li>
+                        <a href="about.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">About</a>
+                    </li>
+                    <li>
+                        <a href="contact.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 dark:border-white/10 bg-white dark:bg-[#0f1218]">
+            <ul class="flex flex-col p-4 gap-1">
+                <li><a href="automation.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Automation</a></li>
+                <li><a href="ai-integration.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">AI Integration</a></li>
+                <li><a href="web-design.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Web Design</a></li>
+                <li><a href="social-media.html" class="block py-3 px-4 text-[#f0942e] font-medium rounded-lg bg-[#f0942e]/5">Social Media</a></li>
+                <li><a href="about.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">About</a></li>
+                <li><a href="contact.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Contact</a></li>
+                <li class="pt-2">
+                    <a href="contact.html" class="block text-center text-white bg-[#f0942e] hover:bg-[#e28b2b] font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300">Book Consultation</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="pt-[76px]">
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- HERO SECTION -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section class="relative min-h-[85vh] flex items-center bg-[#0B0E14] overflow-hidden">
+            <!-- Background image -->
+            <div class="absolute inset-0 opacity-20 pointer-events-none">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1920&q=80"
+                    class="w-full h-full object-cover" alt="Social media apps on smartphone representing automated content presence">
+            </div>
+            <!-- Subtle glow -->
+            <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32 grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-up">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f0942e]/10 border border-[#f0942e]/20 text-[#f0942e] text-sm font-medium tracking-wide uppercase mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
+                        Digital Marketing 2.0
+                    </span>
+                    <h1 class="text-5xl md:text-7xl font-semibold text-white tracking-tight leading-[1.1] mb-6">
+                        Active Visibility. <br><span class="text-[#f0942e]">Zero Manual Friction.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-xl mb-10 leading-relaxed">
+                        Eliminate the overhead of manual posting. Azuretech synchronizes your presence across Google, LinkedIn, and Facebook while you focus on closing deals.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="contact.html" class="px-8 py-4 bg-[#f0942e] text-white rounded-lg font-medium flex items-center gap-2 hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] transition-all duration-300">
+                            Start Automating
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                        </a>
+                        <button class="px-8 py-4 bg-white/10 text-white rounded-lg font-medium backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Visual: Multi-channel Dashboard Mockup -->
+                <div class="hidden md:block relative fade-up" style="transition-delay: 0.2s;">
+                    <div class="absolute -inset-8 bg-[#f0942e]/10 blur-3xl rounded-full"></div>
+                    <div class="relative bg-white/5 backdrop-blur-2xl p-8 rounded-xl border border-white/10 shadow-2xl">
+                        <div class="space-y-5">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                                <div class="flex gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-400/60"></div>
+                                    <div class="w-3 h-3 rounded-full bg-[#f0942e]/60"></div>
+                                    <div class="w-3 h-3 rounded-full bg-emerald-400/60"></div>
+                                </div>
+                                <div class="text-xs font-medium text-white/40 uppercase tracking-widest">Multi-Channel Sync Active</div>
+                            </div>
+                            <!-- Channel Rows -->
+                            <div class="space-y-4">
+                                <!-- LinkedIn -->
+                                <div class="flex items-center gap-4 bg-white/5 rounded-lg p-4 border border-white/5">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-600/20 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <span class="text-sm font-medium text-white/80">LinkedIn</span>
+                                            <span class="text-xs text-emerald-400 flex items-center gap-1">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>Synced
+                                            </span>
+                                        </div>
+                                        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                            <div class="bg-blue-500 h-full rounded-full sync-bar" style="--target-width: 85%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Google -->
+                                <div class="flex items-center gap-4 bg-white/5 rounded-lg p-4 border border-white/5">
+                                    <div class="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <span class="text-sm font-medium text-white/80">Google</span>
+                                            <span class="text-xs text-emerald-400 flex items-center gap-1">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>Synced
+                                            </span>
+                                        </div>
+                                        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                            <div class="bg-red-500 h-full rounded-full sync-bar" style="--target-width: 92%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Facebook -->
+                                <div class="flex items-center gap-4 bg-white/5 rounded-lg p-4 border border-white/5">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-700/20 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <span class="text-sm font-medium text-white/80">Facebook</span>
+                                            <span class="text-xs text-emerald-400 flex items-center gap-1">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>Synced
+                                            </span>
+                                        </div>
+                                        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                            <div class="bg-blue-700 h-full rounded-full sync-bar" style="--target-width: 78%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Status row -->
+                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-xs text-white/40">Campaign Status</span>
+                                <span class="text-xs font-medium text-emerald-400 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>All Channels Active
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- CORE CAPABILITIES BENTO GRID -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section class="py-24 bg-gray-50 dark:bg-[#161b22] transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="mb-16 fade-up">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#395e8b]/5 dark:bg-[#395e8b]/10 border border-[#395e8b]/20 text-[#547aa1] text-sm font-medium tracking-wide uppercase mb-4">
+                        What We Deliver
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Core Capabilities</h2>
+                    <div class="w-16 h-1 bg-[#f0942e] rounded-full mt-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Feature 1: Automated Content Workflows (2-col, large) -->
+                    <div class="md:col-span-2 group relative overflow-hidden bg-white dark:bg-[#0f1218] p-10 rounded-xl hover:shadow-xl transition-all border border-gray-200 dark:border-white/10 fade-up">
+                        <div class="relative z-10 flex flex-col md:flex-row gap-10 items-center">
+                            <div class="flex-1">
+                                <div class="w-14 h-14 bg-[#f0942e]/10 rounded-xl flex items-center justify-center mb-6 text-[#f0942e]">
+                                    <i data-lucide="calendar-check" class="w-7 h-7"></i>
+                                </div>
+                                <h3 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Automated Content Workflows</h3>
+                                <p class="text-slate-500 dark:text-gray-400 leading-relaxed">
+                                    Define your strategy once. Our system maps out 30 days of cross-platform visibility, ensuring your brand stays top-of-mind without a single manual click.
+                                </p>
+                            </div>
+                            <div class="w-full md:w-64 h-48 bg-gray-100 dark:bg-white/5 rounded-xl overflow-hidden border border-gray-200 dark:border-white/10">
+                                <img alt="Automated content workflow visualization"
+                                    class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=600&q=80">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: AI-Assisted Content Generation (1-col, blue accent) -->
+                    <div class="bg-[#395e8b] text-white p-10 rounded-xl flex flex-col justify-between group hover:scale-[1.02] transition-transform fade-up" style="transition-delay: 0.1s;">
+                        <div>
+                            <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                                <i data-lucide="sparkles" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold tracking-tight mb-4">AI-Assisted Content Generation</h3>
+                            <p class="text-white/70 leading-relaxed">
+                                Platform-specific copy, visual assets, and hashtags tailored for each channel's unique algorithm.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-white/10 text-sm font-medium flex items-center gap-2">
+                            LEARN MORE
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Marketing Automation (1-col) -->
+                    <div class="md:col-span-1 bg-white dark:bg-[#0f1218] p-10 rounded-xl border border-gray-200 dark:border-white/10 group hover:shadow-xl transition-all fade-up" style="transition-delay: 0.15s;">
+                        <div class="w-14 h-14 bg-[#395e8b]/10 dark:bg-[#395e8b]/20 rounded-xl flex items-center justify-center mb-6 text-[#395e8b]">
+                            <i data-lucide="mail" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold tracking-tight mb-4">Marketing Automation</h3>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed mb-6">
+                            Omni-channel engagement via automated email and SMS sequences that trigger based on user behavior.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-sm font-medium">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#f0942e]"></i>
+                                Drip Campaigns
+                            </li>
+                            <li class="flex items-center gap-3 text-sm font-medium">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#f0942e]"></i>
+                                Behavior Triggers
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Large Visual CTA Card (2-col) -->
+                    <div class="md:col-span-2 relative h-[350px] rounded-xl overflow-hidden group fade-up" style="transition-delay: 0.2s;">
+                        <img alt="Team collaboration in modern office"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#f0942e]/90 to-transparent flex flex-col justify-center p-12">
+                            <h3 class="text-3xl md:text-4xl font-semibold text-white mb-4 max-w-md leading-tight">Ready to reclaim your time?</h3>
+                            <p class="text-white/80 mb-8 max-w-sm">Built for growing businesses that need consistent visibility — without a full-time marketing team.</p>
+                            <div>
+                                <a href="contact.html" class="inline-block px-8 py-3 bg-white text-[#f0942e] rounded-lg font-medium hover:bg-orange-50 transition-colors">Book Your Free Audit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- EMAIL & SMS SECTION (Dark Blue BG) -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section class="py-24 bg-[#395e8b] text-white overflow-hidden relative">
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-white rounded-full blur-[150px]"></div>
+                <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#f0942e] rounded-full blur-[150px]"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="text-center mb-20 fade-up">
+                    <span class="text-[#f0942e] font-medium tracking-[0.3em] uppercase text-sm">Email &amp; SMS Automation</span>
+                    <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mt-4">Email & SMS Beyond Templates.</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Hyper-Segmented Email -->
+                    <div class="glass-card p-10 md:p-12 rounded-2xl border border-white/10 fade-up">
+                        <div class="w-14 h-14 bg-[#f0942e]/20 rounded-xl flex items-center justify-center mb-8">
+                            <i data-lucide="mail-check" class="w-7 h-7 text-[#f0942e]"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Hyper-Segmented Email</h3>
+                        <p class="text-white/60 mb-8 text-lg leading-relaxed">Dynamic content blocks that change based on individual user behavior. If they clicked a link, their next email evolves automatically.</p>
+                        <ul class="space-y-4 text-white/90">
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-[#f0942e] shrink-0"></i>
+                                Abandoned Cart Recovery
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-[#f0942e] shrink-0"></i>
+                                Behavioral Drip Sequences
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-[#f0942e] shrink-0"></i>
+                                Predictive Re-engagement
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Urgent SMS Logic -->
+                    <div class="glass-card p-10 md:p-12 rounded-2xl border border-white/10 fade-up" style="transition-delay: 0.1s;">
+                        <div class="w-14 h-14 bg-[#f0942e]/20 rounded-xl flex items-center justify-center mb-8">
+                            <i data-lucide="message-square" class="w-7 h-7 text-[#f0942e]"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Urgent SMS Logic</h3>
+                        <p class="text-white/60 mb-8 text-lg leading-relaxed">SMS averages 98% open rates industry-wide. We make sure your campaigns hit at the right moment — timely, non-intrusive, and synced with your email flows.</p>
+                        <ul class="space-y-4 text-white/90">
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-[#f0942e] shrink-0"></i>
+                                Two-Way Conversational AI
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-[#f0942e] shrink-0"></i>
+                                Instant Offer Distribution
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-[#f0942e] shrink-0"></i>
+                                Real-time Event Alerts
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- CTA banner -->
+                <div class="mt-16 p-10 md:p-12 glass-card rounded-2xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-8 fade-up">
+                    <div>
+                        <h4 class="text-xl md:text-2xl font-semibold tracking-tight mb-2">Ready to recover 40+ hours per month?</h4>
+                        <p class="text-white/50">Let's build your automated marketing infrastructure together.</p>
+                    </div>
+                    <a href="contact.html" class="bg-[#f0942e] text-white px-10 py-4 rounded-xl font-medium text-lg hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] transition-all duration-300 whitespace-nowrap">
+                        Book Your Tech Audit
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- STATS / SOCIAL PROOF -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section class="py-24 bg-white dark:bg-[#0f1218] transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-12 fade-up">
+                    <div class="text-center md:text-left flex-1">
+                        <div class="text-5xl md:text-6xl font-semibold text-[#f0942e] mb-2 tracking-tight">94%</div>
+                        <div class="text-slate-500 dark:text-gray-400 font-medium uppercase tracking-widest text-sm">Engagement Lift</div>
+                    </div>
+                    <div class="w-px h-16 bg-gray-200 dark:bg-white/10 hidden md:block"></div>
+                    <div class="text-center md:text-left flex-1">
+                        <div class="text-5xl md:text-6xl font-semibold text-[#395e8b] mb-2 tracking-tight">2.5k+</div>
+                        <div class="text-slate-500 dark:text-gray-400 font-medium uppercase tracking-widest text-sm">Campaigns Syncing</div>
+                    </div>
+                    <div class="w-px h-16 bg-gray-200 dark:bg-white/10 hidden md:block"></div>
+                    <div class="text-center md:text-left flex-1">
+                        <div class="text-5xl md:text-6xl font-semibold tracking-tight mb-2">20hr</div>
+                        <div class="text-slate-500 dark:text-gray-400 font-medium uppercase tracking-widest text-sm">Saved Weekly per User</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- REPLACE WITH REAL TESTIMONIALS -->
+    <section class="py-24 bg-white dark:bg-[#0f1218] transition-colors duration-300 border-t border-slate-100 dark:border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <p class="text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-3">Client Results</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">What Our Clients Say</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/8 rounded-2xl p-8 relative shadow-sm">
+                    <div class="w-full h-0.5 bg-[#f0942e] absolute top-0 left-0 right-0 rounded-t-2xl"></div>
+                    <div class="text-6xl text-[#f0942e] opacity-20 font-serif leading-none mb-4">"</div>
+                    <blockquote class="text-lg text-slate-700 dark:text-gray-200 leading-relaxed mb-6 font-light">
+                        We went from posting once a week manually to having 30 days of content scheduled in one afternoon. It completely changed how we show up online.
+                    </blockquote>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
+                        <div class="w-9 h-9 rounded-full bg-[#f0942e]/15 flex items-center justify-center text-[#f0942e] font-semibold text-sm">C</div>
+                        <cite class="not-italic">
+                            <div class="text-sm font-semibold text-slate-900 dark:text-white">Client Name</div>
+                            <div class="text-xs text-slate-400 dark:text-gray-500 uppercase tracking-widest mt-0.5">Role, Company</div>
+                        </cite>
+                    </div>
+                </div>
+                <div class="bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/8 rounded-2xl p-8 relative shadow-sm">
+                    <div class="w-full h-0.5 bg-[#f0942e] absolute top-0 left-0 right-0 rounded-t-2xl"></div>
+                    <div class="text-6xl text-[#f0942e] opacity-20 font-serif leading-none mb-4">"</div>
+                    <blockquote class="text-lg text-slate-700 dark:text-gray-200 leading-relaxed mb-6 font-light">
+                        Our email open rates jumped after the sequences were rebuilt. The behavioral triggers actually work — people get the right message at the right time.
+                    </blockquote>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
+                        <div class="w-9 h-9 rounded-full bg-[#f0942e]/15 flex items-center justify-center text-[#f0942e] font-semibold text-sm">C</div>
+                        <cite class="not-italic">
+                            <div class="text-sm font-semibold text-slate-900 dark:text-white">Client Name</div>
+                            <div class="text-xs text-slate-400 dark:text-gray-500 uppercase tracking-widest mt-0.5">Role, Company</div>
+                        </cite>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════ FAQ ═══════════════════════ -->
+    <section class="py-24 bg-slate-50 dark:bg-[#161b22] transition-colors duration-300 border-t border-slate-100 dark:border-white/5">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <p class="text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-3">Common Questions</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Social Media FAQ</h2>
+            </div>
+            <div class="space-y-3">
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        What social platforms do you manage?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        Google Business Profile, LinkedIn, Facebook, and Instagram. We focus on the platforms where your target audience actually spends time — not every platform for the sake of it. During onboarding we'll help you prioritize based on your industry and goals.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        Do you create the content or do we?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        We handle content creation — copy, visuals, and scheduling. Our AI-assisted workflows generate platform-specific posts based on your services, tone, and audience. You review and approve before anything goes live. Over time the system learns what performs and adjusts accordingly.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        How does the AI content generation actually work?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        We train the system on your brand voice, services, and audience before generating anything. It produces a full month of posts — formatted differently for each platform — which we review before scheduling. It's not generic AI output; it's content built around your specific business and goals.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        What's included in the email and SMS automation?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        Behavioral email sequences that trigger based on what contacts do — clicks, page visits, form fills. SMS campaigns for time-sensitive offers or follow-ups. Everything syncs so a contact's email history informs their SMS timing, and vice versa. No more disconnected blasts.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        How soon before we see results?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        Engagement typically improves within the first 30 days as consistent posting builds momentum. Email and SMS results are faster — most clients see open rate and click improvements within the first campaign. Organic social growth takes longer, usually 60–90 days to show compounding effects.
+                    </div>
+                </details>
+                <details class="group bg-white dark:bg-[#0f1218] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                    <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                        Can this work alongside our existing marketing tools?
+                        <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                        Yes. We integrate with most major CRMs and marketing platforms — HubSpot, GoHighLevel, Mailchimp, ActiveCampaign, and others. We'll connect the automation to what you already have rather than replacing your stack unless there's a clear reason to.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <!-- ═══════════════════════════════════════════ -->
+    <footer class="dark:border-white/10 dark:bg-[#0b0e14] transition-colors duration-300 bg-slate-50 border-slate-200 border-t pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
+                <div class="col-span-2 lg:col-span-2 pr-8">
+                    <a href="index.html" class="flex items-center gap-2.5 mb-6 group">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a320b6b1-77f0-4506-8214-fdb9509bc6a0_320w.png?w=800&q=80"
+                            alt="Azuretech Logo" class="w-auto h-12 object-contain">
+                    </a>
+                    <p class="leading-relaxed dark:text-gray-400 text-sm text-slate-500 max-w-sm">
+                        We build the automation systems and AI infrastructure that help growing businesses do more with less.
+                    </p>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Services</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="automation.html" class="text-sm text-slate-500 hover:text-[#f0942e] dark:text-gray-500 dark:hover:text-[#f0942e] transition-colors">Automation</a></li>
+                        <li><a href="ai-integration.html" class="text-sm text-slate-500 hover:text-[#f0942e] dark:text-gray-500 dark:hover:text-[#f0942e] transition-colors">AI Integration</a></li>
+                        <li><a href="web-design.html" class="text-sm text-slate-500 hover:text-[#f0942e] dark:text-gray-500 dark:hover:text-[#f0942e] transition-colors">Web Design</a></li>
+                        <li><a href="social-media.html" class="text-sm text-slate-500 hover:text-[#f0942e] dark:text-gray-500 dark:hover:text-[#f0942e] transition-colors">Social Media</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Company</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="about.html" class="text-sm text-slate-500 hover:text-[#f0942e] dark:text-gray-500 dark:hover:text-[#f0942e] transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-sm text-slate-500 hover:text-[#f0942e] dark:text-gray-500 dark:hover:text-[#f0942e] transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-sm text-slate-500 hover:text-[#f0942e] dark:text-gray-500 dark:hover:text-[#f0942e] transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-sm text-slate-500 hover:text-[#f0942e] dark:text-gray-500 dark:hover:text-[#f0942e] transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Contact</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li class="text-sm text-slate-500 dark:text-gray-500">hello@azuretech.ai</li>
+                        <li class="text-sm text-slate-500 dark:text-gray-500">Miami, Florida</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-sm text-slate-500 dark:text-gray-600">
+                    &copy; 2026 Azuretech LLC. All rights reserved.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-slate-400 hover:text-slate-600 dark:text-gray-600 dark:hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-slate-600 dark:text-gray-600 dark:hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-slate-600 dark:text-gray-600 dark:hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Scroll-triggered fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Init Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>

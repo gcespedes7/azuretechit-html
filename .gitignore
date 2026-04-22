@@ -1,0 +1,4 @@
+serve.mjs
+*.md
+node_modules/
+.tmp/

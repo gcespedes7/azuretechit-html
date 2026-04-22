@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="html-root">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Azuretech — AI Automation &amp; Web Services | Miami, FL</title>
+    <meta name="description" content="Azuretech is a Miami-based technology company that builds AI automation, custom websites, and digital systems for growing businesses. Founded by Giovanni Cespedes.">
+    <link rel="canonical" href="https://azuretechit.com/about.html">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Azuretech",
+      "url": "https://azuretechit.com",
+      "telephone": "(786) 762-3499",
+      "email": "hello@azuretech.ai",
+      "address": { "@type": "PostalAddress", "addressLocality": "Miami", "addressRegion": "FL" },
+      "founder": { "@type": "Person", "name": "Giovanni Cespedes" },
+      "description": "Miami-based technology company specializing in AI automation, web design, and digital systems for growing businesses."
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' };
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        ::selection {
+            background-color: #f0942e;
+            color: #ffffff;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Dot grid for philosophy section */
+        .technical-dot-grid {
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Float animation for decorative blobs */
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-20px) translateX(10px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+        .animate-float {
+            animation: float 15s ease-in-out infinite;
+        }
+
+        /* Fade-in on scroll */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stat counter animation */
+        .stat-number {
+            display: inline-block;
+        }
+    </style>
+    <!-- Dark mode init (prevents flash) -->
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+
+<body class="bg-white dark:bg-[#0f1218] text-slate-900 dark:text-[#ebebeb] antialiased transition-colors duration-300">
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0f1218]/80 backdrop-blur-md transition-colors duration-300">
+        <div class="flex flex-wrap max-w-7xl mx-auto pt-4 pr-6 pb-4 pl-6 items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse group">
+                <div class="flex items-center gap-2 font-semibold text-xl tracking-tight text-slate-900 dark:text-white">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a320b6b1-77f0-4506-8214-fdb9509bc6a0_320w.png?w=800&q=80"
+                        class="bg-center w-auto h-14 object-cover" alt="Azuretech Logo">
+                </div>
+            </a>
+            <div class="flex lg:order-2 space-x-3 items-center">
+                <!-- Dark mode toggle -->
+                <button
+                    onclick="document.documentElement.classList.toggle('dark');"
+                    class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="hidden dark:block w-5 h-5" aria-hidden="true">
+                        <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="block dark:hidden w-5 h-5" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 20v2"></path>
+                        <path d="m4.93 4.93 1.41 1.41"></path>
+                        <path d="m17.66 17.66 1.41 1.41"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="M20 12h2"></path>
+                        <path d="m6.34 17.66-1.41 1.41"></path>
+                        <path d="m19.07 4.93-1.41 1.41"></path>
+                    </svg>
+                </button>
+                <!-- CTA Button -->
+                <a href="contact.html"
+                    class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2">
+                    Book Consultation
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-4 h-4">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                </a>
+                <!-- Mobile menu toggle -->
+                <button id="mobile-menu-btn" type="button"
+                    class="inline-flex dark:text-gray-400 lg:hidden hover:bg-gray-100 dark:hover:bg-white/5 focus:outline-none text-sm text-gray-500 w-10 h-10 rounded-lg p-2 items-center justify-center"
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <path d="M4 5h16"></path>
+                        <path d="M4 12h16"></path>
+                        <path d="M4 19h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Desktop nav links -->
+            <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent">
+                    <li>
+                        <a href="automation.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            Automation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ai-integration.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            AI Integration
+                        </a>
+                    </li>
+                    <li>
+                        <a href="web-design.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            Web Design
+                        </a>
+                    </li>
+                    <li>
+                        <a href="social-media.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            Social Media
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html"
+                            class="block py-2 px-3 text-[#f0942e] rounded lg:bg-transparent lg:text-[#f0942e] lg:p-0"
+                            aria-current="page">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html"
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24">
+
+        <!-- ============ HERO SECTION ============ -->
+        <section class="relative overflow-hidden bg-white dark:bg-[#0f1218] transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="fade-up">
+                        <span class="inline-block py-1.5 px-4 rounded-full bg-[#395e8b]/5 dark:bg-[#395e8b]/10 border border-[#395e8b]/20 text-[#547aa1] text-xs font-semibold uppercase tracking-widest mb-6">
+                            About Azuretech
+                        </span>
+                        <h1 class="text-5xl md:text-7xl font-semibold tracking-tight text-slate-900 dark:text-[#ebebeb] mb-8 leading-[1.1]">
+                            Technical Operator.<br>
+                            <span class="text-[#f0942e]">Business Strategist.</span>
+                        </h1>
+                        <p class="text-lg text-slate-500 dark:text-gray-400 max-w-xl mb-10 leading-relaxed">
+                            Azuretech bridges the gap between raw technical capability and high-level commercial outcomes. We don't just build — we engineer growth through operational precision.
+                        </p>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex items-center gap-2 text-[#f0942e] font-medium">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                <span>ROI-First Framework</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-[#395e8b] dark:text-[#547aa1] font-medium">
+                                <i data-lucide="zap" class="w-5 h-5"></i>
+                                <span>Rapid Deployment</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative fade-up" style="transition-delay: 0.15s;">
+                        <div class="aspect-square rounded-xl overflow-hidden shadow-2xl">
+                            <img
+                                src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=800&fit=crop&q=80"
+                                alt="Modern workspace with clean minimalist design"
+                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        </div>
+                        <!-- Decorative blobs -->
+                        <div class="absolute -bottom-8 -left-8 w-48 h-48 bg-[#f0942e]/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute -top-8 -right-8 w-64 h-64 bg-[#395e8b]/10 rounded-full blur-3xl pointer-events-none"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FOUNDER SECTION ============ -->
+        <section class="bg-gray-50 dark:bg-[#161b22] transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+                <div class="mb-16 fade-up">
+                    <h2 class="text-4xl font-semibold tracking-tight mb-4 text-slate-900 dark:text-[#ebebeb]">The Architect's Origin</h2>
+                    <div class="w-20 h-1.5 bg-[#f0942e] rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <!-- Founder Image -->
+                    <!-- ⚠️ REPLACE WITH REAL PHOTO OF GIOVANNI CESPEDES — see image-generation-prompts.md for portrait prompt -->
+                    <div class="md:col-span-4 rounded-xl overflow-hidden bg-white dark:bg-[#0f1218] shadow-sm h-[420px] fade-up">
+                        <img
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&q=80"
+                            alt="Giovanni Cespedes, Founder of Azuretech"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <!-- Story Card -->
+                    <div class="md:col-span-8 p-10 md:p-12 bg-white dark:bg-[#0f1218] border border-gray-200 dark:border-white/10 rounded-xl shadow-sm flex flex-col justify-center fade-up" style="transition-delay: 0.1s;">
+                        <h3 class="text-3xl font-semibold mb-6 text-slate-900 dark:text-[#ebebeb]">Giovanni Cespedes</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-lg leading-relaxed mb-6 italic border-l-4 border-[#f0942e] pl-5">
+                            "Innovation without operational context is just overhead."
+                        </p>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed mb-8">
+                            With a unique background spanning <strong class="text-slate-700 dark:text-gray-200">Public Adjusting, IT infrastructure, and Full-stack Development</strong>, Giovanni built Azuretech on the premise that businesses need more than just code — they need systems that respect the bottom line. His journey through high-stakes adjusting taught him the value of precision; his years in IT taught him the power of scale.
+                        </p>
+                        <div class="grid grid-cols-3 gap-8">
+                            <div>
+                                <div class="text-[#f0942e] font-semibold text-3xl mb-1">10+</div>
+                                <div class="text-xs uppercase tracking-widest text-slate-400 dark:text-gray-500">Years Experience</div>
+                            </div>
+                            <div>
+                                <div class="text-[#f0942e] font-semibold text-3xl mb-1">50+</div>
+                                <div class="text-xs uppercase tracking-widest text-slate-400 dark:text-gray-500">Enterprises Scaled</div>
+                            </div>
+                            <div>
+                                <div class="text-[#f0942e] font-semibold text-3xl mb-1">98%</div>
+                                <div class="text-xs uppercase tracking-widest text-slate-400 dark:text-gray-500">Client Retention</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PHILOSOPHY SECTION (Dark Dramatic) ============ -->
+        <section class="relative py-32 md:py-40 overflow-hidden bg-[#0B0E14] text-white">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="absolute inset-0 technical-dot-grid"></div>
+                <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#f0942e]/5 rounded-full blur-[120px] animate-float"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#395e8b]/5 rounded-full blur-[100px] animate-float" style="animation-delay: -5s;"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-6 text-center fade-up">
+                <span class="inline-block px-4 py-1.5 rounded-full border border-[#f0942e]/30 text-[#f0942e] text-xs font-semibold tracking-widest uppercase mb-12">
+                    The Brand Ethos
+                </span>
+                <h2 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter mb-12 leading-[1] max-w-5xl mx-auto">
+                    Our Philosophy: <br>
+                    <span class="text-[#f0942e]">Simplification</span> over Complexity.
+                </h2>
+                <div class="flex justify-center">
+                    <p class="max-w-3xl text-xl md:text-2xl text-gray-400 leading-relaxed font-light">
+                        We believe that the most sophisticated technical solutions are those that feel invisible. Our brand promise is to strip away the technical noise, exposing the lean, high-performing core of your business operations to enable effortless scale.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CORE PRINCIPLES ============ -->
+        <section class="bg-white dark:bg-[#0f1218] transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+                <div class="text-center mb-16 fade-up">
+                    <h2 class="text-4xl font-semibold tracking-tight mb-4 text-slate-900 dark:text-[#ebebeb]">Core Principles</h2>
+                    <p class="text-slate-500 dark:text-gray-400">The non-negotiable standards of Azuretech.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Simplification -->
+                    <div class="p-10 rounded-xl bg-white dark:bg-[#161b22] border border-gray-200 dark:border-white/10 hover:border-[#f0942e]/30 dark:hover:border-[#f0942e]/30 transition-all duration-300 group text-center flex flex-col items-center fade-up">
+                        <div class="w-16 h-16 rounded-2xl bg-[#f0942e]/10 flex items-center justify-center text-[#f0942e] mb-8 group-hover:bg-[#f0942e] group-hover:text-white transition-all duration-300">
+                            <i data-lucide="sparkles" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-slate-900 dark:text-[#ebebeb]">Simplification</h3>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed">
+                            We strip away the noise. Complexity is a liability. Our goal is to create lean, high-performing systems that anyone on your team can manage.
+                        </p>
+                    </div>
+                    <!-- ROI-First -->
+                    <div class="p-10 rounded-xl bg-white dark:bg-[#161b22] border border-gray-200 dark:border-white/10 hover:border-[#f0942e]/30 dark:hover:border-[#f0942e]/30 transition-all duration-300 group text-center flex flex-col items-center fade-up" style="transition-delay: 0.1s;">
+                        <div class="w-16 h-16 rounded-2xl bg-[#f0942e]/10 flex items-center justify-center text-[#f0942e] mb-8 group-hover:bg-[#f0942e] group-hover:text-white transition-all duration-300">
+                            <i data-lucide="trending-up" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-slate-900 dark:text-[#ebebeb]">ROI-First</h3>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed">
+                            If it doesn't move the needle, we don't build it. Every line of code and every strategic shift is measured against your bottom-line performance.
+                        </p>
+                    </div>
+                    <!-- Client-First Partnership -->
+                    <div class="p-10 rounded-xl bg-white dark:bg-[#161b22] border border-gray-200 dark:border-white/10 hover:border-[#f0942e]/30 dark:hover:border-[#f0942e]/30 transition-all duration-300 group text-center flex flex-col items-center fade-up" style="transition-delay: 0.2s;">
+                        <div class="w-16 h-16 rounded-2xl bg-[#f0942e]/10 flex items-center justify-center text-[#f0942e] mb-8 group-hover:bg-[#f0942e] group-hover:text-white transition-all duration-300">
+                            <i data-lucide="crown" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-slate-900 dark:text-[#ebebeb]">Client-First Partnership</h3>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed">
+                            We work as an extension of your team, not just a vendor you invoice. Proactive communication, deep integration, and a long-term commitment to what we build together.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════ FAQ ═══════════════════════ -->
+        <section class="py-24 bg-white dark:bg-[#0f1218] transition-colors duration-300 border-t border-slate-100 dark:border-white/5">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="text-center mb-14">
+                    <p class="text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-3">Working With Us</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Common Questions</h2>
+                </div>
+                <div class="space-y-3">
+                    <details class="group bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                            Do you work with small businesses or only larger companies?
+                            <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                            Primarily small to mid-sized businesses — typically 2 to 50 employees — that are growing fast enough to feel the pain of manual processes but don't have a full technical team in-house. We're not the right fit for enterprise procurement cycles, but we're exactly right for founders and operators who need things built and working quickly.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                            What industries do you specialize in?
+                            <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                            We've worked across professional services, real estate, e-commerce, healthcare, law, and service-based businesses. The automation problems are remarkably similar across industries — manual follow-up, disconnected tools, repetitive reporting — so we adapt quickly. We're not niche-locked.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                            How do you price your services?
+                            <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                            Project-based for builds (websites, automation systems, AI integrations) and retainer-based for ongoing management and support. We scope everything clearly upfront so you know the number before any work starts. No surprise invoices, no scope creep billed without conversation.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                            Do you work remotely or only in Miami?
+                            <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                            Fully remote-capable. We're headquartered in Miami but work with clients across the US. All discovery, strategy, and project management happens over calls and async communication — we've found it's often more efficient than on-site meetings.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                            What makes Azuretech different from a typical agency?
+                            <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                            Most agencies specialize in one thing — design, or development, or marketing. We sit at the intersection of all three plus operations and AI. That means we see the full picture: how a website connects to your CRM, how your CRM connects to your email flows, and where manual work is costing you time and money. We don't just deliver a file — we build systems.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-medium text-slate-900 dark:text-white list-none">
+                            What does an engagement typically look like from start to finish?
+                            <span class="text-[#f0942e] ml-4 transition-transform duration-200 group-open:rotate-45 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
+                            It starts with a free Discovery Audit — a 30–45 minute call where we map your current workflows and identify the highest-impact opportunities. From there, we scope the project, agree on deliverables and timeline, build in phases with regular check-ins, and hand off with documentation and a walkthrough. Most clients are live within 3–5 weeks.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CTA SECTION ============ -->
+        <section class="bg-gray-50 dark:bg-[#161b22] transition-colors duration-300 py-24 px-6">
+            <div class="max-w-5xl mx-auto bg-gradient-to-br from-[#8e4e00] to-[#f0942e] rounded-2xl p-12 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-[#f0942e]/20 fade-up">
+                <!-- Decorative blobs -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-48 h-48 bg-black/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-semibold text-white mb-8 tracking-tight">Ready to evolve your operations?</h2>
+                    <p class="text-white/90 text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+                        Let's map out what automation can do for your business — no sales pitch, just an honest look at what's possible.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                        <a href="contact.html"
+                            class="bg-white text-[#f0942e] px-10 py-4 rounded-lg font-semibold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl inline-flex items-center justify-center gap-2">
+                            Get Started Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="w-5 h-5">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </a>
+                        <a href="contact.html"
+                            class="border-2 border-white/40 text-white px-10 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all inline-flex items-center justify-center">
+                            Book a Strategy Session
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="dark:border-white/10 dark:bg-[#0b0e14] transition-colors duration-300 bg-gray-50 border-gray-200 border-t pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
+                <div class="col-span-2 lg:col-span-2 pr-8">
+                    <a href="index.html" class="flex items-center gap-2.5 mb-6 group">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a320b6b1-77f0-4506-8214-fdb9509bc6a0_320w.png?w=800&q=80"
+                            alt="Azuretech Logo" class="w-auto h-12 object-contain">
+                    </a>
+                    <p class="leading-relaxed dark:text-gray-400 text-sm text-slate-500 max-w-sm">
+                        We build the automation systems and AI infrastructure that help growing businesses do more with less.
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Services</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="automation.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Automation</a></li>
+                        <li><a href="ai-integration.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">AI Integration</a></li>
+                        <li><a href="web-design.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Web Design</a></li>
+                        <li><a href="social-media.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Social Media</a></li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Company</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="about.html" class="text-sm text-[#f0942e] font-medium">About</a></li>
+                        <li><a href="contact.html" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-sm text-slate-500 hover:text-[#547aa1] dark:text-gray-500 dark:hover:text-[#547aa1] transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Contact</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li class="flex items-center gap-2 text-sm text-slate-500 dark:text-gray-500">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                            hello@azuretech.ai
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-slate-500 dark:text-gray-500">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                            Miami, Florida
+                        </li>
+                        <li class="mt-2">
+                            <a href="contact.html"
+                                class="text-white bg-[#f0942e] hover:bg-[#e28b2b] px-4 py-2.5 rounded-lg text-sm font-medium block text-center transition-all duration-300 hover:shadow-[0_0_20px_rgba(240,148,46,0.4)]">
+                                Discovery Audit
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-sm text-slate-500 dark:text-gray-600">
+                    &copy; 2026 Azuretech LLC. All rights reserved.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-slate-400 hover:text-slate-600 dark:text-gray-600 dark:hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-slate-600 dark:text-gray-600 dark:hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-slate-600 dark:text-gray-600 dark:hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect width="4" height="12" x="2" y="9"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('navbar-sticky');
+        if (mobileMenuBtn && navMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Fade-in on scroll observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>
