@@ -79,6 +79,9 @@
     action:  { accent: '#60a5fa', label: 'action' },
   };
 
+  const DESIGN_W = 1200;
+  const DESIGN_H = 560;
+
   let currentTab = 'it';
   let nodes = JSON.parse(JSON.stringify(GRAPHS[currentTab].nodes));
   let edges = GRAPHS[currentTab].edges;
@@ -88,8 +91,31 @@
   const $canvas = document.getElementById('canvas');
   if (!$nodes || !$conn || !$canvas) return;
 
+  function getScales() {
+    return {
+      sx: $canvas.clientWidth / DESIGN_W,
+      sy: $canvas.clientHeight / DESIGN_H,
+    };
+  }
+
   function renderNodes() {
     $nodes.innerHTML = '';
+    const isMobile = $canvas.clientWidth < 640;
+    if (isMobile) {
+      $canvas.style.overflowX = 'auto';
+      $canvas.style.overflowY = 'hidden';
+      $nodes.style.width = DESIGN_W + 'px';
+      $nodes.style.height = '100%';
+      $nodes.style.transform = '';
+      $nodes.style.transformOrigin = '';
+    } else {
+      $canvas.style.overflow = 'hidden';
+      const { sx, sy } = getScales();
+      $nodes.style.width = DESIGN_W + 'px';
+      $nodes.style.height = DESIGN_H + 'px';
+      $nodes.style.transform = `scale(${sx}, ${sy})`;
+      $nodes.style.transformOrigin = 'top left';
+    }
     nodes.forEach(n => {
       const style = KIND_STYLES[n.kind];
       const el = document.createElement('div');
@@ -110,17 +136,23 @@
           <div class="text-white text-sm font-medium leading-tight">${n.label}</div>
           <div class="mono text-[10px] text-white/45 mt-1.5 truncate">${n.meta}</div>
         </div>
-        <div class="absolute right-0 top-1/2 -mr-1.5 w-3 h-3 bg-[#0b0f16] border-2 border-gray-600 rounded-full translate-y-[-50%]"></div>
-        <div class="absolute left-0 top-1/2 -ml-1.5 w-3 h-3 bg-[#0b0f16] border-2 border-gray-600 rounded-full translate-y-[-50%]"></div>
       `;
       $nodes.appendChild(el);
+      n._h = el.offsetHeight;
       makeDraggable(el, n);
     });
   }
 
   function renderEdges(activeIds) {
-    const cw = $canvas.clientWidth, ch = $canvas.clientHeight;
-    $conn.setAttribute('viewBox', `0 0 ${cw} ${ch}`);
+    const isMobile = $canvas.clientWidth < 640;
+    $conn.setAttribute('viewBox', `0 0 ${DESIGN_W} ${DESIGN_H}`);
+    if (isMobile) {
+      $conn.style.width = DESIGN_W + 'px';
+      $conn.style.height = '100%';
+    } else {
+      $conn.style.width = '';
+      $conn.style.height = '';
+    }
     const SVG_NS = 'http://www.w3.org/2000/svg';
     while ($conn.firstChild) $conn.removeChild($conn.firstChild);
     const el = (tag, attrs) => {
@@ -132,14 +164,14 @@
       const A = nodes.find(n => n.id === a);
       const B = nodes.find(n => n.id === b);
       if (!A || !B) return;
-      const x1 = A.x + 180, y1 = A.y + 40;
-      const x2 = B.x, y2 = B.y + 40;
+      const x1 = A.x + 180, y1 = A.y + (A._h || 90) / 2;
+      const x2 = B.x,       y2 = B.y + (B._h || 90) / 2;
       const mx = (x1 + x2) / 2;
       const d = `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
       const isActive = activeIds && activeIds.includes(a) && activeIds.includes(b);
       $conn.appendChild(el('path', { d, class: 'connection-line' + (isActive ? ' active' : '') }));
-      $conn.appendChild(el('circle', { cx: x1, cy: y1, r: 3, fill: isActive ? ORANGE : '#475569' }));
-      $conn.appendChild(el('circle', { cx: x2, cy: y2, r: 3, fill: isActive ? ORANGE : '#475569' }));
+      $conn.appendChild(el('circle', { cx: x1, cy: y1, r: 5, fill: isActive ? ORANGE : '#0f1620', stroke: isActive ? ORANGE : '#475569', 'stroke-width': '1.5' }));
+      $conn.appendChild(el('circle', { cx: x2, cy: y2, r: 5, fill: isActive ? ORANGE : '#0f1620', stroke: isActive ? ORANGE : '#475569', 'stroke-width': '1.5' }));
       if (label) {
         const lx = (x1 + x2) / 2 - 18, ly = (y1 + y2) / 2 - 8;
         $conn.appendChild(el('rect', { x: lx, y: ly, width: 36, height: 16, rx: 4, fill: '#0b0f16', stroke: '#334155' }));
@@ -166,9 +198,11 @@
       if (!dragging) return;
       ev.preventDefault && ev.preventDefault();
       const p = ev.touches ? ev.touches[0] : ev;
-      const dx = p.clientX - startX, dy = p.clientY - startY;
-      n.x = Math.max(0, Math.min($canvas.clientWidth - 180, origX + dx));
-      n.y = Math.max(0, Math.min($canvas.clientHeight - 90, origY + dy));
+      const { sx, sy } = $canvas.clientWidth < 640 ? { sx: 1, sy: 1 } : getScales();
+      const dx = (p.clientX - startX) / sx;
+      const dy = (p.clientY - startY) / sy;
+      n.x = Math.max(0, Math.min(DESIGN_W - 180, origX + dx));
+      n.y = Math.max(0, Math.min(DESIGN_H - 90, origY + dy));
       el.style.left = n.x + 'px'; el.style.top = n.y + 'px';
       renderEdges();
     };
@@ -232,5 +266,5 @@
   // Init + resize
   renderNodes();
   requestAnimationFrame(() => renderEdges());
-  window.addEventListener('resize', () => renderEdges());
+  window.addEventListener('resize', () => { renderNodes(); renderEdges(); });
 })();

@@ -606,10 +606,12 @@
               </div>
 
               <!-- Canvas -->
-              <div id="canvas" class="relative w-full h-[480px] md:h-[560px] cursor-grab select-none dot-grid overflow-hidden">
-                <svg id="connections" class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1200 560" preserveAspectRatio="none"></svg>
-                <div id="nodes" class="absolute inset-0"></div>
-                <div class="absolute bottom-4 left-4 mono text-[10px] text-white/40 tracking-[0.15em]">DRAG ANY NODE · CLICK RUN</div>
+              <div class="relative">
+                <div id="canvas" class="relative w-full h-[480px] md:h-[560px] cursor-grab select-none dot-grid">
+                  <svg id="connections" class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1200 560" preserveAspectRatio="none"></svg>
+                  <div id="nodes" class="absolute inset-0"></div>
+                  <div class="absolute bottom-4 left-4 mono text-[10px] text-white/40 tracking-[0.15em]">DRAG ANY NODE · CLICK RUN</div>
+                </div>
                 <button id="run-btn" class="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-full bg-[#F79226] text-[#0E1621] text-sm font-medium hover:bg-white transition cursor-pointer">
                   <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                   Run workflow
