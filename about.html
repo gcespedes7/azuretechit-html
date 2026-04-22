@@ -72,6 +72,11 @@
         .stat-number {
             display: inline-block;
         }
+
+        /* Bi-rule navbar */
+        .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
+        .bi-rule span:nth-child(1) { background: #234B70; }
+        .bi-rule span:nth-child(2) { background: #F79226; }
     </style>
     <!-- Dark mode init (prevents flash) -->
     <script>
@@ -186,6 +191,7 @@
                 </ul>
             </div>
         </div>
+        <div class="bi-rule"><span></span><span></span></div>
     </nav>
 
     <main class="pt-24">

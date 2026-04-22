@@ -74,6 +74,11 @@
             box-shadow: 0 0 0 2px rgba(240,148,46,0.5);
             border-color: #f0942e;
         }
+
+        /* Bi-rule navbar */
+        .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
+        .bi-rule span:nth-child(1) { background: #234B70; }
+        .bi-rule span:nth-child(2) { background: #F79226; }
     </style>
     <script>
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -179,6 +184,7 @@
                 </li>
             </ul>
         </div>
+        <div class="bi-rule"><span></span><span></span></div>
     </nav>
 
     <main class="pt-[76px]">

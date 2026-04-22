@@ -77,6 +77,11 @@
                 linear-gradient(to right, rgba(57,94,139,0.1) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(57,94,139,0.1) 1px, transparent 1px);
         }
+
+        /* Bi-rule navbar */
+        .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
+        .bi-rule span:nth-child(1) { background: #234B70; }
+        .bi-rule span:nth-child(2) { background: #F79226; }
     </style>
     <script>
         // Dark mode init — prefers-color-scheme fallback
@@ -181,6 +186,7 @@
                 </li>
             </ul>
         </div>
+        <div class="bi-rule"><span></span><span></span></div>
     </nav>
 
     <main class="pt-[76px]">

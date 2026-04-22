@@ -52,6 +52,11 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Bi-rule navbar */
+        .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
+        .bi-rule span:nth-child(1) { background: #234B70; }
+        .bi-rule span:nth-child(2) { background: #F79226; }
     </style>
 
     <!-- Dark mode init (prevents flash) -->
@@ -122,6 +127,7 @@
                 </ul>
             </div>
         </div>
+        <div class="bi-rule"><span></span><span></span></div>
     </nav>
 
     <!-- ═══════════════════════ HERO ═══════════════════════ -->

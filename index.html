@@ -94,6 +94,30 @@
             transform: translateY(0);
             transition: opacity 0.4s ease-out, transform 0.4s ease-out;
         }
+
+        /* Bi-rule navbar */
+        .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
+        .bi-rule span:nth-child(1) { background: #234B70; }
+        .bi-rule span:nth-child(2) { background: #F79226; }
+
+        /* Workflow section CSS vars */
+        :root {
+          --ink: #0E1621;
+          --ink-2: #161b22;
+          --orange-wf: #F79226;
+          --navy-wf: #234B70;
+        }
+
+        /* Dot grid background for canvas */
+        .wf-dot-grid {
+          background-image: radial-gradient(rgba(255,255,255,0.12) 1px, transparent 1px);
+          background-size: 18px 18px;
+        }
+
+        /* Tab active state */
+        .wf-tab-active { background: rgba(247,146,38,0.1); }
+        .wf-tab-indicator { height: 2px; background: #F79226; transition: transform 0.35s; transform: scaleX(0); transform-origin: left; }
+        .wf-tab-active .wf-tab-indicator { transform: scaleX(1); }
     </style>
     <script src="https://www.aura.build/FxFilter.js"></script>
     <link id="all-fonts-link-font-geist" rel="stylesheet"
@@ -368,6 +392,7 @@
                 </ul>
             </div>
         </div>
+        <div class="bi-rule"><span></span><span></span></div>
     </nav>
 
     <!-- Hero Section -->
@@ -539,784 +564,68 @@
                 </div>
             </div>
 
-            <!-- Interactive Tabbed Workflow Canvas -->
-            <div
-                class="relative w-full rounded-xl border border-gray-200 dark:border-white/10 shadow-2xl bg-[#0B0E14] overflow-hidden flex flex-col z-10">
-
-                <!-- Tabs Header -->
-                <div class="grid grid-cols-2 md:grid-cols-4 w-full border-b border-white/10">
-                    <!-- Tab 1: IT Ops -->
-                    <button onclick="switchTab('it')" id="tab-it"
-                        class="tab-btn relative group p-6 text-left transition-all duration-300 hover:bg-white/5 border-t-2 tab-active">
-                        <h3 class="text-white font-medium text-sm mb-1">IT Ops can</h3>
-                        <div class="flex items-center gap-2 text-xs text-orange-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" data-lucide="zap" aria-hidden="true"
-                                class="lucide lucide-zap w-3 h-3">
-                                <path
-                                    d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
-                                </path>
-                            </svg>
-                            <span>On-board new employees</span>
-                        </div>
-                    </button>
-
-                    <!-- Tab 2: Sec Ops -->
-                    <button onclick="switchTab('sec')" id="tab-sec"
-                        class="tab-btn relative group p-6 text-left transition-all duration-300 border-t-2 border-transparent hover:bg-white/5">
-                        <h3 class="text-white font-medium text-sm mb-1">Sec Ops can</h3>
-                        <div class="flex items-center gap-2 text-xs text-blue-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" data-lucide="shield-alert" aria-hidden="true"
-                                class="lucide lucide-shield-alert w-3 h-3">
-                                <path
-                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
-                                </path>
-                                <path d="M12 8v4"></path>
-                                <path d="M12 16h.01"></path>
-                            </svg>
-                            <span>Enrich security tickets</span>
-                        </div>
-                    </button>
-
-                    <!-- Tab 3: Dev Ops -->
-                    <button onclick="switchTab('dev')" id="tab-dev"
-                        class="tab-btn relative group p-6 text-left transition-all duration-300 border-t-2 border-transparent hover:bg-white/5">
-                        <h3 class="text-white font-medium text-sm mb-1">Dev Ops can</h3>
-                        <div class="flex items-center gap-2 text-xs text-purple-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" data-lucide="terminal" aria-hidden="true"
-                                class="lucide lucide-terminal w-3 h-3">
-                                <path d="M12 19h8"></path>
-                                <path d="m4 17 6-6-6-6"></path>
-                            </svg>
-                            <span>Natural language to API</span>
-                        </div>
-                    </button>
-
-                    <!-- Tab 4: Sales -->
-                    <button onclick="switchTab('sales')" id="tab-sales"
-                        class="tab-btn relative group p-6 text-left transition-all duration-300 border-t-2 border-transparent hover:bg-white/5">
-                        <h3 class="text-white font-medium text-sm mb-1">Sales can</h3>
-                        <div class="flex items-center gap-2 text-xs text-green-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" data-lucide="bar-chart-3" aria-hidden="true"
-                                class="lucide lucide-bar-chart-3 w-3 h-3">
-                                <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
-                                <path d="M18 17V9"></path>
-                                <path d="M13 17V5"></path>
-                                <path d="M8 17v-3"></path>
-                            </svg>
-                            <span>Customer insights from reviews</span>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Canvas Area -->
-                <div class="relative w-full h-[550px] bg-[#0B0E14] cursor-grab active:cursor-grabbing select-none group"
-                    id="workflow-canvas">
-                    <!-- Dot Grid Background -->
-                    <div class="absolute inset-0 opacity-20 pointer-events-none"
-                        style="background-image: radial-gradient(#64748b 1px, transparent 1px); background-size: 24px 24px;">
-                    </div>
-
-                    <!-- SVG Layer for Connections -->
-                    <svg id="connections-layer"
-                        class="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
-                        <path d="M 230 260 C 265 260, 265 260, 300 260" class="connection-line"></path>
-                        <circle cx="230" cy="260" r="3" fill="#475569"></circle>
-                        <path d="M 480 260 C 515 260, 515 250, 550 250" class="connection-line"></path>
-                        <circle cx="480" cy="260" r="3" fill="#475569"></circle>
-                        <path d="M 730 250 C 765 250, 765 180, 800 180" class="connection-line"></path>
-                        <rect x="746" y="207" width="38" height="16" rx="4" fill="#0B0E14" stroke="#334155"></rect><text
-                            x="765" y="215" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle"
-                            dominant-baseline="middle">true</text>
-                        <circle cx="730" cy="250" r="3" fill="#475569"></circle>
-                        <path d="M 730 250 C 765 250, 765 340, 800 340" class="connection-line"></path>
-                        <rect x="742.5" y="287" width="45" height="16" rx="4" fill="#0B0E14" stroke="#334155"></rect>
-                        <text x="765" y="295" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle"
-                            dominant-baseline="middle">false</text>
-                        <circle cx="730" cy="250" r="3" fill="#475569"></circle>
-                        <path d="M 390 320 C 390 370, 260 370, 260 400" class="connection-line"
-                            style="stroke-dasharray: 6, 4;"></path>
-                        <circle cx="390" cy="320" r="3" fill="#475569"></circle>
-                        <path d="M 390 320 C 390 370, 380 370, 380 400" class="connection-line"
-                            style="stroke-dasharray: 6, 4;"></path>
-                        <circle cx="390" cy="320" r="3" fill="#475569"></circle>
-                        <path d="M 390 320 C 390 370, 560 370, 560 400" class="connection-line"
-                            style="stroke-dasharray: 6, 4;"></path>
-                        <circle cx="390" cy="320" r="3" fill="#475569"></circle>
-                        <path d="M 390 320 C 390 370, 680 370, 680 400" class="connection-line"
-                            style="stroke-dasharray: 6, 4;"></path>
-                        <circle cx="390" cy="320" r="3" fill="#475569"></circle>
-                    </svg>
-
-                    <!-- Nodes Container (Injected by JS) -->
-                    <div id="nodes-container" class="absolute inset-0 w-full h-full z-10">
-                        <div id="n1"
-                            class="workflow-node absolute w-48 bg-[#161b22] border border-white/10 rounded-lg shadow-lg z-10 hover:border-white/30"
-                            style="left: 50px; top: 200px; width: 180px;">
-                            <div class="absolute top-0 left-0 w-1 h-full rounded-l-lg bg-orange-500 opacity-80"></div>
-                            <div class="p-4 pl-5">
-                                <div class="flex justify-between items-start mb-3">
-                                    <div
-                                        class="p-2 rounded-md bg-orange-500/10 border-orange-500/20 text-orange-400 border">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="file-edit"
-                                            aria-hidden="true" class="lucide lucide-file-edit w-5 h-5">
-                                            <path
-                                                d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34">
-                                            </path>
-                                            <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
-                                            <path
-                                                d="M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z">
-                                            </path>
-                                        </svg>
-                                    </div>
-
-                                </div>
-                                <h3 class="text-white font-medium text-sm leading-tight">On 'Create User'</h3>
-                                <p class="text-[11px] text-gray-500 font-mono mt-1">form submission</p>
-                            </div>
-                            <!-- Handles -->
-
-                            <div
-                                class="absolute right-0 top-1/2 -mr-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]">
-                            </div>
-
-                        </div>
-                        <div id="n2"
-                            class="workflow-node absolute w-48 bg-[#161b22] border border-white/10 rounded-lg shadow-lg z-10 hover:border-white/30"
-                            style="left: 300px; top: 200px; width: 180px;">
-                            <div class="absolute top-0 left-0 w-1 h-full rounded-l-lg bg-gray-600 opacity-80"></div>
-                            <div class="p-4 pl-5">
-                                <div class="flex justify-between items-start mb-3">
-                                    <div class="p-2 rounded-md bg-white/5 border-white/10 text-gray-400 border">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="bot"
-                                            aria-hidden="true" class="lucide lucide-bot w-5 h-5">
-                                            <path d="M12 8V4H8"></path>
-                                            <rect width="16" height="12" x="4" y="8" rx="2"></rect>
-                                            <path d="M2 14h2"></path>
-                                            <path d="M20 14h2"></path>
-                                            <path d="M15 13v2"></path>
-                                            <path d="M9 13v2"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]">
-                                    </div>
-                                </div>
-                                <h3 class="text-white font-medium text-sm leading-tight">AI Agent</h3>
-                                <p class="text-[11px] text-gray-500 font-mono mt-1">Tools Agent</p>
-                            </div>
-                            <!-- Handles -->
-                            <div
-                                class="absolute left-0 top-1/2 -ml-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]">
-                            </div>
-                            <div
-                                class="absolute right-0 top-1/2 -mr-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]">
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-1/2 -mb-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-x-[-50%]">
-                            </div>
-                        </div>
-                        <div id="n3"
-                            class="workflow-node absolute w-48 bg-[#161b22] border border-white/10 rounded-lg shadow-lg z-10 hover:border-white/30"
-                            style="left: 550px; top: 200px; width: 180px;">
-                            <div class="absolute top-0 left-0 w-1 h-full rounded-l-lg bg-green-500 opacity-80"></div>
-                            <div class="p-4 pl-5">
-                                <div class="flex justify-between items-start mb-3">
-                                    <div
-                                        class="p-2 rounded-md bg-green-500/10 border-green-500/20 text-green-400 border">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="split"
-                                            aria-hidden="true" class="lucide lucide-split w-5 h-5">
-                                            <path d="M16 3h5v5"></path>
-                                            <path d="M8 3H3v5"></path>
-                                            <path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"></path>
-                                            <path d="m15 9 6-6"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]">
-                                    </div>
-                                </div>
-                                <h3 class="text-white font-medium text-sm leading-tight">Is manager?</h3>
-
-                            </div>
-                            <!-- Handles -->
-                            <div
-                                class="absolute left-0 top-1/2 -ml-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]">
-                            </div>
-                            <div
-                                class="absolute right-0 top-1/2 -mr-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]">
-                            </div>
-
-                        </div>
-                        <div id="n4"
-                            class="workflow-node absolute w-48 bg-[#161b22] border border-white/10 rounded-lg shadow-lg z-10 hover:border-white/30"
-                            style="left: 800px; top: 120px; width: 180px;">
-                            <div class="absolute top-0 left-0 w-1 h-full rounded-l-lg bg-gray-600 opacity-80"></div>
-                            <div class="p-4 pl-5">
-                                <div class="flex justify-between items-start mb-3">
-                                    <div class="p-2 rounded-md bg-white/5 border-white/10 text-gray-400 border">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="slack"
-                                            aria-hidden="true" class="lucide lucide-slack w-5 h-5">
-                                            <rect width="3" height="8" x="13" y="2" rx="1.5"></rect>
-                                            <path d="M19 8.5V10h1.5A1.5 1.5 0 1 0 19 8.5"></path>
-                                            <rect width="3" height="8" x="8" y="14" rx="1.5"></rect>
-                                            <path d="M5 15.5V14H3.5A1.5 1.5 0 1 0 5 15.5"></path>
-                                            <rect width="8" height="3" x="14" y="13" rx="1.5"></rect>
-                                            <path d="M15.5 19H14v1.5a1.5 1.5 0 1 0 1.5-1.5"></path>
-                                            <rect width="8" height="3" x="2" y="8" rx="1.5"></rect>
-                                            <path d="M8.5 5H10V3.5A1.5 1.5 0 1 0 8.5 5"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]">
-                                    </div>
-                                </div>
-                                <h3 class="text-white font-medium text-sm leading-tight">Add to channel</h3>
-                                <p class="text-[11px] text-gray-500 font-mono mt-1">invite: channel</p>
-                            </div>
-                            <!-- Handles -->
-                            <div
-                                class="absolute left-0 top-1/2 -ml-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]">
-                            </div>
-
-
-                        </div>
-                        <div id="n5"
-                            class="workflow-node absolute w-48 bg-[#161b22] border border-white/10 rounded-lg shadow-lg z-10 hover:border-white/30"
-                            style="left: 800px; top: 280px; width: 180px;">
-                            <div class="absolute top-0 left-0 w-1 h-full rounded-l-lg bg-gray-600 opacity-80"></div>
-                            <div class="p-4 pl-5">
-                                <div class="flex justify-between items-start mb-3">
-                                    <div class="p-2 rounded-md bg-white/5 border-white/10 text-gray-400 border">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="slack"
-                                            aria-hidden="true" class="lucide lucide-slack w-5 h-5">
-                                            <rect width="3" height="8" x="13" y="2" rx="1.5"></rect>
-                                            <path d="M19 8.5V10h1.5A1.5 1.5 0 1 0 19 8.5"></path>
-                                            <rect width="3" height="8" x="8" y="14" rx="1.5"></rect>
-                                            <path d="M5 15.5V14H3.5A1.5 1.5 0 1 0 5 15.5"></path>
-                                            <rect width="8" height="3" x="14" y="13" rx="1.5"></rect>
-                                            <path d="M15.5 19H14v1.5a1.5 1.5 0 1 0 1.5-1.5"></path>
-                                            <rect width="8" height="3" x="2" y="8" rx="1.5"></rect>
-                                            <path d="M8.5 5H10V3.5A1.5 1.5 0 1 0 8.5 5"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]">
-                                    </div>
-                                </div>
-                                <h3 class="text-white font-medium text-sm leading-tight">Update profile</h3>
-                                <p class="text-[11px] text-gray-500 font-mono mt-1">update: user</p>
-                            </div>
-                            <!-- Handles -->
-                            <div
-                                class="absolute left-0 top-1/2 -ml-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]">
-                            </div>
-
-
-                        </div>
-                        <div id="t1" class="workflow-node absolute flex flex-col items-center justify-center z-10"
-                            style="left: 200px; top: 400px; width: 120px; background: transparent; border: none; box-shadow: none;">
-                            <div
-                                class="w-12 h-12 rounded-full bg-[#161b22] border border-white/10 flex items-center justify-center mb-2 hover:border-white/30 transition-colors shadow-lg">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" data-lucide="brain-circuit" aria-hidden="true"
-                                    class="lucide lucide-brain-circuit w-6 h-6 text-gray-400">
-                                    <path
-                                        d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z">
-                                    </path>
-                                    <path d="M9 13a4.5 4.5 0 0 0 3-4"></path>
-                                    <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path>
-                                    <path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path>
-                                    <path d="M6 18a4 4 0 0 1-1.967-.516"></path>
-                                    <path d="M12 13h4"></path>
-                                    <path d="M12 18h6a2 2 0 0 1 2 2v1"></path>
-                                    <path d="M12 8h8"></path>
-                                    <path d="M16 8V5a2 2 0 0 1 2-2"></path>
-                                    <circle cx="16" cy="13" r=".5"></circle>
-                                    <circle cx="18" cy="3" r=".5"></circle>
-                                    <circle cx="20" cy="21" r=".5"></circle>
-                                    <circle cx="20" cy="8" r=".5"></circle>
-                                </svg>
-                            </div>
-                            <div class="text-center">
-                                <h3 class="text-white font-medium text-xs">Anthropic Chat</h3>
-                                <p class="text-[10px] text-gray-500 font-mono mt-0.5">Model</p>
-                            </div>
-                        </div>
-                        <div id="t2" class="workflow-node absolute flex flex-col items-center justify-center z-10"
-                            style="left: 320px; top: 400px; width: 120px; background: transparent; border: none; box-shadow: none;">
-                            <div
-                                class="w-12 h-12 rounded-full bg-[#161b22] border border-white/10 flex items-center justify-center mb-2 hover:border-white/30 transition-colors shadow-lg">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" data-lucide="database" aria-hidden="true"
-                                    class="lucide lucide-database w-6 h-6 text-gray-400">
-                                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                                    <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-                                    <path d="M3 12A9 3 0 0 0 21 12"></path>
-                                </svg>
-                            </div>
-                            <div class="text-center">
-                                <h3 class="text-white font-medium text-xs">Postgres Chat</h3>
-                                <p class="text-[10px] text-gray-500 font-mono mt-0.5">Memory</p>
-                            </div>
-                        </div>
-                        <div id="t3" class="workflow-node absolute flex flex-col items-center justify-center z-10"
-                            style="left: 500px; top: 400px; width: 120px; background: transparent; border: none; box-shadow: none;">
-                            <div
-                                class="w-12 h-12 rounded-full bg-[#161b22] border border-white/10 flex items-center justify-center mb-2 hover:border-white/30 transition-colors shadow-lg">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" data-lucide="shield" aria-hidden="true"
-                                    class="lucide lucide-shield w-6 h-6 text-gray-400">
-                                    <path
-                                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <div class="text-center">
-                                <h3 class="text-white font-medium text-xs">Entra ID</h3>
-                                <p class="text-[10px] text-gray-500 font-mono mt-0.5">getAll: user</p>
-                            </div>
-                        </div>
-                        <div id="t4" class="workflow-node absolute flex flex-col items-center justify-center z-10"
-                            style="left: 620px; top: 400px; width: 120px; background: transparent; border: none; box-shadow: none;">
-                            <div
-                                class="w-12 h-12 rounded-full bg-[#161b22] border border-white/10 flex items-center justify-center mb-2 hover:border-white/30 transition-colors shadow-lg">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" data-lucide="trello" aria-hidden="true"
-                                    class="lucide lucide-trello w-6 h-6 text-gray-400">
-                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
-                                    <rect width="3" height="9" x="7" y="7"></rect>
-                                    <rect width="3" height="5" x="14" y="7"></rect>
-                                </svg>
-                            </div>
-                            <div class="text-center">
-                                <h3 class="text-white font-medium text-xs">Jira Software</h3>
-                                <p class="text-[10px] text-gray-500 font-mono mt-0.5">create: user</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <script>
-        // --- Workflow Logic ---
-        const container = document.getElementById("workflow-canvas");
-        const nodesContainer = document.getElementById("nodes-container");
-        const connectionsLayer = document.getElementById("connections-layer");
-        let activeNode = null;
-        let initialX = 0, initialY = 0;
-        let currentTab = 'it';
+    <!-- WORKFLOW SIMULATOR -->
+    <section id="demo" class="relative py-24 md:py-32 bg-[#0E1621] text-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="flex items-end justify-between mb-10 md:mb-16 flex-wrap gap-4">
+      <div>
+        <div class="font-mono text-xs tracking-[0.18em] uppercase text-[#9fb8d9] mb-3">/ HOW IT WORKS</div>
+        <h2 class="font-semibold text-4xl md:text-5xl leading-tight tracking-tight max-w-2xl text-white">
+          A flow for every team —<br>
+          <span class="text-[#F79226] italic font-light">pick one to see it run.</span>
+        </h2>
+      </div>
+      <p class="max-w-sm text-white/60 text-sm leading-relaxed">
+        Drag the nodes. Each tab is a real automation we’ve built for a client.
+      </p>
+    </div>
 
-        // Data Models for 4 Tabs
-        const workflows = {
-            'it': {
-                nodes: [
-                    {
-                        id: 'n1', type: 'trigger', label: "On 'Create User'", sub: 'form submission', icon: 'file-edit', x: 50, y: 200, color:
-                            'orange'
-                    },
-                    { id: 'n2', type: 'agent', label: 'AI Agent', sub: 'Tools Agent', icon: 'bot', x: 300, y: 200, color: 'white' },
-                    { id: 'n3', type: 'router', label: 'Is manager?', sub: '', icon: 'split', x: 550, y: 200, color: 'green' },
-                    {
-                        id: 'n4', type: 'action', label: 'Add to channel', sub: 'invite: channel', icon: 'slack', x: 800, y: 120, color:
-                            'white'
-                    },
-                    {
-                        id: 'n5', type: 'action', label: 'Update profile', sub: 'update: user', icon: 'slack', x: 800, y: 280, color: 'white'
-                    },
-                    // Tools
-                    { id: 't1', type: 'tool', label: 'Anthropic Chat', sub: 'Model', icon: 'brain-circuit', x: 200, y: 400, color: 'gray' },
-                    { id: 't2', type: 'tool', label: 'Postgres Chat', sub: 'Memory', icon: 'database', x: 320, y: 400, color: 'gray' },
-                    { id: 't3', type: 'tool', label: 'Entra ID', sub: 'getAll: user', icon: 'shield', x: 500, y: 400, color: 'gray' },
-                    { id: 't4', type: 'tool', label: 'Jira Software', sub: 'create: user', icon: 'trello', x: 620, y: 400, color: 'gray' }
-                ],
-                connections: [
-                    { from: 'n1', to: 'n2', label: '', type: 'standard' },
-                    { from: 'n2', to: 'n3', label: '', type: 'standard' },
-                    { from: 'n3', to: 'n4', label: 'true', type: 'standard' },
-                    { from: 'n3', to: 'n5', label: 'false', type: 'standard' },
-                    { from: 'n2', to: 't1', type: 'tool' },
-                    { from: 'n2', to: 't2', type: 'tool' },
-                    { from: 'n2', to: 't3', type: 'tool' },
-                    { from: 'n2', to: 't4', type: 'tool' }
-                ]
-            },
-            'sec': {
-                nodes: [
-                    { id: 's1', type: 'trigger', label: "New Alert", sub: 'Webhook', icon: 'zap', x: 50, y: 200, color: 'blue' },
-                    { id: 's2', type: 'agent', label: 'Security AI', sub: 'Analyzer', icon: 'bot', x: 300, y: 200, color: 'white' },
-                    { id: 's3', type: 'router', label: 'Severity?', sub: '', icon: 'alert-triangle', x: 550, y: 200, color: 'red' },
-                    { id: 's4', type: 'action', label: 'Create Ticket', sub: 'Jira', icon: 'trello', x: 800, y: 120, color: 'white' },
-                    { id: 's5', type: 'action', label: 'Page Team', sub: 'PagerDuty', icon: 'phone', x: 800, y: 280, color: 'white' },
-                    { id: 'st1', type: 'tool', label: 'VirusTotal', sub: 'Scanner', icon: 'search', x: 250, y: 400, color: 'gray' },
-                    { id: 'st2', type: 'tool', label: 'Splunk Logs', sub: 'Search', icon: 'file-text', x: 400, y: 400, color: 'gray' }
-                ],
-                connections: [
-                    { from: 's1', to: 's2', type: 'standard' },
-                    { from: 's2', to: 's3', type: 'standard' },
-                    { from: 's3', to: 's4', label: 'Low', type: 'standard' },
-                    { from: 's3', to: 's5', label: 'Critical', type: 'standard' },
-                    { from: 's2', to: 'st1', type: 'tool' },
-                    { from: 's2', to: 'st2', type: 'tool' }
-                ]
-            },
-            'dev': {
-                nodes: [
-                    { id: 'd1', type: 'trigger', label: "Slack Cmd", sub: '/deploy', icon: 'terminal', x: 50, y: 200, color: 'purple' },
-                    { id: 'd2', type: 'agent', label: 'DevBot', sub: 'Parser', icon: 'bot', x: 300, y: 200, color: 'white' },
-                    { id: 'd3', type: 'action', label: 'GitHub PR', sub: 'Create', icon: 'github', x: 550, y: 150, color: 'white' },
-                    { id: 'd4', type: 'action', label: 'AWS Deploy', sub: 'ECS', icon: 'cloud', x: 550, y: 250, color: 'white' },
-                    { id: 'dt1', type: 'tool', label: 'OpenAI', sub: 'LLM', icon: 'brain-circuit', x: 300, y: 380, color: 'gray' },
-                ],
-                connections: [
-                    { from: 'd1', to: 'd2', type: 'standard' },
-                    { from: 'd2', to: 'd3', label: 'Code', type: 'standard' },
-                    { from: 'd2', to: 'd4', label: 'Infra', type: 'standard' },
-                    { from: 'd2', to: 'dt1', type: 'tool' }
-                ]
-            },
-            'sales': {
-                nodes: [
-                    { id: 'sa1', type: 'trigger', label: "New Review", sub: 'G2 / Capterra', icon: 'star', x: 50, y: 200, color: 'green' },
-                    { id: 'sa2', type: 'agent', label: 'Sentiment', sub: 'Analysis', icon: 'bot', x: 300, y: 200, color: 'white' },
-                    { id: 'sa3', type: 'action', label: 'Update CRM', sub: 'Hubspot', icon: 'users', x: 550, y: 200, color: 'white' },
-                    { id: 'sa4', type: 'action', label: 'Notify', sub: 'Email', icon: 'mail', x: 800, y: 200, color: 'white' },
-                    { id: 'sat1', type: 'tool', label: 'GPT-4', sub: 'Engine', icon: 'sparkles', x: 300, y: 380, color: 'gray' }
-                ],
-                connections: [
-                    { from: 'sa1', to: 'sa2', type: 'standard' },
-                    { from: 'sa2', to: 'sa3', label: 'Positive', type: 'standard' },
-                    { from: 'sa3', to: 'sa4', type: 'standard' },
-                    { from: 'sa2', to: 'sat1', type: 'tool' }
-                ]
-            }
-        };
+    <!-- Tab + Canvas container -->
+    <div class="border border-white/10 rounded-xl overflow-hidden bg-[#0b0f16]">
+      <!-- Tabs -->
+      <div class="grid grid-cols-2 md:grid-cols-4 border-b border-white/10" role="tablist">
+        <button data-wf-tab="it" class="wf-tab wf-tab-active relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
+          <div class="wf-tab-indicator absolute inset-x-0 top-0"></div>
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-[#F79226] mb-1">Ops</div>
+          <div class="text-sm font-medium">On-board new hires</div>
+          <div class="font-mono text-[10px] text-white/40 mt-1">5 tools · 11 steps · 14m saved</div>
+        </button>
+        <button data-wf-tab="sec" class="wf-tab relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
+          <div class="wf-tab-indicator absolute inset-x-0 top-0"></div>
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-[#9fb8d9] mb-1">Security</div>
+          <div class="text-sm font-medium">Enrich alerts</div>
+          <div class="font-mono text-[10px] text-white/40 mt-1">SIEM · 7 enrichers · 3m</div>
+        </button>
+        <button data-wf-tab="sales" class="wf-tab relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
+          <div class="wf-tab-indicator absolute inset-x-0 top-0"></div>
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-[#9fb8d9] mb-1">Sales</div>
+          <div class="text-sm font-medium">Route inbound leads</div>
+          <div class="font-mono text-[10px] text-white/40 mt-1">Form → AI → CRM · 90s</div>
+        </button>
+        <button data-wf-tab="care" class="wf-tab relative text-left p-5 transition hover:bg-white/5 cursor-pointer">
+          <div class="wf-tab-indicator absolute inset-x-0 top-0"></div>
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-[#9fb8d9] mb-1">Client Care</div>
+          <div class="text-sm font-medium">Triage support tickets</div>
+          <div class="font-mono text-[10px] text-white/40 mt-1">Inbox → label → route</div>
+        </button>
+      </div>
 
-        function renderNode(node) {
-            const div = document.createElement('div');
-            div.id = node.id;
-            div.className = `workflow-node absolute w-48 bg-[#161b22] border border-white/10 rounded-lg shadow-lg z-10 hover:border-white/30`;
-            div.style.left = `${node.x}px`;
-            div.style.top = `${node.y}px`;
-            div.style.width = node.type === 'tool' ? '140px' : '180px';
-            div.onmousedown = (e) => startDrag(e, div);
-
-            // Icon Color Logic
-            let iconBg = 'bg-white/5 border-white/10 text-gray-400';
-            let barColor = 'bg-gray-600';
-
-            if (node.color === 'orange') { iconBg = 'bg-orange-500/10 border-orange-500/20 text-orange-400'; barColor = 'bg-orange-500'; }
-            if (node.color === 'blue') { iconBg = 'bg-blue-500/10 border-blue-500/20 text-blue-400'; barColor = 'bg-blue-500'; }
-            if (node.color === 'green') { iconBg = 'bg-green-500/10 border-green-500/20 text-green-400'; barColor = 'bg-green-500'; }
-            if (node.color === 'purple') { iconBg = 'bg-purple-500/10 border-purple-500/20 text-purple-400'; barColor = 'bg-purple-500'; }
-            if (node.color === 'red') { iconBg = 'bg-red-500/10 border-red-500/20 text-red-400'; barColor = 'bg-red-500'; }
-
-            // Content
-            let content = '';
-
-            if (node.type === 'tool') {
-                // Circular style for tools
-                div.className = `workflow-node absolute flex flex-col items-center justify-center z-10`;
-                div.style.width = '120px';
-                div.style.background = 'transparent';
-                div.style.border = 'none';
-                div.style.boxShadow = 'none';
-
-                content = `
-                    <div class="w-12 h-12 rounded-full bg-[#161b22] border border-white/10 flex items-center justify-center mb-2 hover:border-white/30 transition-colors shadow-lg">
-                        <i data-lucide="${node.icon}" class="w-6 h-6 text-gray-400"></i>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white font-medium text-xs">${node.label}</h3>
-                        <p class="text-[10px] text-gray-500 font-mono mt-0.5">${node.sub}</p>
-                    </div>
-                 `;
-            } else {
-                // Card style for main nodes
-                content = `
-                    <div class="absolute top-0 left-0 w-1 h-full rounded-l-lg ${barColor} opacity-80"></div>
-                    <div class="p-4 pl-5">
-                        <div class="flex justify-between items-start mb-3">
-                            <div class="p-2 rounded-md ${iconBg} border">
-                                <i data-lucide="${node.icon}" class="w-5 h-5"></i>
-                            </div>
-                            ${node.type !== 'trigger' ? '<div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>' : ''}
-                        </div>
-                        <h3 class="text-white font-medium text-sm leading-tight">${node.label}</h3>
-                        ${node.sub ? `<p class="text-[11px] text-gray-500 font-mono mt-1">${node.sub}</p>` : ''}
-                    </div>
-                    <!-- Handles -->
-                    ${node.type !== 'trigger' ? '<div class="absolute left-0 top-1/2 -ml-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]"></div>' : ''}
-                    ${node.type !== 'action' ? '<div class="absolute right-0 top-1/2 -mr-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]"></div>' : ''}
-                    ${node.type === 'agent' ? '<div class="absolute bottom-0 left-1/2 -mb-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-x-[-50%]"></div>' : ''}
-                `;
-            }
-
-            div.innerHTML = content;
-            return div;
-        }
-
-        function switchTab(tab) {
-            currentTab = tab;
-
-            // Update UI
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('tab-active');
-                btn.classList.add('border-t-2', 'border-transparent');
-            });
-            const activeBtn = document.getElementById(`tab-${tab}`);
-            activeBtn.classList.remove('border-transparent');
-            activeBtn.classList.add('tab-active');
-
-            // Render Workflow
-            nodesContainer.innerHTML = '';
-            const data = workflows[tab];
-
-            data.nodes.forEach(node => {
-                nodesContainer.appendChild(renderNode(node));
-            });
-
-            lucide.createIcons();
-            updateConnections();
-        }
-
-        function updateConnections() {
-            connectionsLayer.innerHTML = '';
-            const data = workflows[currentTab];
-
-            data.connections.forEach(conn => {
-                const source = document.getElementById(conn.from);
-                const target = document.getElementById(conn.to);
-                if (!source || !target) return;
-
-                let x1, y1, x2, y2;
-
-                if (conn.type === 'tool') {
-                    // Agent to Tool (Bottom to Top/Center)
-                    // Source (Agent) Bottom Center
-                    x1 = source.offsetLeft + source.offsetWidth / 2;
-                    y1 = source.offsetTop + source.offsetHeight;
-
-                    // Target (Tool) Top Center
-                    // If tool is a circle structure (width 120), center is offsetLeft + 60
-                    // But our renderNode sets width 120. 
-                    x2 = target.offsetLeft + target.offsetWidth / 2;
-                    y2 = target.offsetTop; // Top of the circle div
-
-                    // Draw curved dashed line
-                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    const cpY1 = y1 + 50;
-                    const cpY2 = y2 - 30;
-
-                    const d = `M ${x1} ${y1} C ${x1} ${cpY1}, ${x2} ${cpY2}, ${x2} ${y2}`;
-                    path.setAttribute('d', d);
-                    path.setAttribute('class', 'connection-line');
-                    path.style.strokeDasharray = "6,4";
-                    path.style.opacity = "0.4";
-                    connectionsLayer.appendChild(path);
-
-                } else {
-                    // Standard (Right to Left)
-                    x1 = source.offsetLeft + source.offsetWidth;
-                    y1 = source.offsetTop + source.offsetHeight / 2;
-                    x2 = target.offsetLeft;
-                    y2 = target.offsetTop + target.offsetHeight / 2;
-
-                    const dist = Math.abs(x2 - x1) * 0.5;
-                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    const d = `M ${x1} ${y1} C ${x1 + dist} ${y1}, ${x2 - dist} ${y2}, ${x2} ${y2}`;
-
-                    path.setAttribute('d', d);
-                    path.setAttribute('class', 'connection-line');
-                    connectionsLayer.appendChild(path);
-
-                    if (conn.label) {
-                        const midX = (x1 + x2) / 2;
-                        const midY = (y1 + y2) / 2;
-
-                        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                        text.setAttribute('x', midX);
-                        text.setAttribute('y', midY);
-                        text.setAttribute('fill', '#94a3b8');
-                        text.setAttribute('font-size', '10');
-                        text.setAttribute('font-family', 'monospace');
-                        text.setAttribute('text-anchor', 'middle');
-                        text.setAttribute('dominant-baseline', 'middle');
-                        text.textContent = conn.label;
-
-                        const width = conn.label.length * 7 + 10;
-                        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-                        rect.setAttribute('x', midX - width / 2);
-                        rect.setAttribute('y', midY - 8);
-                        rect.setAttribute('width', width);
-                        rect.setAttribute('height', 16);
-                        rect.setAttribute('rx', 4);
-                        rect.setAttribute('fill', '#0B0E14');
-                        rect.setAttribute('stroke', '#334155');
-
-                        connectionsLayer.appendChild(rect);
-                        connectionsLayer.appendChild(text);
-                    }
-                }
-
-                // Endpoints
-                const c1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                c1.setAttribute('cx', x1); c1.setAttribute('cy', y1); c1.setAttribute('r', '3'); c1.setAttribute('fill', '#475569');
-                connectionsLayer.appendChild(c1);
-            });
-        }
-
-        // Drag Logic
-        function startDrag(e, element) {
-            activeNode = element;
-            initialX = e.clientX - element.offsetLeft;
-            initialY = e.clientY - element.offsetTop;
-            element.style.zIndex = 50;
-        }
-
-        function drag(e) {
-            if (activeNode) {
-                e.preventDefault();
-                activeNode.style.left = `${e.clientX - initialX}px`;
-                activeNode.style.top = `${e.clientY - initialY}px`;
-                updateConnections();
-            }
-        }
-
-        function stopDrag() {
-            if (activeNode) activeNode.style.zIndex = 10;
-            activeNode = null;
-        }
-
-        // Init
-        document.addEventListener('mousemove', drag);
-        document.addEventListener('mouseup', stopDrag);
-        window.addEventListener('resize', updateConnections);
-
-        // Initial Render
-        switchTab('it');
-
-    </script>
-
-
-    <!-- Drag Logic Script -->
-    <style>
-        .workflow-node {
-            cursor: grab;
-            position: absolute;
-            transition: box-shadow 0.2s, border-color 0.2s, transform 0.1s;
-        }
-
-        .workflow-node:active {
-            cursor: grabbing;
-            z-index: 50;
-            transform: scale(1.02);
-        }
-
-        .workflow-node.dragging {
-            transition: none !important;
-        }
-
-        .workflow-node .status-dot {
-            background-color: #6b7280;
-            box-shadow: none;
-        }
-
-        .workflow-node.active .status-dot {
-            background-color: #22c55e;
-            box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-        }
-    </style>
-    <script>
-        (function () {
-            const container = document.getElementById('nodes-container');
-            if (!container) return;
-
-            let draggedItem = null;
-            let offset = { x: 0, y: 0 };
-
-            // Delegate event to container to handle dynamic nodes
-            container.addEventListener('mousedown', (e) => {
-                // Find closest .workflow-node
-                const node = e.target.closest('.workflow-node');
-                if (node) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    draggedItem = node;
-
-                    // Get click position relative to the node
-                    const rect = node.getBoundingClientRect();
-                    offset.x = e.clientX - rect.left;
-                    offset.y = e.clientY - rect.top;
-
-                    // Styles for dragging state
-                    node.classList.add('dragging');
-                    node.style.cursor = 'grabbing';
-                    node.style.zIndex = '100';
-                }
-            });
-
-            // Click handler for activating nodes
-            container.addEventListener('click', (e) => {
-                const node = e.target.closest('.workflow-node');
-                if (node) {
-                    // Remove active class from all nodes
-                    container.querySelectorAll('.workflow-node').forEach(n => {
-                        n.classList.remove('active');
-                    });
-                    // Add active class to clicked node
-                    node.classList.add('active');
-                }
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (draggedItem) {
-                    e.preventDefault();
-
-                    // Get container bounds to calculate relative position
-                    const containerRect = container.getBoundingClientRect();
-
-                    let x = e.clientX - containerRect.left - offset.x;
-                    let y = e.clientY - containerRect.top - offset.y;
-
-                    // Apply new position
-                    draggedItem.style.left = `${x}px`;
-                    draggedItem.style.top = `${y}px`;
-                }
-            });
-
-            window.addEventListener('mouseup', () => {
-                if (draggedItem) {
-                    draggedItem.classList.remove('dragging');
-                    draggedItem.style.cursor = 'grab';
-                    draggedItem.style.zIndex = '';
-                    draggedItem = null;
-                }
-            });
-        })();
-
-    </script>
+      <!-- Canvas -->
+      <div id="wf-canvas" class="relative w-full h-[480px] md:h-[560px] cursor-grab select-none wf-dot-grid overflow-hidden">
+        <svg id="wf-connections" class="absolute inset-0 w-full h-full pointer-events-none"></svg>
+        <div id="wf-nodes" class="absolute inset-0"></div>
+        <div class="absolute bottom-4 left-4 font-mono text-[10px] text-white/30 tracking-[0.15em] uppercase">Drag any node</div>
+        <button id="wf-run-btn" class="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-full bg-[#F79226] text-[#0E1621] text-sm font-medium hover:bg-white transition-colors">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Run workflow
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -4390,160 +3699,6 @@
         </div>
     </footer>
 
-    <script>
-        lucide.createIcons();
-
-        // Theme Toggle Logic
-        const htmlRoot = document.getElementById('html-root');
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            htmlRoot.classList.add('dark');
-        } else {
-            htmlRoot.classList.remove('dark');
-        }
-        function toggleTheme() {
-            if (htmlRoot.classList.contains('dark')) {
-                htmlRoot.classList.remove('dark');
-            } else {
-                htmlRoot.classList.add('dark');
-            }
-        }
-        // --- Workflow Logic ---
-        const container = document.getElementById("workflow-canvas");
-        const nodesContainer = document.getElementById("nodes-container");
-
-        const workflows = {
-            'it': {
-                nodes: [
-                    { id: 'n1', type: 'trigger', label: "On 'Create User'", sub: 'form submission', icon: 'file-edit', x: 50, y: 200, color: 'orange' },
-                    { id: 'n2', type: 'agent', label: 'AI Agent', sub: 'Tools Agent', icon: 'bot', x: 300, y: 200, color: 'white' },
-                    { id: 'n3', type: 'router', label: 'Is manager?', sub: '', icon: 'split', x: 550, y: 200, color: 'green' },
-                    { id: 'n4', type: 'action', label: 'Add to channel', sub: 'invite: channel', icon: 'slack', x: 800, y: 120, color: 'white' },
-                    { id: 'n5', type: 'action', label: 'Update profile', sub: 'update: user', icon: 'slack', x: 800, y: 280, color: 'white' },
-                    // Tools
-                    { id: 't1', type: 'tool', label: 'Anthropic Chat', sub: 'Model', icon: 'brain-circuit', x: 200, y: 400, color: 'gray' },
-                    { id: 't2', type: 'tool', label: 'Postgres Chat', sub: 'Memory', icon: 'database', x: 320, y: 400, color: 'gray' },
-                    { id: 't3', type: 'tool', label: 'Entra ID', sub: 'getAll: user', icon: 'shield', x: 500, y: 400, color: 'gray' },
-                    { id: 't4', type: 'tool', label: 'Jira Software', sub: 'create: user', icon: 'trello', x: 620, y: 400, color: 'gray' }
-                ]
-            },
-            'sec': {
-                nodes: [
-                    { id: 's1', type: 'trigger', label: "New Alert", sub: 'Webhook', icon: 'zap', x: 50, y: 200, color: 'blue' },
-                    { id: 's2', type: 'agent', label: 'Security AI', sub: 'Analyzer', icon: 'bot', x: 300, y: 200, color: 'white' },
-                    { id: 's3', type: 'router', label: 'Severity?', sub: '', icon: 'alert-triangle', x: 550, y: 200, color: 'red' },
-                    { id: 's4', type: 'action', label: 'Create Ticket', sub: 'Jira', icon: 'trello', x: 800, y: 120, color: 'white' },
-                    { id: 's5', type: 'action', label: 'Page Team', sub: 'PagerDuty', icon: 'phone', x: 800, y: 280, color: 'white' },
-                    { id: 'st1', type: 'tool', label: 'VirusTotal', sub: 'Scanner', icon: 'search', x: 250, y: 400, color: 'gray' },
-                    { id: 'st2', type: 'tool', label: 'Splunk Logs', sub: 'Search', icon: 'file-text', x: 400, y: 400, color: 'gray' }
-                ]
-            },
-            'dev': {
-                nodes: [
-                    { id: 'd1', type: 'trigger', label: "Commit Pushed", sub: 'GitHub', icon: 'git-commit', x: 50, y: 200, color: 'purple' },
-                    { id: 'd2', type: 'agent', label: 'Dev Agent', sub: 'Reviewer', icon: 'bot', x: 300, y: 200, color: 'white' },
-                    { id: 'd3', type: 'action', label: 'Gen Docs', sub: 'Wiki', icon: 'file-text', x: 550, y: 150, color: 'white' },
-                    { id: 'd4', type: 'action', label: 'Update API', sub: 'Swagger', icon: 'code', x: 550, y: 250, color: 'white' },
-                    { id: 'dt1', type: 'tool', label: 'OpenAI 4o', sub: 'LLM', icon: 'cpu', x: 300, y: 400, color: 'gray' }
-                ]
-            },
-            'sales': {
-                nodes: [
-                    { id: 'sa1', type: 'trigger', label: "New Review", sub: 'G2/Capterra', icon: 'star', x: 50, y: 200, color: 'green' },
-                    { id: 'sa2', type: 'agent', label: 'Sales Agent', sub: 'Sentiment', icon: 'bot', x: 300, y: 200, color: 'white' },
-                    { id: 'sa3', type: 'router', label: 'Sentiment?', sub: '', icon: 'smile', x: 550, y: 200, color: 'orange' },
-                    { id: 'sa4', type: 'action', label: 'Draft Email', sub: 'Gmail', icon: 'mail', x: 800, y: 120, color: 'white' },
-                    { id: 'sa5', type: 'action', label: 'Slack Alert', sub: '#sales', icon: 'slack', x: 800, y: 280, color: 'white' },
-                    { id: 'sat1', type: 'tool', label: 'Salesforce', sub: 'CRM', icon: 'users', x: 300, y: 400, color: 'gray' }
-                ]
-            }
-        };
-
-        function renderNodes(tab) {
-            nodesContainer.innerHTML = '';
-            const data = workflows[tab];
-            if (!data) return;
-
-            data.nodes.forEach(node => {
-                const el = document.createElement('div');
-                el.id = node.id;
-                el.className = `workflow-node absolute w-48 bg-[#161b22] border border-white/10 rounded-lg shadow-lg z-10 hover:border-white/30`;
-
-                if (node.type === 'tool') {
-                    el.style.width = '120px';
-                    el.style.background = 'transparent';
-                    el.style.border = 'none';
-                    el.style.boxShadow = 'none';
-                    el.innerHTML = `
-                  <div class="w-12 h-12 rounded-full bg-[#161b22] border border-white/10 flex items-center justify-center mb-2 hover:border-white/30 transition-colors shadow-lg">
-                      <i data-lucide="${node.icon}" class="w-6 h-6 text-gray-400"></i>
-                  </div>
-                  <div class="text-center">
-                      <h3 class="text-white font-medium text-xs">${node.label}</h3>
-                      <p class="text-[10px] text-gray-500 font-mono mt-0.5">${node.sub}</p>
-                  </div>
-               `;
-                } else {
-                    el.style.width = '180px';
-                    let barColor = 'bg-gray-500';
-                    let iconColor = 'text-gray-400';
-                    let iconBg = 'bg-white/5 border-white/10';
-
-                    if (node.color === 'orange') { barColor = 'bg-orange-500'; iconColor = 'text-orange-400'; iconBg = 'bg-orange-500/10 border-orange-500/20'; }
-                    if (node.color === 'green') { barColor = 'bg-green-500'; iconColor = 'text-green-400'; iconBg = 'bg-green-500/10 border-green-500/20'; }
-                    if (node.color === 'blue') { barColor = 'bg-blue-500'; iconColor = 'text-blue-400'; iconBg = 'bg-blue-500/10 border-blue-500/20'; }
-                    if (node.color === 'purple') { barColor = 'bg-purple-500'; iconColor = 'text-purple-400'; iconBg = 'bg-purple-500/10 border-purple-500/20'; }
-                    if (node.color === 'red') { barColor = 'bg-red-500'; iconColor = 'text-red-400'; iconBg = 'bg-red-500/10 border-red-500/20'; }
-
-                    let handles = '';
-                    if (node.type !== 'trigger') handles += `<div class="absolute left-0 top-1/2 -ml-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]"></div>`;
-                    if (node.type !== 'action') handles += `<div class="absolute right-0 top-1/2 -mr-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-y-[-50%]"></div>`;
-                    if (node.type === 'agent') handles += `<div class="absolute bottom-0 left-1/2 -mb-1.5 w-3 h-3 bg-[#0B0E14] border-2 border-gray-600 rounded-full translate-x-[-50%]"></div>`;
-
-                    let statusDot = '';
-                    if (node.type === 'agent' || node.type === 'router' || node.type === 'action') {
-                        statusDot = `<div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>`;
-                    }
-
-                    el.innerHTML = `
-                  <div class="absolute top-0 left-0 w-1 h-full rounded-l-lg ${barColor} opacity-80"></div>
-                  <div class="p-4 pl-5">
-                      <div class="flex justify-between items-start mb-3">
-                          <div class="p-2 rounded-md ${iconBg} ${iconColor} border">
-                              <i data-lucide="${node.icon}" class="w-5 h-5"></i>
-                          </div>
-                          ${statusDot}
-                      </div>
-                      <h3 class="text-white font-medium text-sm leading-tight">${node.label}</h3>
-                      <p class="text-[11px] text-gray-500 font-mono mt-1">${node.sub}</p>
-                  </div>
-                  ${handles}
-                  `;
-                }
-
-                el.style.left = node.x + 'px';
-                el.style.top = node.y + 'px';
-                nodesContainer.appendChild(el);
-            });
-            lucide.createIcons();
-        }
-
-        function switchTab(tab) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('tab-active', 'bg-white/5');
-                btn.classList.add('border-transparent');
-            });
-            const activeBtn = document.getElementById('tab-' + tab);
-            if (activeBtn) {
-                activeBtn.classList.add('tab-active');
-                activeBtn.classList.remove('border-transparent');
-            }
-            renderNodes(tab);
-        }
-
-        // Init Workflow
-        renderNodes('it');
-    </script>
-
 
     <!-- Mobile Menu Toggle -->
     <script>
@@ -4620,6 +3775,7 @@
     }
   });
 })();
-</script></body>
+</script>    <script src="assets/workflow-canvas.js"></script>
+</body>
 
 </html>
