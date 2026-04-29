@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>index.html — Proposed Changes Review</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; padding: 40px 24px; }
+    h1 { font-size: 1.4rem; font-weight: 700; color: #f0f6fc; margin-bottom: 6px; }
+    .subtitle { font-size: 0.85rem; color: #8b949e; margin-bottom: 36px; }
+    .section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #8b949e; margin-bottom: 16px; margin-top: 36px; padding-bottom: 8px; border-bottom: 1px solid #21262d; }
+    .change-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 10px; overflow: hidden; border: 1px solid #21262d; margin-bottom: 16px; }
+    .side { padding: 20px 22px; }
+    .side-before { background: #161b22; border-right: 1px solid #21262d; }
+    .side-after { background: #0d2218; }
+    .side-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+    .side-before .side-label { color: #f85149; }
+    .side-after .side-label { color: #3fb950; }
+    .side-label::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .change-type { font-size: 0.7rem; color: #8b949e; margin-bottom: 10px; font-style: italic; }
+    .content { font-size: 0.9rem; line-height: 1.6; color: #c9d1d9; }
+    .content code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8rem; background: rgba(110,118,129,0.1); padding: 2px 6px; border-radius: 4px; color: #79c0ff; }
+    .content .highlight { background: rgba(240,148,46,0.15); border-radius: 3px; padding: 1px 3px; color: #f0942e; font-weight: 600; }
+    .side-after .content .highlight { background: rgba(63,185,80,0.15); color: #3fb950; }
+    .addition-only { grid-template-columns: 1fr; }
+    .addition-only .side-after { background: #0d2218; border-radius: 0; }
+    .tag { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+    .tag-add { background: rgba(63,185,80,0.15); color: #3fb950; border: 1px solid rgba(63,185,80,0.3); }
+    .tag-edit { background: rgba(210,153,34,0.15); color: #e3b341; border: 1px solid rgba(210,153,34,0.3); }
+    .tag-rewrite { background: rgba(248,81,73,0.15); color: #f85149; border: 1px solid rgba(248,81,73,0.3); }
+    .divider { height: 1px; background: #21262d; margin: 48px 0 12px; }
+    .summary-bar { display: flex; gap: 24px; background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 16px 22px; margin-bottom: 36px; font-size: 0.82rem; }
+    .summary-item { display: flex; align-items: center; gap: 8px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-add { background: #3fb950; }
+    .dot-edit { background: #e3b341; }
+    .dot-rewrite { background: #f85149; }
+    .no-touch { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 16px 22px; font-size: 0.82rem; color: #8b949e; margin-top: 16px; }
+    .no-touch strong { color: #c9d1d9; }
+  </style>
+</head>
+<body>
+
+<h1>index.html — Proposed Changes</h1>
+<p class="subtitle">Surgical edits only. All JS, animations, and interactive components are untouched.</p>
+
+<div class="summary-bar">
+  <div class="summary-item"><div class="dot dot-add"></div> 4 Additions (SEO)</div>
+  <div class="summary-item"><div class="dot dot-edit"></div> 3 Copy Edits</div>
+  <div class="summary-item"><div class="dot dot-rewrite"></div> 1 Section Rewrite (V1 Agency copy)</div>
+</div>
+
+<!-- SEO -->
+<div class="section-label">SEO — Missing Elements <span class="tag tag-add">Addition</span></div>
+
+<div class="change-card">
+  <div class="side side-before">
+    <div class="side-label">Before</div>
+    <div class="change-type">&lt;title&gt; tag</div>
+    <div class="content"><code>Azuretech | AI Automation &amp; Workflow Optimization</code></div>
+  </div>
+  <div class="side side-after">
+    <div class="side-label">After</div>
+    <div class="change-type">&lt;title&gt; tag — adds location keyword for local SEO</div>
+    <div class="content"><code>Azuretech — AI Automation &amp; Web Services | <span class="highlight">Miami, FL</span></code></div>
+  </div>
+</div>
+
+<div class="change-card addition-only">
+  <div class="side side-after">
+    <div class="side-label">New Addition</div>
+    <div class="change-type">&lt;meta name="description"&gt; — currently missing entirely</div>
+    <div class="content"><code>"Miami-based technology partner for growing businesses. We build AI automation, custom websites, and digital systems that eliminate manual work and drive measurable results."</code></div>
+  </div>
+</div>
+
+<div class="change-card addition-only">
+  <div class="side side-after">
+    <div class="side-label">New Addition</div>
+    <div class="change-type">&lt;link rel="canonical"&gt; — currently missing</div>
+    <div class="content"><code>&lt;link rel="canonical" href="https://azuretechit.com"&gt;</code></div>
+  </div>
+</div>
+
+<div class="change-card addition-only">
+  <div class="side side-after">
+    <div class="side-label">New Addition</div>
+    <div class="change-type">JSON-LD schema — currently missing (helps Google + AI search engines understand the business)</div>
+    <div class="content"><code>@type: LocalBusiness + Organization<br>name: Azuretech<br>url: azuretechit.com<br>telephone: (786) 223-6480<br>address: Miami, FL<br>services: Automation, AI Integration, Web Design, Social Media</code></div>
+  </div>
+</div>
+
+<!-- COPY EDITS -->
+<div class="section-label">Copy — Hero Subheadline <span class="tag tag-edit">Edit</span></div>
+
+<div class="change-card">
+  <div class="side side-before">
+    <div class="side-label">Before</div>
+    <div class="content">"Azuretech provides white-glove AI automation and custom web solutions that free humans for strategic work."</div>
+  </div>
+  <div class="side side-after">
+    <div class="side-label">After</div>
+    <div class="content">"We build <span class="highlight">AI automation</span>, custom web experiences, and digital systems that eliminate manual work — so your team focuses on <span class="highlight">growth</span>."</div>
+  </div>
+</div>
+
+<div class="section-label">Copy — Services Section Subheadline <span class="tag tag-edit">Edit</span></div>
+
+<div class="change-card">
+  <div class="side side-before">
+    <div class="side-label">Before</div>
+    <div class="content">"Comprehensive solutions engineered for scale. Explore how we transform business logic into digital assets."</div>
+  </div>
+  <div class="side side-after">
+    <div class="side-label">After</div>
+    <div class="content">"From automation to AI to web — every service we offer is built to <span class="highlight">reduce friction</span> and create measurable outcomes."</div>
+  </div>
+</div>
+
+<div class="section-label">Copy — "V1 Specialist Agency" Section <span class="tag tag-rewrite">Rewrite</span></div>
+
+<div class="change-card">
+  <div class="side side-before">
+    <div class="side-label">Before — doesn't match Azuretech's positioning</div>
+    <div class="content">
+      <strong>Heading:</strong> "The roadmap to your vision."<br><br>
+      <strong>Sub:</strong> "V1 Specialist Agency — We help ambitious founders de-risk design and engineering for their V1, transforming raw ideas into market-dominating experiences."<br><br>
+      <strong>Steps:</strong> Research &amp; Discovery → Product Design → Product Development → Launch &amp; Iterate<br><br>
+      <strong>Step copy:</strong> "We gain a full understanding of your vision and the product you want to build. Our goal is to avoid risks and define the critical aspects needed to launch a successful V1."
+    </div>
+  </div>
+  <div class="side side-after">
+    <div class="side-label">After — reframed for Azuretech's actual clients</div>
+    <div class="content">
+      <strong>Heading:</strong> "How we work."<br><br>
+      <strong>Sub:</strong> "Every engagement starts with understanding your operations — not selling you a solution. Here's how we go from first call to running systems."<br><br>
+      <strong>Steps:</strong> Discovery &amp; Audit → Strategy &amp; Design → Build &amp; Integrate → Launch &amp; Optimize<br><br>
+      <strong>Step copy (01):</strong> "We map your current workflows, identify the highest-impact bottlenecks, and define exactly what to build — before writing a single line of code."
+    </div>
+  </div>
+</div>
+
+<div class="section-label">Copy — Footer Entity Name <span class="tag tag-edit">Edit</span></div>
+
+<div class="change-card">
+  <div class="side side-before">
+    <div class="side-label">Before</div>
+    <div class="content">"© 2026 <span style="background:rgba(248,81,73,0.15);color:#f85149;padding:1px 4px;border-radius:3px;">Azuretech Inc.</span> All rights reserved."</div>
+  </div>
+  <div class="side side-after">
+    <div class="side-label">After</div>
+    <div class="content">"© 2026 <span class="highlight">Azuretech LLC.</span> All rights reserved."</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="no-touch">
+  <strong>Not touched:</strong> Hero headline ("Simplify workflows. Amplify potential"), interactive workflow nodes, all hover animations, tab system, service cards, blog section, hero badge ("Based in Miami, Automating the World"), all JavaScript, all CSS, draggable node behavior, dark mode toggle.
+</div>
+
+</body>
+</html>

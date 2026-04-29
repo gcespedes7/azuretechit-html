@@ -209,7 +209,7 @@
         <section class="relative min-h-[85vh] flex items-center bg-[#0B0E14] overflow-hidden">
             <!-- Background image -->
             <div class="absolute inset-0 opacity-20 pointer-events-none">
-                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1920&q=80"
+                <img src="assets/generated/images/social-hero-bg.webp"
                     class="w-full h-full object-cover" alt="Social media apps on smartphone representing automated content presence">
             </div>
             <!-- Subtle glow -->
@@ -238,80 +238,108 @@
                     </div>
                 </div>
 
-                <!-- Hero Visual: Multi-channel Dashboard Mockup -->
-                <div class="hidden md:block relative fade-up" style="transition-delay: 0.2s;">
-                    <div class="absolute -inset-8 bg-[#f0942e]/10 blur-3xl rounded-full"></div>
-                    <div class="relative bg-white/5 backdrop-blur-2xl p-8 rounded-xl border border-white/10 shadow-2xl">
-                        <div class="space-y-5">
-                            <!-- Header -->
-                            <div class="flex items-center justify-between pb-4 border-b border-white/10">
-                                <div class="flex gap-2">
-                                    <div class="w-3 h-3 rounded-full bg-red-400/60"></div>
-                                    <div class="w-3 h-3 rounded-full bg-[#f0942e]/60"></div>
-                                    <div class="w-3 h-3 rounded-full bg-emerald-400/60"></div>
+                <!-- Hero Visual: Iceberg — visible posts above, automation below -->
+                <div class="hidden md:flex justify-center items-center relative fade-up" style="transition-delay: 0.2s;">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -inset-8 bg-[#395e8b]/10 blur-3xl rounded-full"></div>
+
+                        <!-- SVG Iceberg illustration -->
+                        <svg
+                            class="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none"
+                            style="top: -28px; width: 340px; height: 480px; z-index: 0; opacity: 0.38;"
+                            viewBox="0 0 340 480"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <defs>
+                                <linearGradient id="smIcebergTipGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#eaf5ff" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#b8d8f0" stop-opacity="0.9"/>
+                                </linearGradient>
+                                <linearGradient id="smIcebergBodyGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#7aaed4" stop-opacity="0.95"/>
+                                    <stop offset="60%" stop-color="#395e8b" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#1e3558" stop-opacity="0.85"/>
+                                </linearGradient>
+                                <linearGradient id="smWaterLineGrad" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#395e8b" stop-opacity="0"/>
+                                    <stop offset="30%" stop-color="#7aaed4" stop-opacity="0.7"/>
+                                    <stop offset="50%" stop-color="#b8d8f0" stop-opacity="0.9"/>
+                                    <stop offset="70%" stop-color="#7aaed4" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#395e8b" stop-opacity="0"/>
+                                </linearGradient>
+                                <linearGradient id="smTipFacetGrad" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+                                    <stop offset="100%" stop-color="#c8e8ff" stop-opacity="0.3"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="170,4 220,82 248,118 226,148 170,132 114,148 92,118 120,82" fill="url(#smIcebergTipGrad)"/>
+                            <polygon points="170,4 120,82 92,118 114,148 170,132" fill="#cce4f7" fill-opacity="0.6"/>
+                            <polygon points="170,4 220,82 248,118 226,148 170,132" fill="url(#smTipFacetGrad)" fill-opacity="0.5"/>
+                            <polygon points="170,4 145,52 168,68 185,54" fill="#ffffff" fill-opacity="0.55"/>
+                            <rect x="0" y="148" width="340" height="7" fill="url(#smWaterLineGrad)"/>
+                            <rect x="20" y="158" width="300" height="2" rx="1" fill="#7aaed4" fill-opacity="0.35"/>
+                            <polygon points="92,148 114,148 170,132 226,148 248,148 278,220 295,300 280,380 240,440 200,470 170,478 140,470 100,440 60,380 44,300 60,220" fill="url(#smIcebergBodyGrad)"/>
+                            <polygon points="92,148 60,220 44,300 60,380 100,440 140,470 170,478 170,132 114,148" fill="#2d5078" fill-opacity="0.4"/>
+                            <polygon points="248,148 278,220 295,300 280,380 240,440 200,470 170,478 170,132 226,148" fill="#7aaed4" fill-opacity="0.18"/>
+                            <line x1="170" y1="148" x2="155" y2="260" stroke="#b8d8f0" stroke-width="1.5" stroke-opacity="0.4"/>
+                            <line x1="155" y1="260" x2="175" y2="370" stroke="#b8d8f0" stroke-width="1" stroke-opacity="0.25"/>
+                            <line x1="210" y1="180" x2="230" y2="310" stroke="#7aaed4" stroke-width="1" stroke-opacity="0.3"/>
+                        </svg>
+
+                        <div class="relative" style="z-index: 1;">
+                            <!-- Above surface — visible posts -->
+                            <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-t-2xl p-6 pb-4 mx-8">
+                                <div class="absolute -top-3 -right-3 px-3 py-1 bg-[#f0942e]/90 text-white text-[10px] font-bold tracking-wider uppercase rounded-full shadow-lg">
+                                    What They See
                                 </div>
-                                <div class="text-xs font-medium text-white/40 uppercase tracking-widest">Multi-Channel Sync Active</div>
+                                <div class="text-center">
+                                    <div class="inline-flex items-center gap-2 mb-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/40"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
+                                        <span class="text-xs font-semibold text-white/50 tracking-widest uppercase">Published Content</span>
+                                    </div>
+                                    <div class="flex justify-center gap-2 mt-2">
+                                        <div class="h-2 w-14 bg-white/10 rounded-full"></div>
+                                        <div class="h-2 w-8 bg-[#f0942e]/20 rounded-full"></div>
+                                    </div>
+                                    <div class="mt-3 h-10 bg-white/5 rounded-lg border border-white/5 flex items-center justify-center gap-3 px-4">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                                        <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- Channel Rows -->
-                            <div class="space-y-4">
-                                <!-- LinkedIn -->
-                                <div class="flex items-center gap-4 bg-white/5 rounded-lg p-4 border border-white/5">
-                                    <div class="w-10 h-10 rounded-lg bg-blue-600/20 flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                                    </div>
-                                    <div class="flex-1">
-                                        <div class="flex items-center justify-between mb-1.5">
-                                            <span class="text-sm font-medium text-white/80">LinkedIn</span>
-                                            <span class="text-xs text-emerald-400 flex items-center gap-1">
-                                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>Synced
-                                            </span>
-                                        </div>
-                                        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                                            <div class="bg-blue-500 h-full rounded-full sync-bar" style="--target-width: 85%"></div>
-                                        </div>
-                                    </div>
+
+                            <!-- Water Line -->
+                            <div class="relative h-8 overflow-hidden">
+                                <div class="absolute inset-0 flex items-center px-4">
+                                    <div class="w-full h-px bg-gradient-to-r from-transparent via-[#395e8b]/50 to-transparent"></div>
                                 </div>
-                                <!-- Google -->
-                                <div class="flex items-center gap-4 bg-white/5 rounded-lg p-4 border border-white/5">
-                                    <div class="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                                    </div>
-                                    <div class="flex-1">
-                                        <div class="flex items-center justify-between mb-1.5">
-                                            <span class="text-sm font-medium text-white/80">Google</span>
-                                            <span class="text-xs text-emerald-400 flex items-center gap-1">
-                                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>Synced
-                                            </span>
-                                        </div>
-                                        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                                            <div class="bg-red-500 h-full rounded-full sync-bar" style="--target-width: 92%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Facebook -->
-                                <div class="flex items-center gap-4 bg-white/5 rounded-lg p-4 border border-white/5">
-                                    <div class="w-10 h-10 rounded-lg bg-blue-700/20 flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                                    </div>
-                                    <div class="flex-1">
-                                        <div class="flex items-center justify-between mb-1.5">
-                                            <span class="text-sm font-medium text-white/80">Facebook</span>
-                                            <span class="text-xs text-emerald-400 flex items-center gap-1">
-                                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>Synced
-                                            </span>
-                                        </div>
-                                        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                                            <div class="bg-blue-700 h-full rounded-full sync-bar" style="--target-width: 78%"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="absolute left-4 top-1/2 -translate-y-1/2 text-[9px] text-[#395e8b]/60 font-medium tracking-wider uppercase bg-[#0B0E14] px-2">Surface</div>
                             </div>
-                            <!-- Status row -->
-                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-                                <span class="text-xs text-white/40">Campaign Status</span>
-                                <span class="text-xs font-medium text-emerald-400 flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>All Channels Active
-                                </span>
+
+                            <!-- Below surface — automation engine -->
+                            <div class="relative water-line backdrop-blur-xl border border-[#395e8b]/20 rounded-b-3xl p-8 mx-0">
+                                <div class="absolute -top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1.5 bg-[#395e8b] text-white text-[10px] font-bold tracking-wider uppercase rounded-full shadow-lg">
+                                    The Engine
+                                </div>
+                                <div class="mt-4 space-y-3">
+                                    <div class="flex flex-wrap justify-center gap-2">
+                                        <span class="px-3 py-1.5 bg-[#395e8b]/20 border border-[#395e8b]/30 rounded-full text-xs font-medium text-[#7aaed4]">Auto-Scheduling</span>
+                                        <span class="px-3 py-1.5 bg-[#395e8b]/20 border border-[#395e8b]/30 rounded-full text-xs font-medium text-[#7aaed4]">AI Captions</span>
+                                    </div>
+                                    <div class="flex flex-wrap justify-center gap-2">
+                                        <span class="px-3 py-1.5 bg-[#395e8b]/20 border border-[#395e8b]/30 rounded-full text-xs font-medium text-[#7aaed4]">Cross-Platform Sync</span>
+                                        <span class="px-3 py-1.5 bg-[#395e8b]/20 border border-[#395e8b]/30 rounded-full text-xs font-medium text-[#7aaed4]">Hashtag Logic</span>
+                                    </div>
+                                    <div class="flex flex-wrap justify-center gap-2">
+                                        <span class="px-3 py-1.5 bg-[#f0942e]/10 border border-[#f0942e]/20 rounded-full text-xs font-medium text-[#f0942e]">Engagement Tracking</span>
+                                        <span class="px-3 py-1.5 bg-[#f0942e]/10 border border-[#f0942e]/20 rounded-full text-xs font-medium text-[#f0942e]">Lead Capture</span>
+                                    </div>
+                                </div>
+                                <div class="mt-6 text-center">
+                                    <p class="text-[10px] text-gray-400 font-medium">All running while you focus on closing deals</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -348,7 +376,7 @@
                             <div class="w-full md:w-64 h-48 bg-gray-100 dark:bg-white/5 rounded-xl overflow-hidden border border-gray-200 dark:border-white/10">
                                 <img alt="Automated content workflow visualization"
                                     class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=600&q=80">
+                                    src="assets/generated/images/social-email-section.webp">
                             </div>
                         </div>
                     </div>
@@ -395,7 +423,7 @@
                     <div class="md:col-span-2 relative h-[350px] rounded-xl overflow-hidden group fade-up" style="transition-delay: 0.2s;">
                         <img alt="Team collaboration in modern office"
                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80">
+                            src="assets/generated/images/social-team.webp">
                         <div class="absolute inset-0 bg-gradient-to-r from-[#f0942e]/90 to-transparent flex flex-col justify-center p-12">
                             <h3 class="text-3xl md:text-4xl font-semibold text-white mb-4 max-w-md leading-tight">Ready to reclaim your time?</h3>
                             <p class="text-white/80 mb-8 max-w-sm">Built for growing businesses that need consistent visibility — without a full-time marketing team.</p>
