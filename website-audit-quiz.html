@@ -14,6 +14,7 @@
         })();
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
     <script>tailwind.config = { darkMode: 'class' }</script>
     <style>
         * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; box-sizing: border-box; }
@@ -394,7 +395,7 @@
 
 // ── Config ──────────────────────────────────────────────────
 const WORKER_URL   = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/audit-website';
-const LEAD_WEBHOOK = 'https://primary-production-7b6e8.up.railway.app/webhook/quiz-lead-capture';
+const LEAD_WEBHOOK = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/submit-lead';
 
 // ── State ───────────────────────────────────────────────────
 const answers = { businessName: '', websiteUrl: '', city: '', industry: '', frustrations: [] };
@@ -630,11 +631,11 @@ function renderResults(cards) {
                         </span>
                         ${c.impact === 'High' ? '<span class="text-[10px] font-semibold text-green-600 dark:text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full">High Impact</span>' : ''}
                     </div>
-                    <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">${c.title}</h3>
-                    <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed mb-3">${c.description}</p>
+                    <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">${DOMPurify.sanitize(c.title)}</h3>
+                    <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed mb-3">${DOMPurify.sanitize(c.description)}</p>
                     <div class="flex items-start gap-2 bg-slate-50 dark:bg-white/5 rounded-lg px-3 py-2.5">
                         <span class="text-[#f0942e] text-sm mt-0.5 flex-shrink-0">→</span>
-                        <p class="text-xs text-slate-600 dark:text-gray-300 leading-relaxed"><span class="font-medium">Fix:</span> ${c.recommendation}</p>
+                        <p class="text-xs text-slate-600 dark:text-gray-300 leading-relaxed"><span class="font-medium">Fix:</span> ${DOMPurify.sanitize(c.recommendation)}</p>
                     </div>
                 </div>
             </div>
@@ -644,7 +645,9 @@ function renderResults(cards) {
     document.getElementById('unlock-count').textContent = cards.length;
     const name = answers.businessName;
     if (name) {
-        document.getElementById('results-headline').innerHTML = `Website audit complete for <span class="text-[#f0942e]">${name}</span>`;
+        const headline = document.getElementById('results-headline');
+        headline.innerHTML = 'Website audit complete for <span class="text-[#f0942e]"></span>';
+        headline.querySelector('span').textContent = name;
     }
     document.getElementById('results-subtitle').textContent =
         `Benchmarked against top ${answers.industry} competitors in ${answers.city}`;

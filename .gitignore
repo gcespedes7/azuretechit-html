@@ -1,3 +1,4 @@
+.env
 serve.mjs
 *.md
 node_modules/

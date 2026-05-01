@@ -6,6 +6,7 @@ compatibility_date = "2024-09-23"
 # Set them via CLI before deploying:
 #   wrangler secret put ANTHROPIC_API_KEY
 #   wrangler secret put APIFY_API_TOKEN
+#   wrangler secret put N8N_WEBHOOK_URL   ← Railway webhook URL (keeps it off client-side JS)
 #
 # Deploy:
 #   wrangler deploy
