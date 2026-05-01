@@ -1,0 +1,11 @@
+name = "quiz-ai-worker"
+main = "quiz-ai-worker.js"
+compatibility_date = "2024-09-23"
+
+# Secrets — never put API keys here.
+# Set them via CLI before deploying:
+#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put APIFY_API_TOKEN
+#
+# Deploy:
+#   wrangler deploy

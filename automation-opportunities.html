@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Your Automation Opportunities | Azuretech</title>
+    <meta name="description" content="Answer 4 quick questions and get a free personalized automation report. Find out which manual processes are costing your business the most time.">
+    <script>
+        (function(){
+            var t = localStorage.getItem('theme');
+            if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme:dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; box-sizing: border-box; }
+        .step { animation: fadeUp 0.35s ease forwards; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .option-card { cursor: pointer; transition: border-color 0.15s, background 0.15s, transform 0.15s; }
+        .option-card:hover { border-color: #f0942e; background: rgba(240,148,46,0.07); transform: translateY(-1px); }
+        .option-card.selected { border-color: #f0942e !important; background: rgba(240,148,46,0.12); }
+        .check-label { cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+        .check-input:checked ~ .check-label { border-color: #f0942e; background: rgba(240,148,46,0.1); }
+        .progress-fill { transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+        .loading-dot { animation: dotBounce 1.3s infinite ease-in-out both; }
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes dotBounce { 0%,80%,100%{transform:scale(0);opacity:0.2} 40%{transform:scale(1);opacity:1} }
+        .result-card { animation: fadeUp 0.4s ease forwards; }
+        .result-card:nth-child(2) { animation-delay: 0.1s; }
+        .result-card:nth-child(3) { animation-delay: 0.2s; }
+        .result-card:nth-child(4) { animation-delay: 0.25s; }
+        .result-card:nth-child(5) { animation-delay: 0.3s; }
+        .result-card:nth-child(6) { animation-delay: 0.35s; }
+        .blur-card { filter: blur(5px); pointer-events: none; user-select: none; }
+        .modal-overlay { backdrop-filter: blur(10px); background: rgba(11,14,20,0.85); }
+        input:focus { outline: none; border-color: #f0942e !important; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0b0e14; } ::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 3px; }
+        /* Navbar bubble animation */
+        .az-btn-bubbles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: inherit; }
+        .az-btn-bubble { position: absolute; bottom: -4px; width: 3px; height: 3px; background: rgba(255,255,255,0.6); border-radius: 9999px; animation: az-bubble-float infinite ease-in-out; }
+        @keyframes az-bubble-float { 0% { transform: translateY(0); opacity: 0.8; } 85% { opacity: 0; } 100% { transform: translateY(-40px); opacity: 0; } }
+        .az-btn-bubble:nth-child(1) { left: 8%;  animation-duration: 2.1s; }
+        .az-btn-bubble:nth-child(2) { left: 22%; animation-duration: 2.6s; animation-delay: 0.4s; }
+        .az-btn-bubble:nth-child(3) { left: 40%; animation-duration: 1.9s; animation-delay: 0.8s; }
+        .az-btn-bubble:nth-child(4) { left: 58%; animation-duration: 2.4s; animation-delay: 0.2s; }
+        .az-btn-bubble:nth-child(5) { left: 72%; animation-duration: 2.2s; animation-delay: 1.0s; }
+        .az-btn-bubble:nth-child(6) { left: 88%; animation-duration: 2.7s; animation-delay: 0.6s; }
+        /* Bi-rule navbar accent */
+        .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
+        .bi-rule span:nth-child(1) { background: #234B70; }
+        .bi-rule span:nth-child(2) { background: #F79226; }
+        /* Blur overlay — adapts to light/dark */
+        #blur-overlay { background: linear-gradient(to bottom, transparent, #f9fafb 55%); }
+        .dark #blur-overlay { background: linear-gradient(to bottom, transparent, #0B0E14 55%); }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#0B0E14] text-slate-900 dark:text-white min-h-screen flex flex-col transition-colors duration-300">
+
+<!-- Navbar -->
+<nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0B0E14]/95 backdrop-blur-md transition-colors duration-300">
+    <div class="flex flex-wrap max-w-7xl mx-auto py-4 px-6 items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-3 group">
+            <img src="assets/logos/azuretech-logo-blue-orange.png"
+                class="w-auto h-14 object-cover block dark:hidden" alt="Azuretech Logo">
+            <img src="assets/logos/azuretech-logo-white-orange.png"
+                class="w-auto h-14 object-contain hidden dark:block" alt="Azuretech Logo">
+        </a>
+        <div class="flex lg:order-2 space-x-3 items-center">
+            <!-- Dark Mode Toggle -->
+            <button
+                aria-label="Toggle dark mode"
+                onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');"
+                class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="hidden dark:block">
+                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="block dark:hidden">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path><path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path><path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+            </button>
+            <!-- CTA Button -->
+            <a href="contact.html"
+                class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2 relative overflow-hidden">
+                <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Book Free Audit
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </a>
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" type="button"
+                class="inline-flex dark:text-gray-400 lg:hidden hover:bg-gray-100 dark:hover:bg-white/5 focus:outline-none text-sm text-gray-500 w-10 h-10 rounded-lg p-2 items-center justify-center">
+                <span class="sr-only">Open main menu</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Desktop Nav Links -->
+        <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-links">
+            <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent lg:dark:bg-transparent lg:dark:border-0">
+                <li>
+                    <a href="automation.html"
+                        class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Automation</a>
+                </li>
+                <li>
+                    <a href="ai-integration.html"
+                        class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">AI Integration</a>
+                </li>
+                <li>
+                    <a href="web-design.html"
+                        class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Web Design</a>
+                </li>
+                <li>
+                    <a href="social-media.html"
+                        class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Social Media</a>
+                </li>
+                <li>
+                    <a href="about.html"
+                        class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">About</a>
+                </li>
+                <li>
+                    <a href="contact.html"
+                        class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 dark:border-white/10 bg-white dark:bg-[#0B0E14]">
+        <ul class="flex flex-col p-4 gap-1">
+            <li><a href="automation.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Automation</a></li>
+            <li><a href="ai-integration.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">AI Integration</a></li>
+            <li><a href="web-design.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Web Design</a></li>
+            <li><a href="social-media.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Social Media</a></li>
+            <li><a href="about.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">About</a></li>
+            <li><a href="contact.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Contact</a></li>
+            <li class="pt-2">
+                <a href="contact.html" class="block text-center text-white bg-[#f0942e] hover:bg-[#e28b2b] font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300">Book Free Audit</a>
+            </li>
+        </ul>
+    </div>
+    <div class="bi-rule"><span></span><span></span></div>
+</nav>
+
+<!-- ── Main ───────────────────────────────────────────────── -->
+<main class="flex-1 flex flex-col items-center px-4 pt-[100px] pb-16">
+
+    <!-- Progress bar -->
+    <div class="w-full max-w-2xl flex items-center gap-3 mb-8">
+        <div class="flex-1 h-1.5 bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden">
+            <div id="progress-fill" class="progress-fill h-full bg-[#f0942e] rounded-full" style="width:0%"></div>
+        </div>
+        <span id="step-label" class="text-xs text-gray-400 flex-shrink-0"></span>
+        <a href="contact.html" class="text-xs text-gray-400 hover:text-[#f0942e] transition-colors flex-shrink-0 hidden sm:block">Skip → Book call</a>
+    </div>
+
+<div class="w-full max-w-2xl">
+
+    <!-- SCREEN 0: Intro -->
+    <div id="screen-intro" class="step text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#f0942e]/30 bg-[#f0942e]/10 text-[#f0942e] text-xs font-medium mb-6">
+            Free Assessment · 2 Minutes
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
+            Discover Your Hidden<br><span class="text-[#f0942e]">Automation Opportunities</span>
+        </h1>
+        <p class="text-slate-500 dark:text-gray-400 text-lg mb-8 max-w-md mx-auto">
+            Answer 4 questions about your business. We'll show you exactly which manual processes are costing you the most time — and what to automate first.
+        </p>
+        <button onclick="goToStep(1)"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-semibold rounded-lg text-base transition-all duration-200 hover:shadow-[0_0_30px_rgba(240,148,46,0.4)] hover:-translate-y-0.5">
+            Start Free Assessment
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+        <p class="text-xs text-gray-500 mt-4">No email required to start · Takes about 2 minutes</p>
+    </div>
+
+    <!-- SCREEN 1: Industry -->
+    <div id="screen-1" class="step hidden">
+        <div class="mb-6">
+            <p class="text-sm text-[#f0942e] font-medium mb-2">Step 1 of 4</p>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Tell us about your business</h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-1">We'll tailor your results to your specific company and field.</p>
+        </div>
+        <!-- Company Name -->
+        <div class="mb-5">
+            <label for="company-name" class="block text-sm font-medium text-slate-600 dark:text-gray-300 mb-1.5">Company Name <span class="text-red-500">*</span></label>
+            <input id="company-name" type="text" placeholder="e.g. Acme Solutions, Blue Sky Realty"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors">
+            <p id="company-name-error" class="hidden text-xs text-red-500 mt-1.5">Please enter your company name to continue.</p>
+        </div>
+        <!-- Industry -->
+        <p class="text-sm font-medium text-slate-600 dark:text-gray-300 mb-3">What industry are you in?</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Law Firm')">
+                <div class="text-2xl mb-2">⚖️</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Law Firm</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Real Estate')">
+                <div class="text-2xl mb-2">🏠</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Real Estate</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Healthcare')">
+                <div class="text-2xl mb-2">🏥</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Healthcare</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Marketing Agency')">
+                <div class="text-2xl mb-2">📣</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Marketing Agency</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'E-Commerce')">
+                <div class="text-2xl mb-2">🛒</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">E-Commerce</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Other')">
+                <div class="text-2xl mb-2">💼</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Other / Service Business</div>
+            </div>
+        </div>
+        <!-- Conditional: shown when "Other" is selected -->
+        <div id="other-industry-wrap" class="hidden mt-4">
+            <label for="other-industry" class="block text-sm font-medium text-slate-600 dark:text-gray-300 mb-1.5">Describe your industry <span class="text-red-500">*</span></label>
+            <input id="other-industry" type="text" placeholder="e.g. Event Planning, Consulting, Fitness Studio"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors mb-1">
+            <p id="other-industry-error" class="hidden text-xs text-red-500 mb-2">Please describe your industry to continue.</p>
+            <button onclick="confirmOtherIndustry()"
+                class="px-6 py-2.5 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-medium rounded-lg text-sm transition-all duration-200 hover:shadow-[0_0_20px_rgba(240,148,46,0.35)]">
+                Continue →
+            </button>
+        </div>
+        <div class="mt-5">
+            <button onclick="goBack(1)" class="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300 transition-colors flex items-center gap-1">
+                ← Back
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: Team Size -->
+    <div id="screen-2" class="step hidden">
+        <div class="mb-8">
+            <p class="text-sm text-[#f0942e] font-medium mb-2">Step 2 of 4</p>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">How big is your team?</h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-1">This helps us prioritize the highest-impact automations.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-5" onclick="selectTeamSize(this,'Solo')">
+                <div class="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors">Solo</div>
+                <div class="text-sm text-slate-500 dark:text-gray-400">Just me</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-5" onclick="selectTeamSize(this,'2–10')">
+                <div class="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors">2–10</div>
+                <div class="text-sm text-slate-500 dark:text-gray-400">Small team</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-5" onclick="selectTeamSize(this,'11–50')">
+                <div class="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors">11–50</div>
+                <div class="text-sm text-slate-500 dark:text-gray-400">Growing company</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-5" onclick="selectTeamSize(this,'51+')">
+                <div class="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors">51+</div>
+                <div class="text-sm text-slate-500 dark:text-gray-400">Established org</div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <button onclick="goBack(2)" class="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300 transition-colors flex items-center gap-1">
+                ← Back
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: Pain Points -->
+    <div id="screen-3" class="step hidden">
+        <div class="mb-8">
+            <p class="text-sm text-[#f0942e] font-medium mb-2">Step 3 of 4</p>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Where do you spend the most manual time?</h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-1">Select all that apply.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6" id="pain-points-grid">
+            <!-- Generated by JS -->
+        </div>
+        <div class="flex items-center gap-5">
+            <button onclick="goBack(3)" class="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300 transition-colors flex items-center gap-1">
+                ← Back
+            </button>
+            <button onclick="goToStep(4)" id="pain-next-btn"
+                class="px-8 py-3 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-[0_0_20px_rgba(240,148,46,0.35)]">
+                Next →
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 4: Tools -->
+    <div id="screen-4" class="step hidden">
+        <div class="mb-8">
+            <p class="text-sm text-[#f0942e] font-medium mb-2">Step 4 of 4</p>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">What tools does your team currently use?</h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-1">Optional — helps us suggest compatible automations.</p>
+        </div>
+        <input id="tools-input" type="text" placeholder="e.g. HubSpot, QuickBooks, Google Sheets, Outlook..."
+            class="w-full px-4 py-3.5 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm mb-6 transition-colors">
+        <div class="flex items-center gap-5">
+            <button onclick="goBack(4)" class="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300 transition-colors flex items-center gap-1">
+                ← Back
+            </button>
+            <button onclick="analyzeResults()"
+                class="px-8 py-3.5 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-bold rounded-lg text-base transition-all duration-200 hover:shadow-[0_0_30px_rgba(240,148,46,0.4)] hover:-translate-y-0.5 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                Analyze My Business
+            </button>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Your report generates instantly · No email required yet</p>
+    </div>
+
+    <!-- SCREEN: Loading -->
+    <div id="screen-loading" class="step hidden text-center">
+        <div class="mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-[#f0942e]/30 bg-[#f0942e]/10 mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0942e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="loading-icon" style="animation: spin 1.5s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                <style>#loading-icon { animation: spin 1.5s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }</style>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2" id="loading-msg">Analyzing your workflow...</h2>
+            <p class="text-slate-500 dark:text-gray-400 text-sm" id="loading-sub">Mapping automation opportunities to your industry</p>
+        </div>
+        <div class="flex justify-center gap-2">
+            <div class="loading-dot w-2.5 h-2.5 bg-[#f0942e] rounded-full"></div>
+            <div class="loading-dot w-2.5 h-2.5 bg-[#f0942e] rounded-full"></div>
+            <div class="loading-dot w-2.5 h-2.5 bg-[#f0942e] rounded-full"></div>
+        </div>
+    </div>
+
+    <!-- SCREEN: Results -->
+    <div id="screen-results" class="step hidden" style="max-width:100%">
+        <!-- Header -->
+        <div class="mb-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-medium mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
+                Analysis Complete
+            </div>
+            <h2 id="results-headline" class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug">
+                We found <span id="opp-count" class="text-[#f0942e]">6</span> automation opportunities for your business
+            </h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-2 text-sm" id="results-subtitle">Based on your <span id="results-industry" class="text-slate-900 dark:text-white font-medium"></span> workflow</p>
+        </div>
+
+        <!-- Cards container -->
+        <div id="cards-container" class="relative">
+            <div id="cards-list" class="flex flex-col gap-4"></div>
+
+            <!-- Blur overlay -->
+            <div id="blur-overlay" class="absolute bottom-0 left-0 right-0 pt-40">
+                <div class="relative z-10 text-center pt-8 pb-2 px-4">
+                    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl p-6 sm:p-8 max-w-md mx-auto shadow-2xl">
+                        <div class="text-2xl mb-3">🔓</div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Unlock Your Full Report</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-5">Enter your details to see all <span id="unlock-count" class="text-slate-900 dark:text-white font-medium">6</span> opportunities + download your free PDF report.</p>
+                        <button onclick="showContactModal()"
+                            class="w-full py-3 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-bold rounded-lg transition-all duration-200 hover:shadow-[0_0_25px_rgba(240,148,46,0.4)]">
+                            Get My Free Report →
+                        </button>
+                        <p class="text-xs text-gray-500 mt-3">No spam. One email with your report — that's it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post-unlock: download button (hidden until unlocked) -->
+        <div id="download-section" class="hidden mt-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-medium mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
+                Report Unlocked
+            </div>
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Your full report is ready</h3>
+            <p class="text-slate-500 dark:text-gray-400 text-sm mb-6 max-w-sm mx-auto">Want help setting any of these up — or have your own automation ideas you'd like to explore? Book a free call and let's walk through what makes sense for your business.</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button onclick="downloadPDF()"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-medium rounded-lg transition-all duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download PDF Report
+                </button>
+                <a href="contact.html"
+                    class="inline-flex items-center gap-2 px-6 py-3 border border-slate-300 dark:border-white/20 hover:border-[#f0942e]/50 text-slate-700 dark:text-white font-medium rounded-lg transition-all duration-200">
+                    Book a Free Audit Call →
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /max-w-2xl -->
+</main>
+
+<!-- ── Contact Modal ──────────────────────────────────────── -->
+<div id="contact-modal" class="hidden fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl w-full max-w-md p-6 sm:p-8 relative shadow-2xl">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors p-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1 transition-colors">Get Your Full Report</h3>
+        <p class="text-slate-500 dark:text-gray-400 text-sm mb-6">Unlock all opportunities + receive a PDF you can share with your team.</p>
+        <form onsubmit="submitContact(event)" class="flex flex-col gap-4">
+            <input id="contact-name" type="text" placeholder="Your name *" required
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors">
+            <input id="contact-email" type="email" placeholder="Work email *" required
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors">
+            <input id="contact-phone" type="tel" placeholder="Phone (optional)"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors">
+            <button type="submit" id="modal-submit-btn"
+                class="w-full py-3.5 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-bold rounded-lg transition-all duration-200 hover:shadow-[0_0_25px_rgba(240,148,46,0.35)]">
+                Unlock My Free Report →
+            </button>
+        </form>
+        <p class="text-xs text-gray-500 mt-3 text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="inline mb-0.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Your data is 100% secure and will never be shared.
+        </p>
+    </div>
+</div>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer class="border-t border-slate-200 dark:border-white/10 py-5 px-4 text-center">
+    <p class="text-xs text-gray-500">© 2026 Azuretech LLC. All rights reserved. · Miami, FL · <a href="contact.html" class="hover:text-[#f0942e] transition-colors">Contact Us</a></p>
+</footer>
+
+<!-- ── Script ────────────────────────────────────────────── -->
+<script>
+
+// ── Config ──────────────────────────────────────────────────
+const WORKER_URL   = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/';
+const LEAD_WEBHOOK = 'https://primary-production-7b6e8.up.railway.app/webhook/quiz-lead-capture';
+
+// ── State ───────────────────────────────────────────────────
+const answers = { companyName: '', industry: '', teamSize: '', painPoints: [], tools: '' };
+let generatedOpportunities = [];
+let currentStep = 0;
+
+// ── Pain points list ────────────────────────────────────────
+const PAIN_POINTS = [
+    { id: 'followup',   label: 'Email follow-up & outreach',    icon: '📧' },
+    { id: 'scheduling', label: 'Scheduling & booking',          icon: '📅' },
+    { id: 'dataentry',  label: 'Data entry & form processing',  icon: '📋' },
+    { id: 'social',     label: 'Social media posting',          icon: '📱' },
+    { id: 'reporting',  label: 'Report generation',             icon: '📊' },
+    { id: 'support',    label: 'Customer support inquiries',    icon: '💬' },
+    { id: 'billing',    label: 'Invoicing & billing',           icon: '🧾' },
+    { id: 'leads',      label: 'Lead qualification',            icon: '🎯' },
+];
+
+// ── Opportunity database (research-backed via G2 + Reddit, updated 2026-04-30) ──
+const OPPORTUNITIES = {
+    'Law Firm': [
+        { title: 'AI Voice Client Intake Agent',       category: 'Lead Capture & Nurture',  description: 'Clio reviewers consistently flag manual intake as their biggest bottleneck. An AI voice agent calls new web inquiries back within minutes to qualify the case type and book the consultation — zero staff involvement required.',                              time_saved: '6 hrs/week',      priority: 'High'   },
+        { title: 'Billing & Invoice Automation',       category: 'Internal Operations',      description: 'G2 reviews for Clio and PracticePanther cite the billing workflow as clunky and prone to manual workarounds, especially for past-due invoices. Auto-generate invoices, send payment reminders, and flag overdue accounts without touching a spreadsheet.',   time_saved: '5 hrs/week',      priority: 'High'   },
+        { title: 'Deadline & Calendar Sync',           category: 'Scheduling & Booking',     description: 'Automatically push court deadlines, filing dates, and case milestones from your practice management tool to attorney calendars, with smart reminders 7 and 2 days out — no manual calendar juggling.',                                                          time_saved: '3 hrs/week',      priority: 'High'   },
+        { title: 'Billable Time Capture System',       category: 'Internal Operations',      description: 'Clio and PracticePanther reviewers flag missed billable time as a recurring revenue leak — especially for phone calls and quick client tasks. An AI-powered time capture layer logs activities automatically so nothing slips through.',                        time_saved: '4 hrs/week',      priority: 'Medium' },
+        { title: 'Client Status Update Sequences',     category: 'Client Communication',     description: 'Automate case-milestone updates so clients receive progress emails at each stage — reducing the "any update?" calls your staff fields daily without any manual effort.',                                                                                         time_saved: '4 hrs/week',      priority: 'Medium' },
+        { title: 'Review Request Automation',          category: 'Reputation Management',    description: 'Automatically send Google and Avvo review requests after a case closes — timed for peak satisfaction and requiring zero staff follow-up.',                                                                                                                       time_saved: '1 hr/week',       priority: 'Low'    },
+    ],
+    'Real Estate': [
+        { title: 'Automated Lead Follow-Up System',    category: 'Lead Capture & Nurture',  description: 'Follow Up Boss reviewers and r/realtors threads both highlight manual follow-up as the #1 time drain. New leads from Zillow, Realtor.com, and your site get instant personalised sequences without an agent lifting a finger.',                                time_saved: '6 hrs/week',      priority: 'High'   },
+        { title: 'Transaction Coordinator Automation', category: 'Internal Operations',      description: 'Dotloop and FUB reviewers flag weak transaction checklists and manual document chasing as a major pain. Automate offer-to-close task lists, deadline nudges, and status updates to buyers, sellers, and title — keeping every deal on track.',                   time_saved: '7 hrs/week',      priority: 'High'   },
+        { title: 'Showing Scheduling System',          category: 'Scheduling & Booking',     description: 'Replace the back-and-forth phone and email dance with a self-service showing scheduler — prospects book online, get instant confirmations, and receive automated reminders, while you see all requests in one place.',                                           time_saved: '5 hrs/week',      priority: 'High'   },
+        { title: 'Long-Term Client Nurture Sequences', category: 'Client Communication',     description: 'Reddit agents and top producers both note that most re-listing and referral business is lost to agents who simply stay in touch. Automated anniversary emails, market updates, and check-ins keep your database warm without manual outreach.',                   time_saved: '3 hrs/week',      priority: 'Medium' },
+        { title: 'CRM & Cross-Platform Data Sync',     category: 'Internal Operations',      description: 'FUB reviewers consistently report fragmented data across MLS, showing tools, and email. An integration layer keeps contacts, deal stages, and communications in sync across all platforms with zero manual entry.',                                              time_saved: '3 hrs/week',      priority: 'Medium' },
+        { title: 'Post-Close Review Requests',         category: 'Reputation Management',    description: 'Send personalised Google and Zillow review requests 7 days after closing — automatically, at the optimal moment when client satisfaction is highest.',                                                                                                          time_saved: '1 hr/week',       priority: 'Low'    },
+    ],
+    'Healthcare': [
+        { title: 'Digital Patient Intake System',      category: 'Lead Capture & Nurture',  description: 'SimplePractice reviewers consistently flag sending intake documents one-by-one as a tedious bottleneck. A digital intake flow sends, collects, and auto-populates forms into the patient record before the first appointment — no printing, scanning, or manual entry.', time_saved: '8 hrs/week', priority: 'High'   },
+        { title: 'No-Show Reduction Reminder System',  category: 'Scheduling & Booking',     description: 'SimplePractice G2 reviews cite appointment confirmation as one of the most time-consuming staff tasks. Automated SMS and email reminders with one-tap confirm/reschedule reduce no-shows by 30–40% without a single staff phone call.',                          time_saved: '5 hrs/week',      priority: 'High'   },
+        { title: 'Insurance Verification & Billing Automation', category: 'Internal Operations', description: 'SimplePractice and Kareo reviewers report insurance inconsistencies and billing errors as chronic pain points. Automate eligibility checks before appointments and flag discrepancies before they become claim denials.',                                      time_saved: '6 hrs/week',      priority: 'High'   },
+        { title: 'Clinical Notes AI Assistant',        category: 'AI Agents',               description: 'An AI note-drafting tool generates SOAP note templates from session prompts — giving clinicians a structured draft to review and sign rather than writing from scratch, recovering 30–45 minutes of documentation time per day.',                                time_saved: '4 hrs/week',      priority: 'Medium' },
+        { title: 'Post-Visit Follow-Up Sequences',     category: 'Client Communication',     description: 'Automated after-visit instructions, prescription reminders, and follow-up scheduling keep patients compliant between sessions — without staff making individual calls.',                                                                                         time_saved: '3 hrs/week',      priority: 'Medium' },
+        { title: 'Patient Review Collection',          category: 'Reputation Management',    description: 'Trigger review requests after confirmed appointment delivery — passively growing your Healthgrades and Google ratings with zero manual effort.',                                                                                                                 time_saved: '2 hrs/week',      priority: 'Low'    },
+    ],
+    'Marketing Agency': [
+        { title: 'Automated Client Reporting',         category: 'Reporting & Analytics',   description: 'Agency Reddit threads report teams spending 46+ hrs/month manually compiling reports across GA4, Meta Ads, and Google Search Console. Auto-generate white-labelled reports on a schedule and deliver them to clients before they even ask.',                      time_saved: '10 hrs/week',     priority: 'High'   },
+        { title: 'Social Media Content Pipeline',      category: 'Content & Marketing',      description: 'HubSpot reviewers and r/agency threads flag repetitive social workflows — competitor checks, exporting analytics, formatting updates — as the biggest time sink. A single automated pipeline handles scheduling, cross-posting, and performance tracking across all client accounts.', time_saved: '8 hrs/week', priority: 'High'   },
+        { title: 'Client Onboarding Automation',       category: 'Internal Operations',      description: 'When a contract is signed, automatically create the client project space, send welcome sequences, and provision tool access — eliminating the 2–3 hours of manual setup your team currently does for every new client.',                                         time_saved: '5 hrs/week',      priority: 'High'   },
+        { title: 'Ad Performance Alert System',        category: 'Reporting & Analytics',   description: 'Real-time alerts when campaigns drop below KPI thresholds — catch budget burns and performance drops before clients notice, with zero manual monitoring.',                                                                                                       time_saved: '3 hrs/week',      priority: 'Medium' },
+        { title: 'Agency Lead Nurture Sequences',      category: 'Lead Capture & Nurture',  description: 'Automated email sequences move prospects from first inquiry to proposal delivery — personalised by service interest, triggered by behaviour, requiring no manual nurturing from your team.',                                                                      time_saved: '4 hrs/week',      priority: 'Medium' },
+        { title: 'AI Content Generation Workflow',     category: 'AI Agents',               description: 'AI-generated first drafts for client social posts, email newsletters, and blog outlines — your team reviews and publishes in minutes instead of writing from scratch.',                                                                                          time_saved: '6 hrs/week',      priority: 'Low'    },
+    ],
+    'E-Commerce': [
+        { title: 'Customer Support AI Agent',          category: 'AI Agents',               description: 'Shopify and Gorgias reviewers flag repetitive support tickets — order status, returns, and FAQs — as the single biggest operational drag. An AI agent resolves 60–70% of tickets without human intervention, around the clock.',                                 time_saved: '10 hrs/week',     priority: 'High'   },
+        { title: 'Abandoned Cart Recovery Sequences',  category: 'Lead Capture & Nurture',  description: 'Automated email + SMS sequences recapture 15–25% of abandoned carts — one of the highest-ROI automations available for any Shopify store, requiring zero ongoing effort once configured.',                                                                      time_saved: 'Passive revenue', priority: 'High'   },
+        { title: 'Order Fulfillment & Inventory Automation', category: 'Internal Operations', description: 'Reddit Shopify threads highlight fragmented fulfillment management as a major pain — especially managing multiple apps each with a monthly fee. A unified automation syncs orders to your 3PL, updates inventory, and triggers shipping confirmations automatically.', time_saved: '6 hrs/week', priority: 'High'   },
+        { title: 'AI Product Copy & SEO Content',      category: 'Content & Marketing',      description: "Shopify's native SEO tools are limited — G2 reviewers note they need external tools for meta descriptions, structured data, and product copy at scale. AI-generated drafts optimised for search let you publish new SKUs faster without a copywriter.",          time_saved: '5 hrs/week',      priority: 'Medium' },
+        { title: 'Post-Purchase Review & Winback Flow',category: 'Reputation Management',    description: 'Trigger review requests after delivery confirmation, then route happy customers to a loyalty offer and unhappy ones to a resolution sequence — turning every post-purchase moment into either a review or a recovered relationship.',                             time_saved: '3 hrs/week',      priority: 'Medium' },
+        { title: 'Cross-Channel Analytics Dashboard',  category: 'Reporting & Analytics',   description: "Shopify's built-in analytics lack COGS tracking and cross-channel attribution — a common complaint in G2 reviews. A unified dashboard pulls Shopify, Klaviyo, and ad platform data into one automated report delivered weekly.",                                 time_saved: '4 hrs/week',      priority: 'Low'    },
+    ],
+    'Other': [
+        { title: 'Lead Capture & Qualification',       category: 'Lead Capture & Nurture',  description: 'Automatically capture, qualify, and route inbound leads from your website and social media to the right team member — instantly.',                                                                                                                              time_saved: '4 hrs/week',      priority: 'High'   },
+        { title: 'Automated Follow-Up Sequences',      category: 'Client Communication',     description: 'Multi-touchpoint email and SMS sequences ensure no lead or client ever falls through the cracks — regardless of team bandwidth.',                                                                                                                              time_saved: '5 hrs/week',      priority: 'High'   },
+        { title: 'Online Scheduling Automation',       category: 'Scheduling & Booking',     description: 'Self-service booking with automated reminders eliminates back-and-forth scheduling — freeing your team for higher-value work.',                                                                                                                                 time_saved: '3 hrs/week',      priority: 'High'   },
+        { title: 'Automated KPI Reporting',            category: 'Reporting & Analytics',   description: 'Auto-pull KPIs from all your tools into a single dashboard or report — no more manual data compilation for weekly reviews.',                                                                                                                                   time_saved: '4 hrs/week',      priority: 'Medium' },
+        { title: 'Data Entry Elimination',             category: 'Internal Operations',      description: 'Sync data automatically between your forms, CRM, email, and accounting tools — zero double-entry across platforms.',                                                                                                                                          time_saved: '6 hrs/week',      priority: 'Medium' },
+        { title: 'AI Customer Support Agent',          category: 'AI Agents',               description: 'An AI agent trained on your products and policies handles customer questions 24/7 — reducing support load by 50–70% immediately.',                                                                                                                              time_saved: '8 hrs/week',      priority: 'Medium' },
+    ],
+};
+
+const CATEGORY_COLORS = {
+    'Lead Capture & Nurture': '#3b82f6',
+    'Scheduling & Booking':   '#8b5cf6',
+    'Client Communication':   '#06b6d4',
+    'Content & Marketing':    '#ec4899',
+    'Internal Operations':    '#10b981',
+    'AI Agents':              '#f59e0b',
+    'Reputation Management':  '#84cc16',
+    'Reporting & Analytics':  '#6366f1',
+};
+
+// ── Navigation ──────────────────────────────────────────────
+function showScreen(id) {
+    document.querySelectorAll('[id^="screen-"]').forEach(el => el.classList.add('hidden'));
+    const el = document.getElementById(id);
+    el.classList.remove('hidden');
+    el.classList.remove('step');
+    void el.offsetWidth; // reflow
+    el.classList.add('step');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goToStep(n) {
+    currentStep = n;
+    updateProgress(n);
+    if (n === 1) { buildPainPointsGrid(); }
+    showScreen('screen-' + n);
+}
+
+function updateProgress(step) {
+    const pct = [0, 25, 50, 75, 95][step] || 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    const labels = ['', 'Step 1 of 4', 'Step 2 of 4', 'Step 3 of 4', 'Step 4 of 4'];
+    const lbl = document.getElementById('step-label');
+    if (lbl) lbl.textContent = labels[step] || '';
+}
+
+// ── Navigation: Back ────────────────────────────────────────
+function goBack(step) {
+    if (step === 1) {
+        currentStep = 0;
+        updateProgress(0);
+        showScreen('screen-intro');
+    } else {
+        goToStep(step - 1);
+    }
+}
+
+// ── Step 1: Industry ────────────────────────────────────────
+function selectIndustry(el, value) {
+    // Validate company name first
+    const nameInput = document.getElementById('company-name');
+    const nameError = document.getElementById('company-name-error');
+    if (!nameInput.value.trim()) {
+        nameError.classList.remove('hidden');
+        nameInput.classList.add('border-red-400', 'dark:border-red-500');
+        nameInput.focus();
+        return;
+    }
+    nameError.classList.add('hidden');
+    nameInput.classList.remove('border-red-400', 'dark:border-red-500');
+
+    document.querySelectorAll('#screen-1 .option-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    answers.companyName = nameInput.value.trim();
+    answers.industry = value;
+    const otherWrap = document.getElementById('other-industry-wrap');
+    if (value === 'Other') {
+        otherWrap.classList.remove('hidden');
+        setTimeout(() => document.getElementById('other-industry').focus(), 50);
+    } else {
+        otherWrap.classList.add('hidden');
+        setTimeout(() => goToStep(2), 220);
+    }
+}
+
+function confirmOtherIndustry() {
+    const input = document.getElementById('other-industry');
+    const error = document.getElementById('other-industry-error');
+    const custom = input.value.trim();
+    if (!custom) {
+        error.classList.remove('hidden');
+        input.classList.add('border-red-400', 'dark:border-red-500');
+        input.focus();
+        return;
+    }
+    error.classList.add('hidden');
+    input.classList.remove('border-red-400', 'dark:border-red-500');
+    answers.industry = custom;
+    goToStep(2);
+}
+
+// ── Step 2: Team Size ───────────────────────────────────────
+function selectTeamSize(el, value) {
+    document.querySelectorAll('#screen-2 .option-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    answers.teamSize = value;
+    setTimeout(() => goToStep(3), 220);
+}
+
+// ── Step 3: Pain Points ─────────────────────────────────────
+function buildPainPointsGrid() {
+    const grid = document.getElementById('pain-points-grid');
+    grid.innerHTML = PAIN_POINTS.map(p => `
+        <div class="check-item relative">
+            <input type="checkbox" id="pp-${p.id}" class="check-input sr-only" value="${p.id}">
+            <label for="pp-${p.id}"
+                class="check-label flex items-center gap-3 px-4 py-3 border border-slate-200 dark:border-white/10 rounded-xl cursor-pointer text-sm text-slate-700 dark:text-gray-300 transition-all duration-150 select-none">
+                <span class="text-base">${p.icon}</span>
+                <span>${p.label}</span>
+            </label>
+        </div>
+    `).join('');
+}
+
+// ── Step 4: Tools / Analyze ─────────────────────────────────
+async function analyzeResults() {
+    answers.tools = document.getElementById('tools-input').value.trim();
+    answers.painPoints = [...document.querySelectorAll('.check-input:checked')].map(el => el.value);
+
+    // Show loading
+    showScreen('screen-loading');
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('step-label').textContent = 'Analyzing...';
+
+    // 12 sequential messages — advance every 5s, stop at last (no looping)
+    const msgs = [
+        ['Researching your industry...',          'Scanning hundreds of real user reviews on G2 and Capterra'],
+        ['Found some complaints worth noting...',  "Turns out your industry's software users have opinions"],
+        ['Checking Reddit...',                    "People really do vent about spreadsheets at 2am — we found them"],
+        ['Reading job postings...',               "Translating 'must be detail-oriented' into automation opportunities"],
+        ['Counting the hours...',                 'Our AI just felt genuinely bad for your team'],
+        ['Connecting the dots...',                'Matching real pain points to proven automation patterns'],
+        ['Running the numbers...',                'Calculating how many hours are quietly disappearing each week'],
+        ['Consulting the AI...',                  'Our digital colleague is earning its keep right now'],
+        ['Prioritizing by impact...',             "Sorting by 'will make your life dramatically better'"],
+        ['Building your report...',               'Tailoring every recommendation to your team size and tools'],
+        ['Final quality check...',                'Making sure these actually make sense before we show you'],
+        ['Almost ready...',                       "Worth the wait — these aren't generic tips"],
+    ];
+
+    let mi = 0;
+    document.getElementById('loading-msg').textContent = msgs[0][0];
+    document.getElementById('loading-sub').textContent = msgs[0][1];
+    const msgInterval = setInterval(() => {
+        if (mi < msgs.length - 1) {
+            mi++;
+            document.getElementById('loading-msg').textContent = msgs[mi][0];
+            document.getElementById('loading-sub').textContent = msgs[mi][1];
+        }
+    }, 5000);
+
+    // Always call Worker — live research for every industry
+    let opps;
+    try {
+        const res = await fetch(WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(answers),
+        });
+        if (!res.ok) throw new Error('Worker error');
+        const data = await res.json();
+        opps = (data.opportunities && data.opportunities.length > 0)
+            ? data.opportunities
+            : generateClientResults();
+    } catch(e) {
+        opps = generateClientResults();
+    }
+
+    clearInterval(msgInterval);
+    generatedOpportunities = opps;
+    renderResults(opps);
+}
+
+function generateClientResults() {
+    const base = OPPORTUNITIES[answers.industry] || OPPORTUNITIES['Other'];
+    // Boost sort based on selected pain points
+    const painMap = { followup:'Lead Capture & Nurture', scheduling:'Scheduling & Booking', dataentry:'Internal Operations', social:'Content & Marketing', reporting:'Reporting & Analytics', support:'AI Agents', billing:'Internal Operations', leads:'Lead Capture & Nurture' };
+    return [...base].sort((a, b) => {
+        const aMatch = answers.painPoints.some(p => painMap[p] === a.category) ? -1 : 0;
+        const bMatch = answers.painPoints.some(p => painMap[p] === b.category) ? -1 : 0;
+        return aMatch - bMatch;
+    });
+}
+
+// ── Render Results ──────────────────────────────────────────
+function renderResults(opps) {
+    const list = document.getElementById('cards-list');
+    list.innerHTML = opps.map((o, i) => {
+        const color = CATEGORY_COLORS[o.category] || '#f0942e';
+        const blurClass = i >= 2 ? 'blur-card' : '';
+        return `
+        <div class="result-card ${blurClass} bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-xl p-5 sm:p-6 transition-all duration-200 hover:shadow-md hover:border-slate-300 dark:hover:border-white/20 hover:-translate-y-0.5">
+            <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold" style="background:${color}22; color:${color}">
+                    ${i + 1}
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                        <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full" style="background:${color}22; color:${color}">${o.category}</span>
+                        ${o.priority === 'High' ? '<span class="text-[10px] font-semibold text-green-600 dark:text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full">High Priority</span>' : ''}
+                    </div>
+                    <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">${o.title}</h3>
+                    <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed">${o.description}</p>
+                    <p class="text-xs text-[#f0942e] font-medium mt-2">⏱ Saves approx. ${o.time_saved}</p>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    document.getElementById('opp-count').textContent = opps.length;
+    document.getElementById('unlock-count').textContent = opps.length;
+    // Personalize headline with company name
+    const name = answers.companyName;
+    const headlineEl = document.getElementById('results-headline');
+    if (name) {
+        headlineEl.innerHTML = `We found <span class="text-[#f0942e]">${opps.length}</span> automation opportunities for <span class="text-[#f0942e]">${name}</span>`;
+    }
+    // Personalized subheading
+    const teamLabel = answers.teamSize === 'Solo' ? 'a solo operator' : `a ${answers.teamSize}-person team`;
+    document.getElementById('results-subtitle').innerHTML = `Based on <span class="text-slate-900 dark:text-white font-medium">${answers.industry || 'your business'}</span> workflows with ${teamLabel}`;
+
+    showScreen('screen-results');
+    document.getElementById('step-label').textContent = 'Report Ready';
+}
+
+// ── Modal ───────────────────────────────────────────────────
+function showContactModal() {
+    document.getElementById('contact-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('contact-name').focus(), 100);
+}
+
+function closeModal() {
+    document.getElementById('contact-modal').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+// Close modal on overlay click
+document.getElementById('contact-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+// Mobile menu toggle
+const _menuBtn = document.getElementById('mobile-menu-btn');
+const _mobileMenu = document.getElementById('mobile-menu');
+if (_menuBtn && _mobileMenu) {
+    _menuBtn.addEventListener('click', () => _mobileMenu.classList.toggle('hidden'));
+}
+
+// ── Contact Submission ──────────────────────────────────────
+async function submitContact(e) {
+    e.preventDefault();
+    const btn = document.getElementById('modal-submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const name  = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const phone = document.getElementById('contact-phone').value.trim();
+
+    // Fire and forget to n8n (don't block UX on failure)
+    try {
+        fetch(LEAD_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, phone, ...answers, opportunities: generatedOpportunities.length }),
+        });
+    } catch(err) { /* silent fail — UX unaffected */ }
+
+    await new Promise(r => setTimeout(r, 600)); // small UX delay
+
+    closeModal();
+    unlockResults();
+}
+
+// ── Unlock Results ──────────────────────────────────────────
+function unlockResults() {
+    // Remove blur from all cards
+    document.querySelectorAll('.blur-card').forEach(el => {
+        el.classList.remove('blur-card');
+        el.style.animation = 'fadeUp 0.4s ease forwards';
+    });
+    // Hide blur overlay
+    document.getElementById('blur-overlay').style.display = 'none';
+    // Show download section
+    document.getElementById('download-section').classList.remove('hidden');
+}
+
+// ── PDF Download ────────────────────────────────────────────
+function downloadPDF() {
+    const btn = event.target;
+    btn.textContent = 'Generating PDF...';
+    btn.disabled = true;
+
+    // Dynamically load html2pdf.js
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    script.onload = function() {
+        const el = document.getElementById('cards-list');
+        html2pdf().set({
+            margin: [10, 10],
+            filename: 'azuretech-automation-report.pdf',
+            image: { type: 'jpeg', quality: 0.92 },
+            html2canvas: { scale: 2, backgroundColor: '#0B0E14' },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        }).from(el).save().then(() => {
+            btn.textContent = 'Download PDF Report';
+            btn.disabled = false;
+        });
+    };
+    document.head.appendChild(script);
+}
+
+// ── Init ────────────────────────────────────────────────────
+showScreen('screen-intro');
+</script>
+</body>
+</html>

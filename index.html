@@ -13,7 +13,7 @@
       "name": "Azuretech",
       "url": "https://azuretechit.com",
       "telephone": "(786) 762-3499",
-      "email": "hello@azuretechit.com",
+      "email": "info@azuretechit.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Miami",
@@ -302,6 +302,17 @@
             }
         })();
     </script>
+    <style>
+        .az-btn-bubbles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: inherit; }
+        .az-btn-bubble { position: absolute; bottom: -4px; width: 3px; height: 3px; background: rgba(255,255,255,0.6); border-radius: 9999px; animation: az-bubble-float infinite ease-in-out; }
+        @keyframes az-bubble-float { 0% { transform: translateY(0); opacity: 0.8; } 85% { opacity: 0; } 100% { transform: translateY(-40px); opacity: 0; } }
+        .az-btn-bubble:nth-child(1) { left: 8%;  animation-duration: 2.1s; }
+        .az-btn-bubble:nth-child(2) { left: 22%; animation-duration: 2.6s; animation-delay: 0.4s; }
+        .az-btn-bubble:nth-child(3) { left: 40%; animation-duration: 1.9s; animation-delay: 0.8s; }
+        .az-btn-bubble:nth-child(4) { left: 58%; animation-duration: 2.4s; animation-delay: 0.2s; }
+        .az-btn-bubble:nth-child(5) { left: 72%; animation-duration: 2.2s; animation-delay: 1.0s; }
+        .az-btn-bubble:nth-child(6) { left: 88%; animation-duration: 2.7s; animation-delay: 0.6s; }
+    </style>
 </head>
 
 <body
@@ -309,7 +320,7 @@
     data-new-gr-c-s-check-loaded="14.1130.0" data-gr-ext-installed="">
     <!-- Navbar -->
     <nav
-        class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0f1218]/80 backdrop-blur-md transition-colors duration-300">
+        class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0f1218] backdrop-blur-md transition-colors duration-300">
         <div class="flex flex-wrap max-w-7xl mr-auto ml-auto pt-4 pr-6 pb-4 pl-6 items-center justify-between">
             <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse group">
                 <div
@@ -323,6 +334,7 @@
             </a>
             <div class="flex lg:order-2 space-x-3 items-center">
                 <button
+                    aria-label="Toggle dark mode"
                     onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');"
                     class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -348,8 +360,8 @@
                 </button>
 
                 <button type="button"
-                    class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2" onclick="window.location.href='contact.html'">
-                    Book Consultation
+                    class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2 relative overflow-hidden" onclick="window.location.href='contact.html'">
+                    <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Book Free Audit
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-4 h-4">
@@ -372,40 +384,40 @@
             </div>
             <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
                 <ul
-                    class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 lg:space-x-6 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent">
+                    class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 lg:space-x-6 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent lg:dark:bg-transparent lg:dark:border-0">
                     <li>
                         <a href="automation.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
                             Automation
                         </a>
                     </li>
                     <li>
                         <a href="ai-integration.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
                             AI Integration
                         </a>
                     </li>
                     <li>
                         <a href="web-design.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
                             Web Design
                         </a>
                     </li>
                     <li>
                         <a href="social-media.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
                             Social Media
                         </a>
                     </li>
                     <li>
                         <a href="about.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
                             About
                         </a>
                     </li>
                     <li>
                         <a href="contact.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">
                             Contact
                         </a>
                     </li>
@@ -513,7 +525,7 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row justify-center">
-                    <a href="#"
+                    <a href="automation-opportunities.html"
                         class="group inline-flex items-center justify-center transition-all duration-300 hover:shadow-[0_0px_30px_rgba(249,115,22,0.6)] hover:scale-[1.02] hover:-translate-y-0.5 overflow-hidden text-base font-medium text-white rounded-full pt-3.5 pr-8 pb-3.5 pl-8 relative"
                         style="background: linear-gradient(to right, #f0942e, #e28b2b) padding-box,
                 conic-gradient(from var(--border-angle), #f0942e 75%, #ffffff 30%, #f0942e 50%, #ffffff 80%) border-box;
@@ -553,7 +565,7 @@
                             }
                         </style>
                         <div class="hidden sm:flex">
-                            <button
+                            <button onclick="window.location.href='contact.html'"
                                 class="group hover:shadow-sky-500/30 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 active:scale-95 transition-all duration-500 ease-out cursor-pointer overflow-hidden hover:border-sky-600/60 bg-gradient-to-br from-sky-100/40 via-black-100/60 to-white/80 rounded-full pt-2.5 pr-4 pb-2.5 pl-5 relative shadow-2xl backdrop-blur-xl"
                                 style="position: relative; --border-gradient: linear-gradient(135deg, rgba(148, 163, 184, 0.3), rgba(71, 85, 105, 0.5)); --border-radius-before: 9999px">
                                 <div
@@ -566,7 +578,7 @@
                                     <div class="flex-1 text-left">
                                         <p
                                             class="group-hover:text-blue transition-colors duration-300 text-sm font-bold text-black font-geist drop-shadow-sm">
-                                            See our Work
+                                            Book a Free Audit
                                         </p>
                                     </div>
                                     <div
@@ -1909,6 +1921,64 @@
             }
         </style>
     </section>
+    <!-- WHY AZURETECH SECTION -->
+    <section class="py-24 bg-white dark:bg-[#0b0e14] transition-colors duration-300 border-t border-slate-100 dark:border-white/5">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-3">Why We're Different</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Built for businesses that need results, not retainers</h2>
+                <p class="text-slate-500 dark:text-gray-400 max-w-2xl mx-auto">Most businesses are stuck choosing between expensive developers, limited SaaS tools, or doing it themselves. There's a better option.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 items-start">
+                <!-- DIY Tools -->
+                <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0f1218] p-8">
+                    <div class="text-2xl mb-4">⚙️</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">DIY Tools</h3>
+                    <p class="text-sm text-slate-500 dark:text-gray-400 mb-6">Zapier, Make, website builders — fast to start, painful to scale.</p>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-red-400 mt-0.5 shrink-0">✕</span> Hit limits as complexity grows</li>
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-red-400 mt-0.5 shrink-0">✕</span> Fragile — breaks when tools update</li>
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-red-400 mt-0.5 shrink-0">✕</span> No custom business logic</li>
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-red-400 mt-0.5 shrink-0">✕</span> You're on your own when it breaks</li>
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-yellow-400 mt-0.5 shrink-0">~</span> Low upfront cost, high time investment</li>
+                    </ul>
+                </div>
+                <!-- Azuretech (Featured) -->
+                <div class="rounded-2xl border-2 border-[#f0942e] bg-[#f0942e]/5 dark:bg-[#f0942e]/10 p-8 relative shadow-xl shadow-[#f0942e]/10">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                        <span class="bg-[#f0942e] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider whitespace-nowrap">Best Choice</span>
+                    </div>
+                    <div class="text-2xl mb-4">⚡</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Azuretech</h3>
+                    <p class="text-sm text-slate-500 dark:text-gray-400 mb-6">Expert-built systems that scale with your business — we handle everything.</p>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2 text-slate-700 dark:text-gray-200"><span class="text-green-400 mt-0.5 shrink-0">✓</span> Custom logic built for your workflows</li>
+                        <li class="flex items-start gap-2 text-slate-700 dark:text-gray-200"><span class="text-green-400 mt-0.5 shrink-0">✓</span> Scales without breaking</li>
+                        <li class="flex items-start gap-2 text-slate-700 dark:text-gray-200"><span class="text-green-400 mt-0.5 shrink-0">✓</span> Ongoing support &amp; maintenance</li>
+                        <li class="flex items-start gap-2 text-slate-700 dark:text-gray-200"><span class="text-green-400 mt-0.5 shrink-0">✓</span> Done-for-you — no learning curve</li>
+                        <li class="flex items-start gap-2 text-slate-700 dark:text-gray-200"><span class="text-green-400 mt-0.5 shrink-0">✓</span> Fraction of in-house dev cost</li>
+                    </ul>
+                </div>
+                <!-- Hiring a Dev -->
+                <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0f1218] p-8">
+                    <div class="text-2xl mb-4">👨‍💻</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Hiring a Developer</h3>
+                    <p class="text-sm text-slate-500 dark:text-gray-400 mb-6">Freelancers or agencies — high quality, but slow and expensive.</p>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-red-400 mt-0.5 shrink-0">✕</span> $80–150/hr or $5K–20K+ projects</li>
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-red-400 mt-0.5 shrink-0">✕</span> Weeks to start, months to deliver</li>
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-red-400 mt-0.5 shrink-0">✕</span> You manage specs &amp; revisions</li>
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-red-400 mt-0.5 shrink-0">✕</span> Extra cost for changes &amp; support</li>
+                        <li class="flex items-start gap-2 text-slate-500 dark:text-gray-400"><span class="text-yellow-400 mt-0.5 shrink-0">~</span> Quality output if you vet correctly</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="contact.html" class="inline-flex items-center gap-2 bg-[#f0942e] hover:bg-[#d4831f] text-white font-semibold px-8 py-3.5 rounded-xl transition-colors duration-200">Book Your Free Audit →</a>
+            </div>
+        </div>
+    </section>
+
     <section class="lg:py-32 dark:bg-[#0b0e14] overflow-hidden group bg-white pt-24 pb-24 relative">
         <!-- Subtle Background Grid -->
         <div
@@ -3579,11 +3649,38 @@
         </script>
     </section>
 
+    <!-- REAL RESULTS CALLOUTS -->
+    <section class="py-16 bg-white dark:bg-[#0b0e14] transition-colors duration-300 border-t border-slate-100 dark:border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <p class="text-center text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-10">Real Client Results</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="automation.html" class="group block rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#161b22] p-7 hover:border-[#f0942e]/50 transition-all duration-200">
+                    <div class="text-3xl font-black text-[#f0942e] mb-2">40 min → 2 min</div>
+                    <p class="text-sm font-semibold text-slate-900 dark:text-white mb-1">Invoice Processing Time</p>
+                    <p class="text-xs text-slate-500 dark:text-gray-400">Automated end-to-end invoice workflow — 95% time reduction with zero manual data entry.</p>
+                    <p class="text-xs text-[#f0942e] font-semibold mt-4 group-hover:underline">Automation →</p>
+                </a>
+                <a href="ai-integration.html" class="group block rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#161b22] p-7 hover:border-[#f0942e]/50 transition-all duration-200">
+                    <div class="text-3xl font-black text-[#f0942e] mb-2">73%</div>
+                    <p class="text-sm font-semibold text-slate-900 dark:text-white mb-1">Support Tickets Resolved by AI</p>
+                    <p class="text-xs text-slate-500 dark:text-gray-400">AI agent handled the majority of inbound support requests — without a single human touch.</p>
+                    <p class="text-xs text-[#f0942e] font-semibold mt-4 group-hover:underline">AI Integration →</p>
+                </a>
+                <a href="web-design.html" class="group block rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#161b22] p-7 hover:border-[#f0942e]/50 transition-all duration-200">
+                    <div class="text-3xl font-black text-[#f0942e] mb-2">2.4×</div>
+                    <p class="text-sm font-semibold text-slate-900 dark:text-white mb-1">Consultation Booking Rate</p>
+                    <p class="text-xs text-slate-500 dark:text-gray-400">Site redesign more than doubled inbound bookings — same traffic, dramatically better conversion.</p>
+                    <p class="text-xs text-[#f0942e] font-semibold mt-4 group-hover:underline">Web Design →</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer
         class="dark:border-white/10 dark:bg-[#0b0e14] transition-colors duration-300 bg-slate-50 border-slate-200 border-t pt-16 pb-12">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
                 <div class="col-span-2 lg:col-span-2 pr-8">
                     <a href="#" class="flex items-center gap-2.5 mb-6 group">
                         <img src="assets/logos/at-blue-orange.png"
@@ -3645,6 +3742,15 @@
                         <li class=""><a href="#"
                                 class="text-sm text-slate-500 hover:text-blue-600 dark:text-gray-500 dark:hover:text-blue-400 transition-colors">Cookie
                                 Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Contact</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li class="text-sm text-slate-500 dark:text-gray-500"><a href="mailto:info@azuretechit.com" class="hover:text-[#f0942e] transition-colors">info@azuretechit.com</a></li>
+                        <li class="text-sm text-slate-500 dark:text-gray-500"><a href="tel:+17867623499" class="hover:text-[#f0942e] transition-colors">(786) 762-3499</a></li>
+                        <li class="text-sm text-slate-500 dark:text-gray-500">Miami, Florida</li>
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Website Audit | Azuretech</title>
+    <meta name="description" content="Get a free personalized website audit in 2 minutes. See how your site compares to local competitors and get 6 specific improvements you can act on today.">
+    <script>
+        (function(){
+            var t = localStorage.getItem('theme');
+            if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme:dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; box-sizing: border-box; }
+        .step { animation: fadeUp 0.35s ease forwards; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .option-card { cursor: pointer; transition: border-color 0.15s, background 0.15s, transform 0.15s; }
+        .option-card:hover { border-color: #f0942e; background: rgba(240,148,46,0.07); transform: translateY(-1px); }
+        .option-card.selected { border-color: #f0942e !important; background: rgba(240,148,46,0.12); }
+        .check-label { cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+        .check-input:checked ~ .check-label { border-color: #f0942e; background: rgba(240,148,46,0.1); }
+        .progress-fill { transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+        .loading-dot { animation: dotBounce 1.3s infinite ease-in-out both; }
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes dotBounce { 0%,80%,100%{transform:scale(0);opacity:0.2} 40%{transform:scale(1);opacity:1} }
+        .result-card { animation: fadeUp 0.4s ease forwards; }
+        .result-card:nth-child(2) { animation-delay: 0.1s; }
+        .result-card:nth-child(3) { animation-delay: 0.2s; }
+        .result-card:nth-child(4) { animation-delay: 0.25s; }
+        .result-card:nth-child(5) { animation-delay: 0.3s; }
+        .result-card:nth-child(6) { animation-delay: 0.35s; }
+        .blur-card { filter: blur(5px); pointer-events: none; user-select: none; }
+        .modal-overlay { backdrop-filter: blur(10px); background: rgba(11,14,20,0.85); }
+        input:focus { outline: none; border-color: #f0942e !important; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0b0e14; } ::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 3px; }
+        /* Navbar bubble animation */
+        .az-btn-bubbles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: inherit; }
+        .az-btn-bubble { position: absolute; bottom: -10px; width: 6px; height: 6px; background: rgba(255,255,255,0.25); border-radius: 50%; animation: bubbleUp 2s infinite ease-in; }
+        @keyframes bubbleUp { 0%{transform:translateY(0) scale(1);opacity:0.8} 100%{transform:translateY(-40px) scale(0.4);opacity:0} }
+        .az-btn-bubble:nth-child(1) { left: 12%; animation-duration: 2.1s; animation-delay: 0.4s; }
+        .az-btn-bubble:nth-child(2) { left: 26%; animation-duration: 1.7s; animation-delay: 1.2s; }
+        .az-btn-bubble:nth-child(3) { left: 40%; animation-duration: 1.9s; animation-delay: 0.8s; }
+        .az-btn-bubble:nth-child(4) { left: 58%; animation-duration: 2.4s; animation-delay: 0.2s; }
+        .az-btn-bubble:nth-child(5) { left: 72%; animation-duration: 2.2s; animation-delay: 1.0s; }
+        .az-btn-bubble:nth-child(6) { left: 88%; animation-duration: 2.7s; animation-delay: 0.6s; }
+        .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
+        .bi-rule span:nth-child(1) { background: #234B70; }
+        .bi-rule span:nth-child(2) { background: #F79226; }
+        #blur-overlay { background: linear-gradient(to bottom, transparent, #f9fafb 55%); }
+        .dark #blur-overlay { background: linear-gradient(to bottom, transparent, #0B0E14 55%); }
+        /* Score badge colors */
+        .score-strong  { background: rgba(34,197,94,0.12);  color: #22c55e; }
+        .score-needs   { background: rgba(240,148,46,0.12); color: #f0942e; }
+        .score-critical{ background: rgba(239,68,68,0.12);  color: #ef4444; }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#0B0E14] text-slate-900 dark:text-white min-h-screen flex flex-col transition-colors duration-300">
+
+<!-- Navbar -->
+<nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0B0E14]/95 backdrop-blur-md transition-colors duration-300">
+    <div class="flex flex-wrap max-w-7xl mx-auto py-4 px-6 items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-3 group">
+            <img src="assets/logos/azuretech-logo-blue-orange.png" class="w-auto h-14 object-cover block dark:hidden" alt="Azuretech Logo">
+            <img src="assets/logos/azuretech-logo-white-orange.png" class="w-auto h-14 object-contain hidden dark:block" alt="Azuretech Logo">
+        </a>
+        <div class="flex lg:order-2 space-x-3 items-center">
+            <button aria-label="Toggle dark mode"
+                onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');"
+                class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block dark:hidden"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+            </button>
+            <a href="contact.html" class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2 relative overflow-hidden">
+                <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Book Free Audit
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a>
+            <button id="mobile-menu-btn" type="button" class="inline-flex dark:text-gray-400 lg:hidden hover:bg-gray-100 dark:hover:bg-white/5 focus:outline-none text-sm text-gray-500 w-10 h-10 rounded-lg p-2 items-center justify-center">
+                <span class="sr-only">Open main menu</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+            </button>
+        </div>
+        <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-links">
+            <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent lg:dark:bg-transparent lg:dark:border-0">
+                <li><a href="automation.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Automation</a></li>
+                <li><a href="ai-integration.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">AI Integration</a></li>
+                <li><a href="web-design.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Web Design</a></li>
+                <li><a href="social-media.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Social Media</a></li>
+                <li><a href="about.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">About</a></li>
+                <li><a href="contact.html" class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 dark:border-white/10 bg-white dark:bg-[#0B0E14]">
+        <ul class="flex flex-col p-4 gap-1">
+            <li><a href="automation.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Automation</a></li>
+            <li><a href="ai-integration.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">AI Integration</a></li>
+            <li><a href="web-design.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Web Design</a></li>
+            <li><a href="social-media.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Social Media</a></li>
+            <li><a href="about.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">About</a></li>
+            <li><a href="contact.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Contact</a></li>
+            <li class="pt-2"><a href="contact.html" class="block text-center text-white bg-[#f0942e] hover:bg-[#e28b2b] font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300">Book Free Audit</a></li>
+        </ul>
+    </div>
+    <div class="bi-rule"><span></span><span></span></div>
+</nav>
+
+<!-- ── Main ───────────────────────────────────────────────── -->
+<main class="flex-1 flex flex-col items-center px-4 pt-[100px] pb-16">
+
+    <!-- Progress bar -->
+    <div class="w-full max-w-2xl flex items-center gap-3 mb-8">
+        <div class="flex-1 h-1.5 bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden">
+            <div id="progress-fill" class="progress-fill h-full bg-[#f0942e] rounded-full" style="width:0%"></div>
+        </div>
+        <span id="step-label" class="text-xs text-gray-400 flex-shrink-0"></span>
+        <a href="contact.html" class="text-xs text-gray-400 hover:text-[#f0942e] transition-colors flex-shrink-0 hidden sm:block">Skip → Book call</a>
+    </div>
+
+<div class="w-full max-w-2xl">
+
+    <!-- SCREEN 0: Intro -->
+    <div id="screen-intro" class="step text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#f0942e]/30 bg-[#f0942e]/10 text-[#f0942e] text-xs font-medium mb-6">
+            Free Website Audit · 2 Minutes
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
+            How Does Your Website<br><span class="text-[#f0942e]">Stack Up Against Competitors?</span>
+        </h1>
+        <p class="text-slate-500 dark:text-gray-400 text-lg mb-8 max-w-md mx-auto">
+            Answer 4 quick questions. We'll research your local competitors and show you exactly where your site is losing visitors — and what to fix first.
+        </p>
+        <button onclick="goToStep(1)"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-semibold rounded-lg text-base transition-all duration-200 hover:shadow-[0_0_30px_rgba(240,148,46,0.4)] hover:-translate-y-0.5">
+            Get My Free Audit
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+        <p class="text-xs text-gray-500 mt-4">No email required to start · Takes about 2 minutes</p>
+    </div>
+
+    <!-- SCREEN 1: Business name + URL -->
+    <div id="screen-1" class="step hidden">
+        <div class="mb-6">
+            <p class="text-sm text-[#f0942e] font-medium mb-2">Step 1 of 4</p>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Tell us about your business</h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-1">We need your website URL to compare you against local competitors.</p>
+        </div>
+        <div class="mb-5">
+            <label for="business-name" class="block text-sm font-medium text-slate-600 dark:text-gray-300 mb-1.5">Business Name <span class="text-red-500">*</span></label>
+            <input id="business-name" type="text" placeholder="e.g. Blue Sky Realty, Acme Legal Group"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors">
+            <p id="business-name-error" class="hidden text-xs text-red-500 mt-1.5">Please enter your business name.</p>
+        </div>
+        <div class="mb-5">
+            <label for="website-url" class="block text-sm font-medium text-slate-600 dark:text-gray-300 mb-1.5">Website URL <span class="text-red-500">*</span></label>
+            <input id="website-url" type="url" placeholder="https://yourbusiness.com"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors">
+            <p id="website-url-error" class="hidden text-xs text-red-500 mt-1.5">Please enter a valid website URL (e.g. https://example.com).</p>
+        </div>
+        <div class="flex items-center gap-5">
+            <button onclick="goBack(1)" class="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300 transition-colors flex items-center gap-1">← Back</button>
+            <button onclick="validateStep1()"
+                class="px-8 py-3 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-[0_0_20px_rgba(240,148,46,0.35)]">
+                Continue →
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: City / location -->
+    <div id="screen-2" class="step hidden">
+        <div class="mb-6">
+            <p class="text-sm text-[#f0942e] font-medium mb-2">Step 2 of 4</p>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">What city are you in?</h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-1">We'll use this to find the top-ranking competitors in your local market.</p>
+        </div>
+        <div class="mb-5">
+            <label for="city-input" class="block text-sm font-medium text-slate-600 dark:text-gray-300 mb-1.5">City &amp; State <span class="text-red-500">*</span></label>
+            <input id="city-input" type="text" placeholder="e.g. Miami, FL  •  Austin, TX  •  Chicago, IL"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors"
+                onkeydown="if(event.key==='Enter') validateStep2()">
+            <p id="city-error" class="hidden text-xs text-red-500 mt-1.5">Please enter your city to continue.</p>
+        </div>
+        <div class="flex items-center gap-5">
+            <button onclick="goBack(2)" class="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300 transition-colors flex items-center gap-1">← Back</button>
+            <button onclick="validateStep2()"
+                class="px-8 py-3 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-[0_0_20px_rgba(240,148,46,0.35)]">
+                Continue →
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: Industry -->
+    <div id="screen-3" class="step hidden">
+        <div class="mb-6">
+            <p class="text-sm text-[#f0942e] font-medium mb-2">Step 3 of 4</p>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">What type of business are you?</h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-1">This helps us benchmark against the right competitors.</p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Restaurant / Food Service')">
+                <div class="text-2xl mb-2">🍽️</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Restaurant / Food</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Law Firm')">
+                <div class="text-2xl mb-2">⚖️</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Law Firm</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Real Estate')">
+                <div class="text-2xl mb-2">🏠</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Real Estate</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Healthcare / Medical')">
+                <div class="text-2xl mb-2">🏥</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Healthcare</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Contractor / Trades')">
+                <div class="text-2xl mb-2">🏗️</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Contractor / Trades</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Beauty & Wellness')">
+                <div class="text-2xl mb-2">💇</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Beauty &amp; Wellness</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'E-Commerce / Retail')">
+                <div class="text-2xl mb-2">🛒</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">E-Commerce</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Professional Services')">
+                <div class="text-2xl mb-2">💼</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Professional Services</div>
+            </div>
+            <div class="option-card border border-slate-200 dark:border-white/10 rounded-xl p-4 text-center" onclick="selectIndustry(this,'Other')">
+                <div class="text-2xl mb-2">✏️</div>
+                <div class="text-sm font-medium text-slate-900 dark:text-white">Other</div>
+            </div>
+        </div>
+        <div id="other-industry-wrap" class="hidden mt-4">
+            <label for="other-industry" class="block text-sm font-medium text-slate-600 dark:text-gray-300 mb-1.5">Describe your industry <span class="text-red-500">*</span></label>
+            <input id="other-industry" type="text" placeholder="e.g. Event Planning, Accounting, Fitness Studio"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors mb-1">
+            <p id="other-industry-error" class="hidden text-xs text-red-500 mb-2">Please describe your industry to continue.</p>
+            <button onclick="confirmOtherIndustry()"
+                class="px-6 py-2.5 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-medium rounded-lg text-sm transition-all duration-200 hover:shadow-[0_0_20px_rgba(240,148,46,0.35)]">
+                Continue →
+            </button>
+        </div>
+        <div class="mt-5">
+            <button onclick="goBack(3)" class="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300 transition-colors flex items-center gap-1">← Back</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 4: Frustrations -->
+    <div id="screen-4" class="step hidden">
+        <div class="mb-8">
+            <p class="text-sm text-[#f0942e] font-medium mb-2">Step 4 of 4</p>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">What's frustrating you about your current site?</h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-1">Select all that apply — or skip if everything's great.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6" id="frustrations-grid">
+            <!-- Generated by JS -->
+        </div>
+        <div class="flex items-center gap-5">
+            <button onclick="goBack(4)" class="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300 transition-colors flex items-center gap-1">← Back</button>
+            <button onclick="runAudit()"
+                class="px-8 py-3.5 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-bold rounded-lg text-base transition-all duration-200 hover:shadow-[0_0_30px_rgba(240,148,46,0.4)] hover:-translate-y-0.5 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                Audit My Website
+            </button>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Your report generates in about 30 seconds · No email required yet</p>
+    </div>
+
+    <!-- SCREEN: Loading -->
+    <div id="screen-loading" class="step hidden text-center">
+        <div class="mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-[#f0942e]/30 bg-[#f0942e]/10 mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0942e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="loading-icon"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                <style>#loading-icon { animation: spin 1.5s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }</style>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2" id="loading-msg">Looking up your website...</h2>
+            <p class="text-slate-500 dark:text-gray-400 text-sm" id="loading-sub">Fetching your homepage content</p>
+        </div>
+        <div class="flex justify-center gap-2">
+            <div class="loading-dot w-2.5 h-2.5 bg-[#f0942e] rounded-full"></div>
+            <div class="loading-dot w-2.5 h-2.5 bg-[#f0942e] rounded-full"></div>
+            <div class="loading-dot w-2.5 h-2.5 bg-[#f0942e] rounded-full"></div>
+        </div>
+    </div>
+
+    <!-- SCREEN: Results -->
+    <div id="screen-results" class="step hidden" style="max-width:100%">
+        <div class="mb-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-medium mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
+                Audit Complete
+            </div>
+            <h2 id="results-headline" class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug">
+                Website audit complete
+            </h2>
+            <p class="text-slate-500 dark:text-gray-400 mt-2 text-sm" id="results-subtitle">Benchmarked against top competitors in your area</p>
+        </div>
+
+        <!-- Cards container -->
+        <div id="cards-container" class="relative">
+            <div id="cards-list" class="flex flex-col gap-4"></div>
+
+            <!-- Blur overlay -->
+            <div id="blur-overlay" class="absolute bottom-0 left-0 right-0 pt-40">
+                <div class="relative z-10 text-center pt-8 pb-2 px-4">
+                    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl p-6 sm:p-8 max-w-md mx-auto shadow-2xl">
+                        <div class="text-2xl mb-3">🔓</div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Unlock Your Full Audit</h3>
+                        <p class="text-slate-500 dark:text-gray-400 text-sm mb-5">Enter your details to see all <span id="unlock-count" class="text-slate-900 dark:text-white font-medium">6</span> findings + download your free PDF report.</p>
+                        <button onclick="showContactModal()"
+                            class="w-full py-3 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-bold rounded-lg transition-all duration-200 hover:shadow-[0_0_25px_rgba(240,148,46,0.4)]">
+                            Get My Free Report →
+                        </button>
+                        <p class="text-xs text-gray-500 mt-3">No spam. One email with your report — that's it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post-unlock download section -->
+        <div id="download-section" class="hidden mt-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-medium mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
+                Report Unlocked
+            </div>
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Your full audit report is ready</h3>
+            <p class="text-slate-500 dark:text-gray-400 text-sm mb-6 max-w-sm mx-auto">Want us to implement these improvements for you? Book a free call and we'll walk through exactly what your site needs.</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button onclick="downloadPDF()"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-medium rounded-lg transition-all duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download PDF Report
+                </button>
+                <a href="contact.html"
+                    class="inline-flex items-center gap-2 px-6 py-3 border border-slate-300 dark:border-white/20 hover:border-[#f0942e]/50 text-slate-700 dark:text-white font-medium rounded-lg transition-all duration-200">
+                    Book a Free Strategy Call →
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /max-w-2xl -->
+</main>
+
+<!-- ── Contact Modal ──────────────────────────────────────── -->
+<div id="contact-modal" class="hidden fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl w-full max-w-md p-6 sm:p-8 relative shadow-2xl">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors p-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Get Your Full Audit Report</h3>
+        <p class="text-slate-500 dark:text-gray-400 text-sm mb-6">Unlock all 6 findings + receive a PDF you can share with your team.</p>
+        <form onsubmit="submitContact(event)" class="flex flex-col gap-4">
+            <input id="contact-name" type="text" placeholder="Your name *" required
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors">
+            <input id="contact-email" type="email" placeholder="Work email *" required
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors">
+            <input id="contact-phone" type="tel" placeholder="Phone (optional)"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 text-sm transition-colors">
+            <button type="submit" id="modal-submit-btn"
+                class="w-full py-3.5 bg-[#f0942e] hover:bg-[#e28b2b] text-white font-bold rounded-lg transition-all duration-200 hover:shadow-[0_0_25px_rgba(240,148,46,0.35)]">
+                Unlock My Free Report →
+            </button>
+        </form>
+        <p class="text-xs text-gray-500 mt-3 text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="inline mb-0.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Your data is 100% secure and will never be shared.
+        </p>
+    </div>
+</div>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer class="border-t border-slate-200 dark:border-white/10 py-5 px-4 text-center">
+    <p class="text-xs text-gray-500">© 2026 Azuretech LLC. All rights reserved. · Miami, FL · <a href="contact.html" class="hover:text-[#f0942e] transition-colors">Contact Us</a></p>
+</footer>
+
+<!-- ── Script ────────────────────────────────────────────── -->
+<script>
+
+// ── Config ──────────────────────────────────────────────────
+const WORKER_URL   = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/audit-website';
+const LEAD_WEBHOOK = 'https://primary-production-7b6e8.up.railway.app/webhook/quiz-lead-capture';
+
+// ── State ───────────────────────────────────────────────────
+const answers = { businessName: '', websiteUrl: '', city: '', industry: '', frustrations: [] };
+let generatedCards = [];
+let currentStep = 0;
+
+// ── Frustrations list ────────────────────────────────────────
+const FRUSTRATIONS = [
+    { id: 'traffic',   label: 'Not getting enough traffic',         icon: '📉' },
+    { id: 'mobile',    label: 'Looks bad on mobile',                icon: '📱' },
+    { id: 'slow',      label: 'Site loads too slowly',              icon: '🐌' },
+    { id: 'outdated',  label: 'Design looks outdated',              icon: '🗓️' },
+    { id: 'leads',     label: "Visitors don't convert to leads",    icon: '🎯' },
+    { id: 'reviews',   label: 'Hard to collect Google reviews',     icon: '⭐' },
+    { id: 'seo',       label: "Can't be found on Google",           icon: '🔍' },
+    { id: 'content',   label: "Content doesn't represent us well",  icon: '✍️' },
+];
+
+// ── Static fallback (if Worker fails) ───────────────────────
+const FALLBACK_CARDS = [
+    { title: 'Local SEO & Discovery',        score: 'Needs Work', description: 'Most local businesses are invisible on Google because their homepage lacks basic local SEO signals — city name in the title tag, Google Business Profile link, and schema markup. Top-ranking competitors in your area include location-specific keywords in every page title and H1.', recommendation: 'Add your city and primary service keyword to your homepage title tag and H1 heading.', impact: 'High' },
+    { title: 'Conversion Flow',              score: 'Critical',   description: 'The average small business website converts under 2% of visitors because the primary CTA is buried below the fold or too generic ("Contact Us"). Competitors that lead with a specific offer — free consultation, instant quote, or 24-hour callback — typically see 3–5× more form submissions.', recommendation: 'Add one prominent CTA above the fold with a specific offer, not just "Contact Us."', impact: 'High' },
+    { title: 'Trust Signals & Social Proof', score: 'Needs Work', description: 'Visitors decide whether to trust your business within 3 seconds of landing on your homepage. Competitors with 50+ Google reviews, client photos, and visible credentials close significantly more leads from the same traffic.', recommendation: 'Add 3–5 real client testimonials with full names and photos to your homepage.', impact: 'High' },
+    { title: 'Mobile Experience',            score: 'Needs Work', description: 'Over 60% of local business searches happen on mobile, but most sites have tap targets that are too small, text that requires zooming, and mobile CTAs that are hard to find. Google also ranks mobile experience as a direct factor in local search results.', recommendation: 'Test your site on a real phone and ensure all buttons are at least 44px tall and all text is at least 16px.', impact: 'Medium' },
+    { title: 'Speed & Performance',          score: 'Needs Work', description: 'Google uses Core Web Vitals as a ranking signal — slow-loading sites rank lower and lose visitors before they even see your content. Most small business sites lose 25–40% of mobile visitors to load times above 3 seconds.', recommendation: 'Compress all images to WebP format and enable browser caching to reduce load time by 40–60%.', impact: 'Medium' },
+    { title: 'Content & Messaging',          score: 'Needs Work', description: 'Most business homepages lead with what the company does rather than the outcome the client gets. Competitors who use a clear benefit-first headline — "We help [X] achieve [Y] without [Z]" — hold visitor attention longer and convert better.', recommendation: 'Rewrite your homepage H1 to focus on the client outcome, not your company description.', impact: 'Medium' },
+];
+
+// ── Screen management ────────────────────────────────────────
+function showScreen(id) {
+    document.querySelectorAll('.step').forEach(el => el.classList.add('hidden'));
+    const el = document.getElementById(id);
+    if (el) { el.classList.remove('hidden'); el.classList.add('step'); }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goToStep(n) {
+    currentStep = n;
+    updateProgress(n);
+    if (n === 4) buildFrustrationsGrid();
+    showScreen('screen-' + n);
+}
+
+function updateProgress(step) {
+    const pct = [0, 25, 50, 75, 95][step] || 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    const labels = ['', 'Step 1 of 4', 'Step 2 of 4', 'Step 3 of 4', 'Step 4 of 4'];
+    const lbl = document.getElementById('step-label');
+    if (lbl) lbl.textContent = labels[step] || '';
+}
+
+function goBack(step) {
+    if (step === 1) {
+        currentStep = 0;
+        updateProgress(0);
+        showScreen('screen-intro');
+    } else {
+        goToStep(step - 1);
+    }
+}
+
+// ── Step 1: Validate name + URL ──────────────────────────────
+function validateStep1() {
+    const name = document.getElementById('business-name');
+    const url  = document.getElementById('website-url');
+    const nameErr = document.getElementById('business-name-error');
+    const urlErr  = document.getElementById('website-url-error');
+    let ok = true;
+
+    if (!name.value.trim()) {
+        nameErr.classList.remove('hidden');
+        name.classList.add('border-red-400', 'dark:border-red-500');
+        ok = false;
+    } else {
+        nameErr.classList.add('hidden');
+        name.classList.remove('border-red-400', 'dark:border-red-500');
+    }
+
+    // Accept URL with or without protocol
+    let rawUrl = url.value.trim();
+    if (rawUrl && !/^https?:\/\//i.test(rawUrl)) rawUrl = 'https://' + rawUrl;
+    let urlValid = false;
+    try { new URL(rawUrl); urlValid = rawUrl.includes('.'); } catch { urlValid = false; }
+
+    if (!rawUrl || !urlValid) {
+        urlErr.classList.remove('hidden');
+        url.classList.add('border-red-400', 'dark:border-red-500');
+        ok = false;
+    } else {
+        urlErr.classList.add('hidden');
+        url.classList.remove('border-red-400', 'dark:border-red-500');
+        url.value = rawUrl; // normalise
+    }
+
+    if (!ok) return;
+    answers.businessName = name.value.trim();
+    answers.websiteUrl   = rawUrl;
+    goToStep(2);
+}
+
+// ── Step 2: Validate city ────────────────────────────────────
+function validateStep2() {
+    const input = document.getElementById('city-input');
+    const error = document.getElementById('city-error');
+    if (!input.value.trim()) {
+        error.classList.remove('hidden');
+        input.classList.add('border-red-400', 'dark:border-red-500');
+        return;
+    }
+    error.classList.add('hidden');
+    input.classList.remove('border-red-400', 'dark:border-red-500');
+    answers.city = input.value.trim();
+    goToStep(3);
+}
+
+// ── Step 3: Industry selection ───────────────────────────────
+function selectIndustry(el, value) {
+    document.querySelectorAll('#screen-3 .option-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    answers.industry = value;
+    const otherWrap = document.getElementById('other-industry-wrap');
+    if (value === 'Other') {
+        otherWrap.classList.remove('hidden');
+        setTimeout(() => document.getElementById('other-industry').focus(), 50);
+    } else {
+        otherWrap.classList.add('hidden');
+        setTimeout(() => goToStep(4), 220);
+    }
+}
+
+function confirmOtherIndustry() {
+    const input = document.getElementById('other-industry');
+    const error = document.getElementById('other-industry-error');
+    const custom = input.value.trim();
+    if (!custom) {
+        error.classList.remove('hidden');
+        input.classList.add('border-red-400', 'dark:border-red-500');
+        return;
+    }
+    error.classList.add('hidden');
+    input.classList.remove('border-red-400', 'dark:border-red-500');
+    answers.industry = custom;
+    goToStep(4);
+}
+
+// ── Step 4: Frustrations ─────────────────────────────────────
+function buildFrustrationsGrid() {
+    const grid = document.getElementById('frustrations-grid');
+    grid.innerHTML = FRUSTRATIONS.map(f => `
+        <div class="check-item relative">
+            <input type="checkbox" id="fr-${f.id}" class="check-input sr-only" value="${f.id}">
+            <label for="fr-${f.id}"
+                class="check-label flex items-center gap-3 px-4 py-3 border border-slate-200 dark:border-white/10 rounded-xl cursor-pointer text-sm text-slate-700 dark:text-gray-300 transition-all duration-150 select-none">
+                <span class="text-base">${f.icon}</span>
+                <span>${f.label}</span>
+            </label>
+        </div>
+    `).join('');
+}
+
+// ── Run Audit ────────────────────────────────────────────────
+async function runAudit() {
+    answers.frustrations = [...document.querySelectorAll('.check-input:checked')].map(el => el.value);
+
+    showScreen('screen-loading');
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('step-label').textContent = 'Auditing...';
+
+    // 12 sequential loading messages — advance every 5s, stop at last
+    const msgs = [
+        ['Looking up your website...',              'Fetching your homepage content'],
+        ['Searching for your local competitors...',  `Finding top-ranked ${answers.industry} businesses in ${answers.city}`],
+        ['Found some interesting competitors...',    "Let's see what the best ones are doing"],
+        ['Checking national leaders...',             `Analyzing top-performing ${answers.industry} sites nationwide`],
+        ['Comparing your SEO signals...',            "Scanning title tags, meta descriptions, and local keywords"],
+        ['Scoring your mobile experience...',        "Because 62% of your visitors are probably on a phone"],
+        ['Analyzing conversion patterns...',         "Counting CTAs, forms, and trust signals above the fold"],
+        ['Checking your social proof...',            "Reviews, testimonials, credentials — the trust-builders"],
+        ['Evaluating content & messaging...',        "Does your homepage lead with what clients care about?"],
+        ['Running performance benchmarks...',        "Comparing load speed against your competitors"],
+        ['Generating your scorecard...',             "Our AI consultant is writing your personalized report"],
+        ['Almost ready...',                          "Worth the wait — your report has specific, actionable findings"],
+    ];
+
+    let mi = 0;
+    document.getElementById('loading-msg').textContent = msgs[0][0];
+    document.getElementById('loading-sub').textContent = msgs[0][1];
+    const msgInterval = setInterval(() => {
+        if (mi < msgs.length - 1) {
+            mi++;
+            document.getElementById('loading-msg').textContent = msgs[mi][0];
+            document.getElementById('loading-sub').textContent = msgs[mi][1];
+        }
+    }, 5000);
+
+    let cards;
+    try {
+        const res = await fetch(WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(answers),
+        });
+        if (!res.ok) throw new Error('Worker error');
+        const data = await res.json();
+        cards = (data.cards && data.cards.length > 0) ? data.cards : FALLBACK_CARDS;
+    } catch(e) {
+        cards = FALLBACK_CARDS;
+    }
+
+    clearInterval(msgInterval);
+    generatedCards = cards;
+    renderResults(cards);
+}
+
+// ── Render Results ───────────────────────────────────────────
+function renderResults(cards) {
+    const list = document.getElementById('cards-list');
+    list.innerHTML = cards.map((c, i) => {
+        const blurClass = i >= 2 ? 'blur-card' : '';
+        const scoreCls = c.score === 'Strong' ? 'score-strong' : c.score === 'Critical' ? 'score-critical' : 'score-needs';
+        const scoreIcon = c.score === 'Strong' ? '✓' : c.score === 'Critical' ? '!' : '△';
+        const impactColor = c.impact === 'High' ? '#22c55e' : c.impact === 'Low' ? '#94a3b8' : '#f0942e';
+        return `
+        <div class="result-card ${blurClass} bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-xl p-5 sm:p-6 transition-all duration-200 hover:shadow-md hover:border-slate-300 dark:hover:border-white/20 hover:-translate-y-0.5">
+            <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-gray-400">
+                    ${i + 1}
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                        <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full ${scoreCls}">
+                            ${scoreIcon} ${c.score}
+                        </span>
+                        ${c.impact === 'High' ? '<span class="text-[10px] font-semibold text-green-600 dark:text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full">High Impact</span>' : ''}
+                    </div>
+                    <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">${c.title}</h3>
+                    <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed mb-3">${c.description}</p>
+                    <div class="flex items-start gap-2 bg-slate-50 dark:bg-white/5 rounded-lg px-3 py-2.5">
+                        <span class="text-[#f0942e] text-sm mt-0.5 flex-shrink-0">→</span>
+                        <p class="text-xs text-slate-600 dark:text-gray-300 leading-relaxed"><span class="font-medium">Fix:</span> ${c.recommendation}</p>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    document.getElementById('unlock-count').textContent = cards.length;
+    const name = answers.businessName;
+    if (name) {
+        document.getElementById('results-headline').innerHTML = `Website audit complete for <span class="text-[#f0942e]">${name}</span>`;
+    }
+    document.getElementById('results-subtitle').textContent =
+        `Benchmarked against top ${answers.industry} competitors in ${answers.city}`;
+
+    showScreen('screen-results');
+    document.getElementById('step-label').textContent = 'Report Ready';
+}
+
+// ── Modal ────────────────────────────────────────────────────
+function showContactModal() {
+    document.getElementById('contact-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('contact-name').focus(), 100);
+}
+
+function closeModal() {
+    document.getElementById('contact-modal').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('contact-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+const _menuBtn = document.getElementById('mobile-menu-btn');
+const _mobileMenu = document.getElementById('mobile-menu');
+if (_menuBtn && _mobileMenu) {
+    _menuBtn.addEventListener('click', () => _mobileMenu.classList.toggle('hidden'));
+}
+
+// ── Contact Submission ───────────────────────────────────────
+async function submitContact(e) {
+    e.preventDefault();
+    const btn = document.getElementById('modal-submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const name  = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const phone = document.getElementById('contact-phone').value.trim();
+
+    try {
+        fetch(LEAD_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, phone, ...answers, auditType: 'website', cards: generatedCards.length }),
+        });
+    } catch(err) { /* silent fail */ }
+
+    await new Promise(r => setTimeout(r, 600));
+    closeModal();
+    unlockResults();
+}
+
+// ── Unlock Results ───────────────────────────────────────────
+function unlockResults() {
+    document.querySelectorAll('.blur-card').forEach(el => {
+        el.classList.remove('blur-card');
+        el.style.animation = 'fadeUp 0.4s ease forwards';
+    });
+    document.getElementById('blur-overlay').style.display = 'none';
+    document.getElementById('download-section').classList.remove('hidden');
+}
+
+// ── PDF Download ─────────────────────────────────────────────
+function downloadPDF() {
+    const btn = event.target;
+    btn.textContent = 'Generating PDF...';
+    btn.disabled = true;
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    script.onload = function() {
+        const el = document.getElementById('cards-list');
+        html2pdf().set({
+            margin: [10, 10],
+            filename: `azuretech-website-audit-${answers.businessName.replace(/\s+/g,'-').toLowerCase()}.pdf`,
+            image: { type: 'jpeg', quality: 0.92 },
+            html2canvas: { scale: 2, backgroundColor: '#0B0E14' },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        }).from(el).save().then(() => {
+            btn.textContent = 'Download PDF Report';
+            btn.disabled = false;
+        });
+    };
+    document.head.appendChild(script);
+}
+
+// ── Init ─────────────────────────────────────────────────────
+showScreen('screen-intro');
+</script>
+</body>
+</html>

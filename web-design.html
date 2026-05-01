@@ -24,6 +24,9 @@
       "url": "https://azuretechit.com/web-design.html"
     }
     </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://azuretechit.com"},{"@type":"ListItem","position":2,"name":"Web Design & Development","item":"https://azuretechit.com/web-design.html"}]}
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class' };
@@ -108,6 +111,17 @@
             }
         })();
     </script>
+    <style>
+        .az-btn-bubbles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: inherit; }
+        .az-btn-bubble { position: absolute; bottom: -4px; width: 3px; height: 3px; background: rgba(255,255,255,0.6); border-radius: 9999px; animation: az-bubble-float infinite ease-in-out; }
+        @keyframes az-bubble-float { 0% { transform: translateY(0); opacity: 0.8; } 85% { opacity: 0; } 100% { transform: translateY(-40px); opacity: 0; } }
+        .az-btn-bubble:nth-child(1) { left: 8%;  animation-duration: 2.1s; }
+        .az-btn-bubble:nth-child(2) { left: 22%; animation-duration: 2.6s; animation-delay: 0.4s; }
+        .az-btn-bubble:nth-child(3) { left: 40%; animation-duration: 1.9s; animation-delay: 0.8s; }
+        .az-btn-bubble:nth-child(4) { left: 58%; animation-duration: 2.4s; animation-delay: 0.2s; }
+        .az-btn-bubble:nth-child(5) { left: 72%; animation-duration: 2.2s; animation-delay: 1.0s; }
+        .az-btn-bubble:nth-child(6) { left: 88%; animation-duration: 2.7s; animation-delay: 0.6s; }
+    </style>
 </head>
 
 <body class="bg-white dark:bg-[#0f1218] text-slate-900 dark:text-[#ebebeb] antialiased overflow-x-hidden transition-colors duration-300">
@@ -115,7 +129,7 @@
     <!-- ═══════════════════════════════════════════ -->
     <!-- NAVBAR -->
     <!-- ═══════════════════════════════════════════ -->
-    <nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0f1218]/80 backdrop-blur-md transition-colors duration-300">
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0f1218] backdrop-blur-md transition-colors duration-300">
         <div class="flex flex-wrap max-w-7xl mx-auto py-4 px-6 items-center justify-between">
             <a href="index.html" class="flex items-center space-x-3 group">
                 <img src="assets/logos/azuretech-logo-blue-orange.png"
@@ -126,6 +140,7 @@
             <div class="flex lg:order-2 space-x-3 items-center">
                 <!-- Dark Mode Toggle -->
                 <button
+                    aria-label="Toggle dark mode"
                     onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');"
                     class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -144,9 +159,9 @@
                     </svg>
                 </button>
                 <!-- CTA Button -->
-                <a href="contact.html"
-                    class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2">
-                    Book Consultation
+                <a href="website-audit-quiz.html"
+                    class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2 relative overflow-hidden">
+                    <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Audit My Website
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
@@ -164,14 +179,14 @@
             </div>
             <!-- Desktop Nav Links -->
             <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-links">
-                <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent">
+                <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 dark:border-white/10 rounded-lg bg-gray-50 dark:bg-white/5 lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent lg:dark:bg-transparent lg:dark:border-0">
                     <li>
                         <a href="automation.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Automation</a>
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Automation</a>
                     </li>
                     <li>
                         <a href="ai-integration.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">AI Integration</a>
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">AI Integration</a>
                     </li>
                     <li>
                         <a href="web-design.html"
@@ -180,15 +195,15 @@
                     </li>
                     <li>
                         <a href="social-media.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Social Media</a>
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Social Media</a>
                     </li>
                     <li>
                         <a href="about.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">About</a>
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">About</a>
                     </li>
                     <li>
                         <a href="contact.html"
-                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Contact</a>
+                            class="block py-2 px-3 text-slate-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-white/10 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:hover:text-[#547aa1] lg:dark:hover:text-[#547aa1] lg:p-0 transition-colors">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -203,7 +218,7 @@
                 <li><a href="about.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">About</a></li>
                 <li><a href="contact.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Contact</a></li>
                 <li class="pt-2">
-                    <a href="contact.html" class="block text-center text-white bg-[#f0942e] hover:bg-[#e28b2b] font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300">Book Consultation</a>
+                    <a href="website-audit-quiz.html" class="block text-center text-white bg-[#f0942e] hover:bg-[#e28b2b] font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300">Audit My Website</a>
                 </li>
             </ul>
         </div>
@@ -239,8 +254,8 @@
                         Most websites are just the tip of the iceberg—pretty but disconnected. We build conversion-driven digital infrastructure that integrates deep beneath the surface.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="contact.html" class="px-8 py-4 bg-[#f0942e] text-white rounded-lg font-medium flex items-center gap-2 hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] transition-all duration-300">
-                            Convert Visitors Into Clients
+                        <a href="website-audit-quiz.html" class="px-8 py-4 bg-[#f0942e] text-white rounded-lg font-medium flex items-center gap-2 hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] transition-all duration-300">
+                            Audit My Website Free
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                         </a>
                         <a href="#evolution" class="px-8 py-4 bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-white rounded-lg font-medium backdrop-blur-md border border-slate-200 dark:border-white/20 hover:bg-slate-200 dark:hover:bg-white/20 transition-all duration-300">
@@ -608,28 +623,30 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">What Our Clients Say</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/8 rounded-2xl p-8 relative shadow-sm">
-                    <div class="w-full h-0.5 bg-[#f0942e] absolute top-0 left-0 right-0 rounded-t-2xl"></div>
-                    <div class="text-6xl text-[#f0942e] opacity-20 font-serif leading-none mb-4">"</div>
-                    <blockquote class="text-lg text-slate-700 dark:text-gray-200 leading-relaxed mb-6 font-light">
+                <div class="bg-white dark:bg-[#161b22] border border-slate-200 dark:border-white/8 rounded-2xl p-8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-none relative">
+                    <div class="text-[80px] leading-none text-[#f0942e] opacity-20 absolute top-4 left-6 select-none font-serif">"</div>
+                    <blockquote class="text-lg text-slate-700 dark:text-gray-200 leading-relaxed mb-8 pt-6 font-light">
                         Our old site took 8 seconds to load. The new one is under 1.5 seconds and we started getting form submissions within the first week.
                     </blockquote>
-                    <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
-                        <div class="w-9 h-9 rounded-full bg-[#f0942e]/15 flex items-center justify-center text-[#f0942e] font-semibold text-sm">C</div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100 dark:border-white/8">
+                        <div class="w-9 h-9 rounded-full bg-[#f0942e]/10 flex items-center justify-center shrink-0">
+                            <span class="text-sm font-bold text-[#f0942e]">C</span>
+                        </div>
                         <cite class="not-italic">
                             <div class="text-sm font-semibold text-slate-900 dark:text-white">Client Name</div>
                             <div class="text-xs text-slate-400 dark:text-gray-500 uppercase tracking-widest mt-0.5">Role, Company</div>
                         </cite>
                     </div>
                 </div>
-                <div class="bg-slate-50 dark:bg-[#161b22] border border-slate-200 dark:border-white/8 rounded-2xl p-8 relative shadow-sm">
-                    <div class="w-full h-0.5 bg-[#f0942e] absolute top-0 left-0 right-0 rounded-t-2xl"></div>
-                    <div class="text-6xl text-[#f0942e] opacity-20 font-serif leading-none mb-4">"</div>
-                    <blockquote class="text-lg text-slate-700 dark:text-gray-200 leading-relaxed mb-6 font-light">
+                <div class="bg-white dark:bg-[#161b22] border border-slate-200 dark:border-white/8 rounded-2xl p-8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-none relative">
+                    <div class="text-[80px] leading-none text-[#f0942e] opacity-20 absolute top-4 left-6 select-none font-serif">"</div>
+                    <blockquote class="text-lg text-slate-700 dark:text-gray-200 leading-relaxed mb-8 pt-6 font-light">
                         Every lead that fills out our contact form now lands directly in our CRM with a follow-up email already sent. We don't miss anything anymore.
                     </blockquote>
-                    <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
-                        <div class="w-9 h-9 rounded-full bg-[#f0942e]/15 flex items-center justify-center text-[#f0942e] font-semibold text-sm">C</div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100 dark:border-white/8">
+                        <div class="w-9 h-9 rounded-full bg-[#f0942e]/10 flex items-center justify-center shrink-0">
+                            <span class="text-sm font-bold text-[#f0942e]">C</span>
+                        </div>
                         <cite class="not-italic">
                             <div class="text-sm font-semibold text-slate-900 dark:text-white">Client Name</div>
                             <div class="text-xs text-slate-400 dark:text-gray-500 uppercase tracking-widest mt-0.5">Role, Company</div>
@@ -637,6 +654,18 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- FREE AUDIT PROMO -->
+    <section class="py-12 bg-[#f0942e]/5 dark:bg-[#f0942e]/5 border-y border-[#f0942e]/20 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <p class="text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-1">Free Offer</p>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Not sure if web design is right for you?</h3>
+                <p class="text-slate-500 dark:text-gray-400 mt-1 text-sm">Get a free 45-minute audit — we'll review your current site and tell you exactly what's holding back your conversions. No commitment.</p>
+            </div>
+            <a href="website-audit-quiz.html" class="shrink-0 inline-flex items-center gap-2 bg-[#f0942e] hover:bg-[#d4831f] text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 text-sm whitespace-nowrap">Audit My Website →</a>
         </div>
     </section>
 
@@ -730,9 +759,9 @@
                     Stop thinking about your website as a design project. Start thinking about it as your most powerful employee.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="contact.html"
+                    <a href="website-audit-quiz.html"
                         class="px-10 py-4 bg-[#0B0E14] text-white rounded-xl font-medium text-lg hover:bg-[#161b22] hover:scale-[1.02] transition-all duration-300 shadow-xl flex items-center justify-center gap-2">
-                        Book Your Discovery Audit
+                        Audit My Website Free
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                     <a href="about.html"
@@ -783,7 +812,8 @@
                 <div class="flex flex-col gap-4">
                     <h4 class="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">Contact</h4>
                     <ul class="flex flex-col gap-3">
-                        <li class="text-sm text-slate-500 dark:text-gray-500">hello@azuretech.ai</li>
+                        <li class="text-sm text-slate-500 dark:text-gray-500"><a href="mailto:info@azuretechit.com" class="hover:text-[#f0942e] transition-colors">info@azuretechit.com</a></li>
+                        <li class="text-sm text-slate-500 dark:text-gray-500"><a href="tel:+17867623499" class="hover:text-[#f0942e] transition-colors">(786) 762-3499</a></li>
                         <li class="text-sm text-slate-500 dark:text-gray-500">Miami, Florida</li>
                     </ul>
                 </div>
