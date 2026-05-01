@@ -25,7 +25,6 @@
         tailwind.config = { darkMode: 'class' };
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             font-family: 'Inter', sans-serif;
@@ -76,7 +75,7 @@
         /* Bi-rule navbar */
         .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
         .bi-rule span:nth-child(1) { background: #234B70; }
-        .bi-rule span:nth-child(2) { background: #F79226; }
+        .bi-rule span:nth-child(2) { background: #f0942e; }
     </style>
     <script>
         (function(){
@@ -97,7 +96,10 @@
         .az-btn-bubble:nth-child(5) { left: 72%; animation-duration: 2.2s; animation-delay: 1.0s; }
         .az-btn-bubble:nth-child(6) { left: 88%; animation-duration: 2.7s; animation-delay: 0.6s; }
     </style>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="design-tokens.css"></head>
 
 <body class="bg-white dark:bg-[#0f1218] text-slate-900 dark:text-[#ebebeb] antialiased transition-colors duration-300">
 
@@ -117,7 +119,7 @@
                 <button
                     aria-label="Toggle dark mode"
                     onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');"
-                    class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
+                    class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2.5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="hidden dark:block w-5 h-5" aria-hidden="true">
@@ -140,7 +142,7 @@
                 <!-- CTA Button -->
                 <a href="contact.html"
                     class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2 relative overflow-hidden">
-                    <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Book Free Audit
+                    <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Book Strategy Session
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="w-4 h-4">
@@ -432,7 +434,7 @@
                             </span>
                         </summary>
                         <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
-                            It starts with a free Discovery Audit — a 30–45 minute call where we map your current workflows and identify the highest-impact opportunities. From there, we scope the project, agree on deliverables and timeline, build in phases with regular check-ins, and hand off with documentation and a walkthrough. Most clients are live within 3–5 weeks.
+                            It starts with a free strategy session — a 30–45 minute call where we map your current workflows and identify the highest-impact opportunities. From there, we scope the project, agree on deliverables and timeline, build in phases with regular check-ins, and hand off with documentation and a walkthrough. Most clients are live within 3–5 weeks.
                         </div>
                     </details>
                 </div>

@@ -35,7 +35,6 @@
         tailwind.config = { darkMode: 'class' };
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
         ::selection { background: #f0942e; color: #fff; }
@@ -97,7 +96,7 @@
         /* Bi-rule navbar */
         .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
         .bi-rule span:nth-child(1) { background: #234B70; }
-        .bi-rule span:nth-child(2) { background: #F79226; }
+        .bi-rule span:nth-child(2) { background: #f0942e; }
     </style>
     <script>
         (function(){
@@ -118,7 +117,10 @@
         .az-btn-bubble:nth-child(5) { left: 72%; animation-duration: 2.2s; animation-delay: 1.0s; }
         .az-btn-bubble:nth-child(6) { left: 88%; animation-duration: 2.7s; animation-delay: 0.6s; }
     </style>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="design-tokens.css"></head>
 
 <body class="bg-white dark:bg-[#0f1218] text-slate-900 dark:text-[#ebebeb] antialiased overflow-x-hidden transition-colors duration-300">
 
@@ -138,7 +140,7 @@
                 <button
                     aria-label="Toggle dark mode"
                     onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');"
-                    class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
+                    class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2.5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="hidden dark:block">
@@ -157,7 +159,7 @@
                 <!-- CTA Button -->
                 <a href="contact.html"
                     class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2 relative overflow-hidden">
-                    <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Book Free Audit
+                    <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Book Strategy Session
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
@@ -214,7 +216,7 @@
                 <li><a href="about.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">About</a></li>
                 <li><a href="contact.html" class="block py-3 px-4 text-slate-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Contact</a></li>
                 <li class="pt-2">
-                    <a href="contact.html" class="block text-center text-white bg-[#f0942e] hover:bg-[#e28b2b] font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300">Book Free Audit</a>
+                    <a href="contact.html" class="block text-center text-white bg-[#f0942e] hover:bg-[#e28b2b] font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300">Book Strategy Session</a>
                 </li>
             </ul>
         </div>
@@ -445,7 +447,7 @@
                             <h3 class="text-3xl md:text-4xl font-semibold text-white mb-4 max-w-md leading-tight">Ready to reclaim your time?</h3>
                             <p class="text-white/80 mb-8 max-w-sm">Built for growing businesses that need consistent visibility — without a full-time marketing team.</p>
                             <div>
-                                <a href="contact.html" class="inline-block px-8 py-3 bg-white text-[#f0942e] rounded-lg font-medium hover:bg-orange-50 transition-colors">Book Your Free Audit</a>
+                                <a href="contact.html" class="inline-block px-8 py-3 bg-white text-[#f0942e] rounded-lg font-medium hover:bg-orange-50 transition-colors">Book Strategy Session</a>
                             </div>
                         </div>
                     </div>
@@ -519,7 +521,7 @@
                         <p class="text-white/50">Let's build your automated marketing infrastructure together.</p>
                     </div>
                     <a href="contact.html" class="bg-[#f0942e] text-white px-10 py-4 rounded-xl font-medium text-lg hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] transition-all duration-300 whitespace-nowrap">
-                        Book Your Tech Audit
+                        Book a Strategy Session
                     </a>
                 </div>
             </div>
@@ -597,9 +599,9 @@
             <div>
                 <p class="text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-1">Free Offer</p>
                 <h3 class="text-xl font-bold text-slate-900 dark:text-white">Not sure if social media management is right for you?</h3>
-                <p class="text-slate-500 dark:text-gray-400 mt-1 text-sm">Get a free 45-minute audit — we'll review your current presence and show you exactly where you're leaving growth on the table. No commitment.</p>
+                <p class="text-slate-500 dark:text-gray-400 mt-1 text-sm">Book a free 45-minute strategy session — we'll review your current presence and show you exactly where you're leaving growth on the table. No commitment.</p>
             </div>
-            <a href="contact.html" class="shrink-0 inline-flex items-center gap-2 bg-[#f0942e] hover:bg-[#d4831f] text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 text-sm whitespace-nowrap">Book Free Audit →</a>
+            <a href="contact.html" class="shrink-0 inline-flex items-center gap-2 bg-[#f0942e] hover:bg-[#d4831f] text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 text-sm whitespace-nowrap">Book Strategy Session →</a>
         </div>
     </section>
 

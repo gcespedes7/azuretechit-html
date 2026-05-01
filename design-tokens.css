@@ -1,0 +1,62 @@
+/* ============================================================
+   design-tokens.css — Azuretech HTML Site Design System
+   Reference this file before writing any HTML or CSS.
+   ============================================================ */
+
+/* ── Color tokens ─────────────────────────────────────────── */
+:root {
+  --color-brand-navy:         #234B70;
+  --color-brand-orange:       #f0942e;  /* canonical — use everywhere */
+  --color-brand-orange-hover: #e28b2b;
+  --color-accent-mid:         #395e8b;
+  --color-accent-light:       #547aa1;
+
+  /* Dark mode surfaces */
+  --surface-base:     #0f1218;
+  --surface-elevated: #161b22;
+  --surface-floating: #1e2530;  /* future modals / dropdowns / tooltips */
+
+  /* Text */
+  --color-text-dark:  #ebebeb;
+  --color-text-muted: rgba(235, 235, 235, 0.6);
+
+  /* Shadows */
+  --shadow-card:     0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-floating: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --glow-cta:        0 0 20px rgba(240, 148, 46, 0.4);
+
+  /* Type scale */
+  --text-xs:   0.75rem;    /* 12px — labels, captions */
+  --text-sm:   0.875rem;   /* 14px — badges, secondary */
+  --text-base: 1rem;       /* 16px — body */
+  --text-lg:   1.125rem;   /* 18px — lead paragraphs */
+  --text-xl:   1.25rem;    /* 20px — card headings */
+  --text-2xl:  1.5rem;     /* 24px — section subheads */
+  --text-4xl:  2.25rem;    /* 36px — section headings mobile */
+  --text-6xl:  3.75rem;    /* 60px — hero headings desktop */
+}
+
+/* ── Typography ───────────────────────────────────────────── */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Geist', sans-serif;
+}
+
+/* ── Transitions (explicit, never transition-all) ─────────── */
+/* Override Tailwind's transition-all with explicit properties */
+.transition-all {
+  transition-property: background-color, box-shadow, transform, color,
+                        opacity, border-color, text-decoration-color !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ── Focus-visible states (accessibility) ─────────────────── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #f0942e;
+  outline-offset: 4px;
+  border-radius: 4px;
+}

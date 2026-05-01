@@ -28,14 +28,13 @@
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://azuretechit.com"},{"@type":"ListItem","position":2,"name":"AI Integration","item":"https://azuretechit.com/ai-integration.html"}]}
     </script>
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does AI integration actually mean for a small business?","acceptedAnswer":{"@type":"Answer","text":"It means connecting AI tools to the systems you already use — your CRM, email, calendar, website — so they work together automatically. You stop doing repetitive tasks manually, and the AI handles routing, follow-up, qualification, or content creation in the background."}},{"@type":"Question","name":"How is this different from just using ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"ChatGPT is a tool you interact with manually. AI integration means building systems that run on their own — triggering automatically when a lead fills out a form, an email arrives, or a deal moves in your CRM. No copy-pasting, no manual prompts."}},{"@type":"Question","name":"What tools do you integrate with?","acceptedAnswer":{"@type":"Answer","text":"Most major business tools — HubSpot, GoHighLevel, Salesforce, Gmail, Outlook, Slack, Notion, Airtable, Google Sheets, WhatsApp, Calendly, and more. If it has an API or works with Zapier or Make, we can connect it to an AI layer."}},{"@type":"Question","name":"How long does an AI integration project typically take?","acceptedAnswer":{"@type":"Answer","text":"Most projects go live in 2–4 weeks. A focused chatbot or lead qualification system can be deployed in under 2 weeks. Larger multi-system integrations with custom AI logic typically run 4–6 weeks depending on complexity and the number of tools involved."}},{"@type":"Question","name":"Do we need technical staff to maintain the systems you build?","acceptedAnswer":{"@type":"Answer","text":"No. We build everything to run without a dedicated technical team. We handle ongoing monitoring and can adjust systems as your business grows. Most clients manage day-to-day use through simple dashboards with no coding required."}},{"@type":"Question","name":"What's the first step?","acceptedAnswer":{"@type":"Answer","text":"Book a free AI Readiness Audit. We'll spend 30 minutes reviewing your current workflows, identify 2–3 high-impact automation opportunities, and tell you exactly what we'd build and why — before you commit to anything."}}]}
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does AI integration actually mean for a small business?","acceptedAnswer":{"@type":"Answer","text":"It means connecting AI tools to the systems you already use — your CRM, email, calendar, website — so they work together automatically. You stop doing repetitive tasks manually, and the AI handles routing, follow-up, qualification, or content creation in the background."}},{"@type":"Question","name":"How is this different from just using ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"ChatGPT is a tool you interact with manually. AI integration means building systems that run on their own — triggering automatically when a lead fills out a form, an email arrives, or a deal moves in your CRM. No copy-pasting, no manual prompts."}},{"@type":"Question","name":"What tools do you integrate with?","acceptedAnswer":{"@type":"Answer","text":"Most major business tools — HubSpot, GoHighLevel, Salesforce, Gmail, Outlook, Slack, Notion, Airtable, Google Sheets, WhatsApp, Calendly, and more. If it has an API or works with Zapier or Make, we can connect it to an AI layer."}},{"@type":"Question","name":"How long does an AI integration project typically take?","acceptedAnswer":{"@type":"Answer","text":"Most projects go live in 2–4 weeks. A focused chatbot or lead qualification system can be deployed in under 2 weeks. Larger multi-system integrations with custom AI logic typically run 4–6 weeks depending on complexity and the number of tools involved."}},{"@type":"Question","name":"Do we need technical staff to maintain the systems you build?","acceptedAnswer":{"@type":"Answer","text":"No. We build everything to run without a dedicated technical team. We handle ongoing monitoring and can adjust systems as your business grows. Most clients manage day-to-day use through simple dashboards with no coding required."}},{"@type":"Question","name":"What's the first step?","acceptedAnswer":{"@type":"Answer","text":"Book a free AI strategy call. We'll spend 30 minutes reviewing your current workflows, identify 2–3 high-impact automation opportunities, and tell you exactly what we'd build and why — before you commit to anything."}}]}
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class' };
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
 
@@ -62,7 +61,7 @@
         /* Bi-rule navbar */
         .bi-rule { display: grid; grid-template-columns: 1fr 1fr; height: 3px; }
         .bi-rule span:nth-child(1) { background: #234B70; }
-        .bi-rule span:nth-child(2) { background: #F79226; }
+        .bi-rule span:nth-child(2) { background: #f0942e; }
     </style>
 
     <script>
@@ -84,7 +83,10 @@
         .az-btn-bubble:nth-child(5) { left: 72%; animation-duration: 2.2s; animation-delay: 1.0s; }
         .az-btn-bubble:nth-child(6) { left: 88%; animation-duration: 2.7s; animation-delay: 0.6s; }
     </style>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="design-tokens.css"></head>
 
 <body class="bg-white dark:bg-[#0f1218] text-slate-900 dark:text-[#ebebeb] antialiased overflow-x-hidden transition-colors duration-300">
 
@@ -100,7 +102,7 @@
             <div class="flex lg:order-2 space-x-3 items-center">
                 <!-- Dark/Light Toggle -->
                 <button aria-label="Toggle dark mode" onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');"
-                    class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2">
+                    class="hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-gray-500 rounded-lg p-2.5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="hidden dark:block"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
@@ -111,7 +113,7 @@
                 <!-- CTA -->
                 <a href="contact.html"
                     class="hidden lg:flex text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] focus:ring-4 focus:outline-none focus:ring-[#f0942e]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 items-center gap-2 relative overflow-hidden">
-                    <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Book Free Audit
+                    <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>Book Strategy Session
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </a>
@@ -174,7 +176,7 @@
                     <div class="flex flex-wrap gap-4">
                         <a href="contact.html"
                             class="text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] font-medium rounded-lg text-base px-8 py-4 transition-all duration-300 inline-flex items-center gap-2">
-                            Book Your Free AI Readiness Audit
+                            Book Your AI Strategy Call
                             <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </a>
                     </div>
@@ -275,7 +277,7 @@
                         <span class="text-[#f0942e] font-medium text-sm tracking-widest uppercase mb-4 block">Guidance &amp; Strategy</span>
                         <h3 class="text-3xl md:text-4xl font-semibold tracking-tight mb-6">Strategic AI Roadmap</h3>
                         <p class="text-slate-500 dark:text-gray-400 text-lg mb-8 leading-relaxed">
-                            We audit your current operations, identify the highest-ROI opportunities, and build a phased implementation plan — no buzzwords, no vendor lock-in.
+                            We assess your current operations, identify the highest-ROI opportunities, and build a phased implementation plan — no buzzwords, no vendor lock-in.
                         </p>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="bg-gray-50 dark:bg-[#161b22] p-6 rounded-xl border border-gray-100 dark:border-white/5">
@@ -423,9 +425,9 @@
             <div>
                 <p class="text-sm font-semibold text-[#f0942e] uppercase tracking-wider mb-1">Free Offer</p>
                 <h3 class="text-xl font-bold text-slate-900 dark:text-white">Not sure if AI integration is right for you?</h3>
-                <p class="text-slate-500 dark:text-gray-400 mt-1 text-sm">Get a free 45-minute audit — we'll identify your highest-impact AI opportunity and give you a clear implementation roadmap. No commitment.</p>
+                <p class="text-slate-500 dark:text-gray-400 mt-1 text-sm">Book a free 45-minute strategy session — we'll identify your highest-impact AI opportunity and give you a clear implementation roadmap. No commitment.</p>
             </div>
-            <a href="contact.html" class="shrink-0 inline-flex items-center gap-2 bg-[#f0942e] hover:bg-[#d4831f] text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 text-sm whitespace-nowrap">Book Free Audit →</a>
+            <a href="contact.html" class="shrink-0 inline-flex items-center gap-2 bg-[#f0942e] hover:bg-[#d4831f] text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 text-sm whitespace-nowrap">Book Strategy Session →</a>
         </div>
     </section>
 
@@ -500,7 +502,7 @@
                         </span>
                     </summary>
                     <div class="px-6 pb-5 text-slate-500 dark:text-gray-400 leading-relaxed">
-                        Book a free AI Readiness Audit. We'll spend 30 minutes reviewing your current workflows, identify 2–3 high-impact automation opportunities, and tell you exactly what we'd build and why — before you commit to anything.
+                        Book a free AI strategy call. We'll spend 30 minutes reviewing your current workflows, identify 2–3 high-impact automation opportunities, and tell you exactly what we'd build and why — before you commit to anything.
                     </div>
                 </details>
             </div>
@@ -522,12 +524,12 @@
                         Ready to Automate Your Competitive Edge?
                     </h2>
                     <p class="text-white/60 text-lg md:text-xl mb-12 leading-relaxed">
-                        Our team of AI engineers is ready to audit your current workflow and design a custom integration plan. No fluff, just results.
+                        Our team of AI engineers is ready to assess your current workflow and design a custom integration plan. No fluff, just results.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a href="contact.html"
                             class="text-white bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] font-medium rounded-xl text-lg px-10 py-4 transition-all duration-300 inline-flex items-center gap-2">
-                            Book Your Free Audit
+                            Book Strategy Session
                             <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </a>
                         <a href="about.html"
