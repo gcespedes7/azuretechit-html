@@ -446,7 +446,7 @@
 
 // ── Config ──────────────────────────────────────────────────
 const WORKER_URL   = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/';
-const LEAD_WEBHOOK = 'https://primary-production-7b6e8.up.railway.app/webhook/quiz-lead-capture';
+const LEAD_WEBHOOK = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/submit-lead';
 
 // ── State ───────────────────────────────────────────────────
 const answers = { companyName: '', industry: '', teamSize: '', painPoints: [], tools: '' };
@@ -783,7 +783,7 @@ async function submitContact(e) {
         fetch(LEAD_WEBHOOK, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, phone, ...answers, opportunities: generatedOpportunities.length }),
+            body: JSON.stringify({ name, email, phone, ...answers, businessName: answers.companyName, auditType: 'automation', opportunities: generatedOpportunities }),
         });
     } catch(err) { /* silent fail — UX unaffected */ }
 
