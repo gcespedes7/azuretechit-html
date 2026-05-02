@@ -420,7 +420,13 @@ async function handleSubmitLead(request, env, headers) {
         city:         sanitizeText(body.city || '', 100),
         industry:     sanitizeText(body.industry || '', 100),
         auditType:    sanitizeText(body.auditType || '', 50),
-        cards:        typeof body.cards === 'number' ? body.cards : 0,
+        cards:        Array.isArray(body.cards) ? body.cards.slice(0, 10).map(c => ({
+            title:          sanitizeText(c.title || '', 100),
+            score:          sanitizeText(c.score || '', 20),
+            description:    sanitizeText(c.description || '', 500),
+            recommendation: sanitizeText(c.recommendation || '', 300),
+            impact:         sanitizeText(c.impact || '', 20),
+        })) : [],
     };
 
     try {
