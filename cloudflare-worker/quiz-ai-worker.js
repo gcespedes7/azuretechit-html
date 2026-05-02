@@ -420,6 +420,10 @@ async function handleSubmitLead(request, env, headers) {
         city:         sanitizeText(body.city || '', 100),
         industry:     sanitizeText(body.industry || '', 100),
         auditType:    sanitizeText(body.auditType || '', 50),
+        message:      sanitizeText(body.message || '', 2000),
+        timeline:     sanitizeText(body.timeline || '', 100),
+        budget:       sanitizeText(body.budget || '', 100),
+        services:     Array.isArray(body.services) ? body.services.slice(0, 10).map(s => sanitizeText(s, 50)) : [],
         cards:        Array.isArray(body.cards) ? body.cards.slice(0, 10).map(c => ({
             title:          sanitizeText(c.title || '', 100),
             score:          sanitizeText(c.score || '', 20),

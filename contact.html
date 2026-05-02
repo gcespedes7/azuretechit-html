@@ -259,131 +259,258 @@
                     <div class="lg:col-span-5 space-y-10 fade-up">
                         <div class="space-y-5">
                             <h2 class="text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
-                                Book Your Free<br>Strategy Session
+                                Let's Talk About<br>Your Project
                             </h2>
                             <p class="text-slate-500 dark:text-gray-400 leading-relaxed">
-                                Stop guessing where your bottlenecks are. In 45 minutes, we'll map your current processes and identify the high-impact automation opportunities that will save you 10+ hours a week.
+                                Tell us what you're working on. In a 30-minute strategy session, we'll map out the right approach and hand you a clear next step — no commitment required.
                             </p>
                         </div>
 
                         <!-- Benefits -->
                         <div class="space-y-6">
-                            <!-- Process Mapping -->
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-11 h-11 bg-[#f0942e]/10 dark:bg-[#f0942e]/15 flex items-center justify-center rounded-lg">
-                                    <i data-lucide="brain" class="w-5 h-5 text-[#f0942e]"></i>
+                                    <i data-lucide="lightbulb" class="w-5 h-5 text-[#f0942e]"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-base mb-1">Process Mapping</h4>
-                                    <p class="text-sm text-slate-500 dark:text-gray-400">We visualize your entire operation from lead to delivery.</p>
+                                    <h4 class="font-semibold text-base mb-1">Tailored Strategy</h4>
+                                    <p class="text-sm text-slate-500 dark:text-gray-400">We understand your goals before recommending any solution.</p>
                                 </div>
                             </div>
-                            <!-- Tech Stack Review -->
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-11 h-11 bg-[#395e8b]/10 dark:bg-[#395e8b]/15 flex items-center justify-center rounded-lg">
-                                    <i data-lucide="layers" class="w-5 h-5 text-[#547aa1]"></i>
+                                    <i data-lucide="settings-2" class="w-5 h-5 text-[#547aa1]"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-base mb-1">Tech Stack Review</h4>
-                                    <p class="text-sm text-slate-500 dark:text-gray-400">A deep dive into your current tools to ensure seamless integration.</p>
+                                    <h4 class="font-semibold text-base mb-1">100% Custom Built</h4>
+                                    <p class="text-sm text-slate-500 dark:text-gray-400">Every solution is designed around your specific workflows and tools.</p>
                                 </div>
                             </div>
-                            <!-- ROI Projection -->
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-11 h-11 bg-emerald-500/10 dark:bg-emerald-500/15 flex items-center justify-center rounded-lg">
-                                    <i data-lucide="trending-up" class="w-5 h-5 text-emerald-500"></i>
+                                    <i data-lucide="headphones" class="w-5 h-5 text-emerald-500"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-base mb-1">ROI Projection</h4>
-                                    <p class="text-sm text-slate-500 dark:text-gray-400">Estimated cost savings and time recovery for each proposed solution.</p>
+                                    <h4 class="font-semibold text-base mb-1">Ongoing Support</h4>
+                                    <p class="text-sm text-slate-500 dark:text-gray-400">From kickoff to launch and beyond — we're in your corner.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Content: Form UI -->
+                    <!-- Right Content: Multi-Step Form -->
                     <div class="lg:col-span-7 fade-up" style="transition-delay: 0.15s;">
-                        <div class="bg-white dark:bg-[#1c2128] rounded-xl shadow-xl overflow-hidden border border-gray-200 dark:border-white/10">
-                            <!-- Form Header / Progress Bar -->
+                        <div id="contact-form-card" class="bg-white dark:bg-[#1c2128] rounded-xl shadow-xl overflow-hidden border border-gray-200 dark:border-white/10">
+
+                            <!-- Progress Header -->
                             <div class="bg-gray-50 dark:bg-[#161b22] px-6 sm:px-8 py-5 border-b border-gray-200 dark:border-white/10">
                                 <div class="flex justify-between items-center mb-3">
-                                    <span class="text-xs font-semibold text-[#f0942e] uppercase tracking-widest">Step 1 of 3</span>
-                                    <span class="text-xs text-slate-500 dark:text-gray-400">Company Information</span>
+                                    <span id="step-label" class="text-xs font-semibold text-[#f0942e] uppercase tracking-widest">Step 1 of 4</span>
+                                    <span id="step-name" class="text-xs text-slate-500 dark:text-gray-400">Select Services</span>
                                 </div>
                                 <div class="w-full bg-gray-200 dark:bg-white/10 h-1.5 rounded-full overflow-hidden">
-                                    <div class="bg-[#f0942e] w-1/3 h-full rounded-full transition-all duration-500"></div>
+                                    <div id="progress-bar" class="bg-[#f0942e] h-full rounded-full transition-all duration-500" style="width:25%"></div>
                                 </div>
                             </div>
 
-                            <!-- Form Body -->
-                            <form class="p-6 sm:p-8 space-y-6" onsubmit="return false;">
-                                <!-- Name & Email Row -->
-                                <div class="grid sm:grid-cols-2 gap-5">
-                                    <div class="space-y-2">
-                                        <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Full Name</label>
-                                        <input type="text" placeholder="John Doe"
-                                            class="w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200">
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Email Address</label>
-                                        <input type="email" placeholder="john@company.com"
-                                            class="w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200">
-                                    </div>
+                            <!-- Step 1: Services -->
+                            <div id="cf-step-1" class="p-6 sm:p-8">
+                                <h3 class="text-lg font-semibold mb-1 tracking-tight">What are you looking for?</h3>
+                                <p class="text-sm text-slate-500 dark:text-gray-400 mb-6">Select all that apply — we handle multi-service projects.</p>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="service-card flex flex-col gap-3 p-4 bg-gray-50 dark:bg-white/5 border-2 border-gray-200 dark:border-white/10 rounded-xl cursor-pointer transition-all duration-200 select-none">
+                                        <input type="checkbox" name="services" value="AI Integration" class="sr-only">
+                                        <div class="w-10 h-10 bg-violet-500/10 rounded-lg flex items-center justify-center">
+                                            <i data-lucide="cpu" class="w-5 h-5 text-violet-500"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-sm">AI Integration</div>
+                                            <div class="text-xs text-slate-500 dark:text-gray-400 mt-0.5">Chatbots, LLMs & AI workflows</div>
+                                        </div>
+                                    </label>
+                                    <label class="service-card flex flex-col gap-3 p-4 bg-gray-50 dark:bg-white/5 border-2 border-gray-200 dark:border-white/10 rounded-xl cursor-pointer transition-all duration-200 select-none">
+                                        <input type="checkbox" name="services" value="Automation" class="sr-only">
+                                        <div class="w-10 h-10 bg-[#f0942e]/10 rounded-lg flex items-center justify-center">
+                                            <i data-lucide="zap" class="w-5 h-5 text-[#f0942e]"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-sm">Automation</div>
+                                            <div class="text-xs text-slate-500 dark:text-gray-400 mt-0.5">Workflows, CRM & integrations</div>
+                                        </div>
+                                    </label>
+                                    <label class="service-card flex flex-col gap-3 p-4 bg-gray-50 dark:bg-white/5 border-2 border-gray-200 dark:border-white/10 rounded-xl cursor-pointer transition-all duration-200 select-none">
+                                        <input type="checkbox" name="services" value="Web Design" class="sr-only">
+                                        <div class="w-10 h-10 bg-[#395e8b]/10 rounded-lg flex items-center justify-center">
+                                            <i data-lucide="monitor" class="w-5 h-5 text-[#547aa1]"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-sm">Web Design</div>
+                                            <div class="text-xs text-slate-500 dark:text-gray-400 mt-0.5">Sites that convert visitors</div>
+                                        </div>
+                                    </label>
+                                    <label class="service-card flex flex-col gap-3 p-4 bg-gray-50 dark:bg-white/5 border-2 border-gray-200 dark:border-white/10 rounded-xl cursor-pointer transition-all duration-200 select-none">
+                                        <input type="checkbox" name="services" value="Social Media" class="sr-only">
+                                        <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center">
+                                            <i data-lucide="share-2" class="w-5 h-5 text-emerald-500"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-sm">Social Media</div>
+                                            <div class="text-xs text-slate-500 dark:text-gray-400 mt-0.5">Content, growth & management</div>
+                                        </div>
+                                    </label>
                                 </div>
-
-                                <!-- Website -->
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Business Website</label>
-                                    <input type="url" placeholder="https://yourcompany.com"
-                                        class="w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200">
-                                </div>
-
-                                <!-- Primary Goal Radio Buttons -->
-                                <div class="space-y-3">
-                                    <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Primary Goal for Automation</label>
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                        <label class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg cursor-pointer hover:border-[#f0942e]/50 hover:bg-[#f0942e]/5 dark:hover:bg-[#f0942e]/5 transition-all duration-200 group">
-                                            <input type="radio" name="goal" value="customer-support"
-                                                class="w-4 h-4 flex-shrink-0">
-                                            <span class="text-sm font-medium text-slate-700 dark:text-gray-300 group-hover:text-[#f0942e] transition-colors">Customer Support</span>
-                                        </label>
-                                        <label class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg cursor-pointer hover:border-[#f0942e]/50 hover:bg-[#f0942e]/5 dark:hover:bg-[#f0942e]/5 transition-all duration-200 group">
-                                            <input type="radio" name="goal" value="lead-generation"
-                                                class="w-4 h-4 flex-shrink-0">
-                                            <span class="text-sm font-medium text-slate-700 dark:text-gray-300 group-hover:text-[#f0942e] transition-colors">Lead Generation</span>
-                                        </label>
-                                        <label class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg cursor-pointer hover:border-[#f0942e]/50 hover:bg-[#f0942e]/5 dark:hover:bg-[#f0942e]/5 transition-all duration-200 group">
-                                            <input type="radio" name="goal" value="data-entry"
-                                                class="w-4 h-4 flex-shrink-0">
-                                            <span class="text-sm font-medium text-slate-700 dark:text-gray-300 group-hover:text-[#f0942e] transition-colors">Data Entry</span>
-                                        </label>
-                                        <label class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg cursor-pointer hover:border-[#f0942e]/50 hover:bg-[#f0942e]/5 dark:hover:bg-[#f0942e]/5 transition-all duration-200 group">
-                                            <input type="radio" name="goal" value="internal-workflows"
-                                                class="w-4 h-4 flex-shrink-0">
-                                            <span class="text-sm font-medium text-slate-700 dark:text-gray-300 group-hover:text-[#f0942e] transition-colors">Internal Workflows</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Submit Button -->
-                                <div class="pt-2">
-                                    <button type="button"
+                                <div class="pt-6">
+                                    <button type="button" onclick="cfNext(2)"
                                         class="w-full bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] text-white font-medium py-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 text-sm">
-                                        Continue to Next Step
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
-                                        </svg>
+                                        Continue
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                                     </button>
-                                    <p class="text-center text-xs text-slate-400 dark:text-gray-500 mt-5 flex items-center justify-center gap-2">
-                                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i>
-                                        Your data is 100% secure and will never be shared.
-                                    </p>
+                                    <p id="cf-err-1" class="hidden text-center text-xs text-red-500 mt-3">Please select at least one service.</p>
                                 </div>
-                            </form>
+                            </div>
+
+                            <!-- Step 2: Business -->
+                            <div id="cf-step-2" class="p-6 sm:p-8 hidden">
+                                <h3 class="text-lg font-semibold mb-1 tracking-tight">About your business</h3>
+                                <p class="text-sm text-slate-500 dark:text-gray-400 mb-6">Help us understand your context.</p>
+                                <div class="space-y-5">
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Company Name <span class="text-red-400">*</span></label>
+                                        <input id="cf-company" type="text" placeholder="Acme Corp"
+                                            class="cf-input w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200">
+                                    </div>
+                                    <div class="grid sm:grid-cols-2 gap-5">
+                                        <div class="space-y-2">
+                                            <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">City / State <span class="text-red-400">*</span></label>
+                                            <input id="cf-city" type="text" placeholder="Miami, FL"
+                                                class="cf-input w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200">
+                                        </div>
+                                        <div class="space-y-2">
+                                            <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Website <span class="text-xs text-slate-400">(optional)</span></label>
+                                            <input id="cf-website" type="url" placeholder="https://yoursite.com"
+                                                class="cf-input w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-6 flex gap-3">
+                                    <button type="button" onclick="cfBack(1)"
+                                        class="px-5 py-4 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-slate-700 dark:text-gray-300 font-medium rounded-lg flex items-center gap-2 transition-all duration-200 text-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                        Back
+                                    </button>
+                                    <button type="button" onclick="cfNext(3)"
+                                        class="flex-1 bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] text-white font-medium py-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 text-sm">
+                                        Continue
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                    </button>
+                                </div>
+                                <p id="cf-err-2" class="hidden text-center text-xs text-red-500 mt-3">Please fill in your company name and city.</p>
+                            </div>
+
+                            <!-- Step 3: Project Context -->
+                            <div id="cf-step-3" class="p-6 sm:p-8 hidden">
+                                <h3 class="text-lg font-semibold mb-1 tracking-tight">Tell us more</h3>
+                                <p class="text-sm text-slate-500 dark:text-gray-400 mb-6">The more context, the better we can prepare for your session.</p>
+                                <div class="space-y-5">
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">What are you working on? <span class="text-red-400">*</span></label>
+                                        <textarea id="cf-message" rows="4" placeholder="Tell us about your current situation and what you're trying to solve..."
+                                            class="cf-input w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200 resize-none"></textarea>
+                                    </div>
+                                    <div class="grid sm:grid-cols-2 gap-5">
+                                        <div class="space-y-2">
+                                            <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Timeline <span class="text-xs text-slate-400">(optional)</span></label>
+                                            <select id="cf-timeline" class="cf-input w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white transition-all duration-200">
+                                                <option value="">Select timeline</option>
+                                                <option value="ASAP">ASAP</option>
+                                                <option value="Within 1 month">Within 1 month</option>
+                                                <option value="1-3 months">1–3 months</option>
+                                                <option value="3+ months">3+ months</option>
+                                                <option value="Just exploring">Just exploring</option>
+                                            </select>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Budget Range <span class="text-xs text-slate-400">(optional)</span></label>
+                                            <select id="cf-budget" class="cf-input w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white transition-all duration-200">
+                                                <option value="">Select budget</option>
+                                                <option value="Under $1,500">Under $1,500</option>
+                                                <option value="$1,500 – $5,000">$1,500 – $5,000</option>
+                                                <option value="$5,000 – $15,000">$5,000 – $15,000</option>
+                                                <option value="$15,000+">$15,000+</option>
+                                                <option value="Not sure yet">Not sure yet</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-6 flex gap-3">
+                                    <button type="button" onclick="cfBack(2)"
+                                        class="px-5 py-4 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-slate-700 dark:text-gray-300 font-medium rounded-lg flex items-center gap-2 transition-all duration-200 text-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                        Back
+                                    </button>
+                                    <button type="button" onclick="cfNext(4)"
+                                        class="flex-1 bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] text-white font-medium py-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 text-sm">
+                                        Continue
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                    </button>
+                                </div>
+                                <p id="cf-err-3" class="hidden text-center text-xs text-red-500 mt-3">Please describe what you're working on (at least 10 characters).</p>
+                            </div>
+
+                            <!-- Step 4: Contact Info -->
+                            <div id="cf-step-4" class="p-6 sm:p-8 hidden">
+                                <h3 class="text-lg font-semibold mb-1 tracking-tight">How can we reach you?</h3>
+                                <p class="text-sm text-slate-500 dark:text-gray-400 mb-6">We'll use this to schedule your strategy session.</p>
+                                <div class="space-y-5">
+                                    <div class="grid sm:grid-cols-2 gap-5">
+                                        <div class="space-y-2">
+                                            <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Full Name <span class="text-red-400">*</span></label>
+                                            <input id="cf-name" type="text" placeholder="John Doe"
+                                                class="cf-input w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200">
+                                        </div>
+                                        <div class="space-y-2">
+                                            <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Phone <span class="text-xs text-slate-400">(optional)</span></label>
+                                            <input id="cf-phone" type="tel" placeholder="(786) 000-0000"
+                                                class="cf-input w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200">
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-slate-700 dark:text-gray-300 block">Email Address <span class="text-red-400">*</span></label>
+                                        <input id="cf-email" type="email" placeholder="john@company.com"
+                                            class="cf-input w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 transition-all duration-200">
+                                    </div>
+                                </div>
+                                <div class="pt-6 flex gap-3">
+                                    <button type="button" onclick="cfBack(3)"
+                                        class="px-5 py-4 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-slate-700 dark:text-gray-300 font-medium rounded-lg flex items-center gap-2 transition-all duration-200 text-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                        Back
+                                    </button>
+                                    <button type="button" id="cf-submit-btn" onclick="cfSubmit()"
+                                        class="flex-1 bg-[#f0942e] hover:bg-[#e28b2b] hover:shadow-[0_0_20px_rgba(240,148,46,0.4)] text-white font-medium py-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 text-sm relative overflow-hidden">
+                                        <span class="az-btn-bubbles" aria-hidden="true"><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span><span class="az-btn-bubble"></span></span>
+                                        Book My Strategy Session
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                    </button>
+                                </div>
+                                <p id="cf-err-4" class="hidden text-center text-xs text-red-500 mt-3">Please enter your name and a valid email address.</p>
+                                <p class="text-center text-xs text-slate-400 dark:text-gray-500 mt-4 flex items-center justify-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Your data is 100% secure and will never be shared.
+                                </p>
+                            </div>
+
+                            <!-- Success State -->
+                            <div id="cf-success" class="p-8 sm:p-10 hidden text-center">
+                                <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><polyline points="20 6 9 17 4 12"/></svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">You're on the list!</h3>
+                                <p class="text-sm text-slate-500 dark:text-gray-400 max-w-xs mx-auto leading-relaxed">We'll reach out within 24 hours to schedule your free strategy session.</p>
+                            </div>
                         </div>
 
-                        <!-- REPLACE WITH REAL TESTIMONIAL -->
+                        <!-- Testimonial -->
                         <div class="mt-6 p-5 sm:p-6 bg-white dark:bg-[#161b22] rounded-xl border border-slate-200 dark:border-white/8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-none relative fade-up" style="transition-delay: 0.3s;">
                             <div class="text-[64px] leading-none text-[#f0942e] opacity-20 absolute top-3 left-5 select-none font-serif">"</div>
                             <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-4 font-light italic pt-5">
@@ -628,22 +755,114 @@
             lucide.createIcons();
         }
 
-        // Radio button visual feedback
-        document.querySelectorAll('input[type="radio"][name="goal"]').forEach(radio => {
-            radio.addEventListener('change', () => {
-                // Reset all
-                document.querySelectorAll('input[type="radio"][name="goal"]').forEach(r => {
-                    r.closest('label').classList.remove('border-[#f0942e]', 'bg-[#f0942e]/5', 'dark:bg-[#f0942e]/10');
-                    r.closest('label').classList.add('border-gray-200', 'dark:border-white/10');
+        // ── Multi-Step Contact Form ─────────────────────────────────────────
+        const CF_META = {
+            1: { label: 'Step 1 of 4', name: 'Select Services',  progress: '25%'  },
+            2: { label: 'Step 2 of 4', name: 'Your Business',    progress: '50%'  },
+            3: { label: 'Step 3 of 4', name: 'Project Details',  progress: '75%'  },
+            4: { label: 'Step 4 of 4', name: 'Contact Info',     progress: '100%' },
+        };
+        let cfCurrentStep = 1;
+
+        function cfShowStep(n) {
+            [1,2,3,4].forEach(i => {
+                document.getElementById('cf-step-' + i).classList.add('hidden');
+                const err = document.getElementById('cf-err-' + i);
+                if (err) err.classList.add('hidden');
+            });
+            document.getElementById('cf-step-' + n).classList.remove('hidden');
+            document.getElementById('step-label').textContent   = CF_META[n].label;
+            document.getElementById('step-name').textContent    = CF_META[n].name;
+            document.getElementById('progress-bar').style.width = CF_META[n].progress;
+            cfCurrentStep = n;
+            document.getElementById('contact-form-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function cfNext(to) {
+            const from = to - 1;
+            const err  = document.getElementById('cf-err-' + from);
+            if (from === 1) {
+                if (!document.querySelectorAll('input[name="services"]:checked').length) {
+                    err.classList.remove('hidden'); return;
+                }
+            }
+            if (from === 2) {
+                const company = document.getElementById('cf-company').value.trim();
+                const city    = document.getElementById('cf-city').value.trim();
+                if (!company || !city) { err.classList.remove('hidden'); return; }
+            }
+            if (from === 3) {
+                if (document.getElementById('cf-message').value.trim().length < 10) {
+                    err.classList.remove('hidden'); return;
+                }
+            }
+            if (err) err.classList.add('hidden');
+            cfShowStep(to);
+        }
+
+        function cfBack(to) { cfShowStep(to); }
+
+        async function cfSubmit() {
+            const name   = document.getElementById('cf-name').value.trim();
+            const email  = document.getElementById('cf-email').value.trim();
+            const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            const err4   = document.getElementById('cf-err-4');
+            if (!name || !emailOk) { err4.classList.remove('hidden'); return; }
+            err4.classList.add('hidden');
+
+            const btn = document.getElementById('cf-submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<svg class="animate-spin w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg> Sending…';
+
+            const payload = {
+                name,
+                email,
+                phone:        document.getElementById('cf-phone').value.trim(),
+                businessName: document.getElementById('cf-company').value.trim(),
+                city:         document.getElementById('cf-city').value.trim(),
+                websiteUrl:   document.getElementById('cf-website').value.trim(),
+                message:      document.getElementById('cf-message').value.trim(),
+                timeline:     document.getElementById('cf-timeline').value,
+                budget:       document.getElementById('cf-budget').value,
+                services:     [...document.querySelectorAll('input[name="services"]:checked')].map(c => c.value),
+                auditType:    'contact',
+            };
+
+            try {
+                await fetch('https://quiz-ai-worker.giovanni-cespedes19.workers.dev/submit-lead', {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body:    JSON.stringify(payload),
                 });
-                // Highlight selected
-                if (radio.checked) {
-                    const label = radio.closest('label');
-                    label.classList.remove('border-gray-200', 'dark:border-white/10');
-                    label.classList.add('border-[#f0942e]', 'bg-[#f0942e]/5', 'dark:bg-[#f0942e]/10');
+            } catch (_) { /* fire and forget */ }
+
+            // Hide progress header + all steps, show success
+            const card = document.getElementById('contact-form-card');
+            card.firstElementChild.classList.add('hidden');
+            [1,2,3,4].forEach(i => document.getElementById('cf-step-' + i).classList.add('hidden'));
+            document.getElementById('cf-success').classList.remove('hidden');
+        }
+
+        // Service card visual toggle on checkbox change
+        document.querySelectorAll('input[name="services"]').forEach(cb => {
+            cb.addEventListener('change', () => {
+                const card = cb.closest('.service-card');
+                if (cb.checked) {
+                    card.style.borderColor       = '#f0942e';
+                    card.style.backgroundColor   = 'rgba(240,148,46,0.06)';
+                } else {
+                    card.style.borderColor       = '';
+                    card.style.backgroundColor   = '';
                 }
             });
         });
+
+        // Focus ring for .cf-input fields
+        (function () {
+            const s = document.createElement('style');
+            s.textContent = '.cf-input:focus { outline: 2px solid #f0942e; outline-offset: 0; border-color: #f0942e !important; }';
+            document.head.appendChild(s);
+        })();
     </script>
 
 <script data-pplx-inline-edit>
