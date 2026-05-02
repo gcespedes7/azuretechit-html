@@ -40,6 +40,41 @@
         .result-card:nth-child(5) { animation-delay: 0.3s; }
         .result-card:nth-child(6) { animation-delay: 0.35s; }
         .blur-card { filter: blur(5px); pointer-events: none; user-select: none; }
+        @media print {
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: #fff !important; color: #1e293b !important; }
+            html.dark body { background: #fff !important; color: #1e293b !important; }
+            nav, #screen-intro, #screen-quiz, #screen-loading,
+            #contact-modal, #blur-overlay, #download-section,
+            .az-btn-bubbles, #step-label { display: none !important; }
+            #screen-results { display: block !important; padding: 0 !important; }
+            .blur-card { filter: none !important; pointer-events: auto !important; }
+            .result-card {
+                background: #fff !important;
+                border: 1px solid #e2e8f0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                margin-bottom: 14px !important;
+                box-shadow: none !important;
+            }
+            h3 { color: #0f172a !important; }
+            p, span { color: #334155 !important; }
+            .score-strong { background: #d1fae5 !important; color: #065f46 !important; }
+            .score-critical { background: #fee2e2 !important; color: #991b1b !important; }
+            .score-needs { background: #fef3c7 !important; color: #92400e !important; }
+            #cards-list::before {
+                content: "Azuretech Website Audit Report  ·  azuretechit.com";
+                display: block;
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: #f0942e !important;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+                border-bottom: 2px solid #f0942e;
+            }
+        }
         .modal-overlay { backdrop-filter: blur(10px); background: rgba(11,14,20,0.85); }
         input:focus { outline: none; border-color: #f0942e !important; }
         ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0b0e14; } ::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 3px; }
@@ -714,25 +749,9 @@ function unlockResults() {
 
 // ── PDF Download ─────────────────────────────────────────────
 function downloadPDF() {
-    const btn = event.target;
-    btn.textContent = 'Generating PDF...';
-    btn.disabled = true;
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
-    script.onload = function() {
-        const el = document.getElementById('cards-list');
-        html2pdf().set({
-            margin: [10, 10],
-            filename: `azuretech-website-audit-${answers.businessName.replace(/\s+/g,'-').toLowerCase()}.pdf`,
-            image: { type: 'jpeg', quality: 0.92 },
-            html2canvas: { scale: 2, backgroundColor: '#0B0E14' },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        }).from(el).save().then(() => {
-            btn.textContent = 'Download PDF Report';
-            btn.disabled = false;
-        });
-    };
-    document.head.appendChild(script);
+    const name = answers.businessName || 'Report';
+    document.title = `Website Audit — ${name} — Azuretech`;
+    window.print();
 }
 
 // ── Init ─────────────────────────────────────────────────────
