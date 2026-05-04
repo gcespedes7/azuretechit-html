@@ -1,4 +1,5 @@
-﻿<html lang="en" class="scroll-smooth" id="html-root">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="html-root">
 
 <head>
     <meta charset="UTF-8">
@@ -56,17 +57,6 @@
         .workflow-node:active {
             cursor: grabbing;
             transform: scale(1.02);
-        }
-
-        .connection-line {
-            fill: none;
-            stroke: #52525b;
-            stroke-width: 2px;
-            pointer-events: none;
-        }
-
-        .connection-line-active {
-            stroke: #f0942e;
         }
 
         /* Tab Active State Gradient */
@@ -132,126 +122,6 @@
         .accent-bg { background-color: var(--accent, var(--orange)); }
     </style>
     <script src="https://www.aura.build/FxFilter.js"></script>
-    <style id="all-fonts-style-font-geist">
-        .font-geist {
-            font-family: 'Geist', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-roboto">
-        .font-roboto {
-            font-family: 'Roboto', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-montserrat">
-        .font-montserrat {
-            font-family: 'Montserrat', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-poppins">
-        .font-poppins {
-            font-family: 'Poppins', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-playfair">
-        .font-playfair {
-            font-family: 'Playfair Display', serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-instrument-serif">
-        .font-instrument-serif {
-            font-family: 'Instrument Serif', serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-merriweather">
-        .font-merriweather {
-            font-family: 'Merriweather', serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-bricolage">
-        .font-bricolage {
-            font-family: 'Bricolage Grotesque', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-jakarta">
-        .font-jakarta {
-            font-family: 'Plus Jakarta Sans', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-manrope">
-        .font-manrope {
-            font-family: 'Manrope', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-space-grotesk">
-        .font-space-grotesk {
-            font-family: 'Space Grotesk', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-work-sans">
-        .font-work-sans {
-            font-family: 'Work Sans', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-pt-serif">
-        .font-pt-serif {
-            font-family: 'PT Serif', serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-geist-mono">
-        .font-geist-mono {
-            font-family: 'Geist Mono', monospace !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-space-mono">
-        .font-space-mono {
-            font-family: 'Space Mono', monospace !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-quicksand">
-        .font-quicksand {
-            font-family: 'Quicksand', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-nunito">
-        .font-nunito {
-            font-family: 'Nunito', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-newsreader">
-        .font-newsreader {
-            font-family: 'Newsreader', serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-google-sans-flex">
-        .font-google-sans-flex {
-            font-family: 'Google Sans Flex', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-oswald">
-        .font-oswald {
-            font-family: 'Oswald', sans-serif !important;
-        }
-    </style>
-    <style id="all-fonts-style-font-dm-sans">
-        .font-dm-sans {
-            font-family: 'DM Sans', sans-serif !important;
-        }
-    </style>
-    <style id="border-gradient-shared-style">
-        [style*="--border-gradient"]::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            padding: 1px;
-            border-radius: var(--border-radius-before, inherit);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            background: var(--border-gradient);
-            pointer-events: none;
-        }
-    </style>
     <script>
         (function(){
             var t = localStorage.getItem('theme');
@@ -278,7 +148,6 @@
 
 <body
     class="bg-white dark:bg-[#0f1218] text-slate-900 dark:text-[#ebebeb] font-sans antialiased overflow-x-hidden selection:bg-[#f0942e] selection:text-white transition-colors duration-300"
-    data-new-gr-c-s-check-loaded="14.1130.0" data-gr-ext-installed="">
     <!-- Navbar -->
     <nav
         class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-white/5 bg-white/80 dark:bg-[#0f1218] backdrop-blur-md transition-colors duration-300">
