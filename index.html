@@ -1394,7 +1394,7 @@
 
                     <!-- Desktop: Drag-reveal before/after slider (hidden on mobile) -->
                     <div id="split-comp" class="hidden md:flex relative w-full max-w-[540px] rounded-xl overflow-hidden select-none flex-col"
-                         style="height:440px;box-shadow:0 25px 60px -10px rgba(0,0,0,0.25),0 0 0 1px rgba(0,0,0,0.07)"
+                         style="height:500px;box-shadow:0 25px 60px -10px rgba(0,0,0,0.25),0 0 0 1px rgba(0,0,0,0.07)"
                          onmousemove="splitMove(event)"
                          onmouseleave="splitLeave()">
 
@@ -1449,16 +1449,19 @@
                                 <span class="text-[8px] font-bold uppercase tracking-widest text-gray-400 whitespace-nowrap">Performance Audit</span>
                                 <div class="flex-1 h-px bg-gray-200"></div>
                             </div>
-                            <!-- PageSpeed score -->
-                            <div class="bg-[#fafafa] px-4 pt-2 pb-1.5 flex-shrink-0">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full border-[3px] border-red-500 flex items-center justify-center flex-shrink-0">
-                                        <span class="text-sm font-extrabold text-red-500">34</span>
-                                    </div>
-                                    <div>
-                                        <div class="text-[10px] font-bold text-gray-700">PageSpeed Score</div>
-                                        <div class="text-[9px] text-red-500 mt-0.5">Poor — 66% below average</div>
-                                    </div>
+                            <!-- Performance metrics (3 cards matching after panel) -->
+                            <div class="flex gap-2 px-4 pt-2 pb-1.5 flex-shrink-0 bg-[#fafafa]">
+                                <div class="flex-1 rounded-lg p-2 border border-red-100 bg-red-50">
+                                    <div class="text-base font-extrabold leading-none mb-1 text-red-500">4.8s</div>
+                                    <div class="text-[7px] uppercase tracking-wide text-red-400">Load Time</div>
+                                </div>
+                                <div class="flex-1 rounded-lg p-2 border border-red-100 bg-red-50">
+                                    <div class="text-base font-extrabold leading-none mb-1 text-red-500">34</div>
+                                    <div class="text-[7px] uppercase tracking-wide text-red-400">Perf Score</div>
+                                </div>
+                                <div class="flex-1 rounded-lg p-2 border border-gray-200 bg-white">
+                                    <div class="text-base font-extrabold leading-none mb-1 text-gray-400">~3</div>
+                                    <div class="text-[7px] uppercase tracking-wide text-gray-400">Leads/month</div>
                                 </div>
                             </div>
                             <!-- Issues -->
@@ -1563,7 +1566,7 @@
                                 </div>
                                 <div class="flex-1 rounded-lg p-2 border" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.06)">
                                     <div class="text-[#f0942e] font-extrabold text-base leading-none mb-1">+3</div>
-                                    <div class="text-[7px] uppercase tracking-wide" style="color:rgba(255,255,255,0.3)">Leads today</div>
+                                    <div class="text-[7px] uppercase tracking-wide" style="color:rgba(255,255,255,0.3)">Leads/month</div>
                                 </div>
                             </div>
                             <!-- Live Intelligence separator + integrations -->
@@ -1631,78 +1634,141 @@
                         </div>
                     </div>
 
-                    <!-- Mobile: Swipeable stacked cards (hidden on md+) -->
-                    <div class="md:hidden relative w-full max-w-[320px] mx-auto" style="height:400px">
+                    <!-- Mobile: Touch-drag before/after slider (hidden on md+) -->
+                    <div id="mob-split" class="md:hidden relative w-full max-w-[360px] mx-auto rounded-xl overflow-hidden select-none"
+                         style="height:470px;touch-action:none;box-shadow:0 20px 50px -10px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.08)">
 
-                        <!-- After card (behind) -->
-                        <div class="absolute inset-0 rounded-xl overflow-hidden" style="transform:rotate(2deg) translateY(10px);background:#080e1c;border:1px solid rgba(255,255,255,0.09)">
-                            <div class="h-9 bg-[#050c18] flex items-center px-3 gap-2 border-b border-white/10">
-                                <div class="flex gap-1.5"><div class="w-2 h-2 rounded-full bg-[#ff5f57]"></div><div class="w-2 h-2 rounded-full bg-[#ffbd2e]"></div><div class="w-2 h-2 rounded-full bg-[#28c840]"></div></div>
-                                <div class="flex-1 bg-white/10 rounded h-4 mx-2 flex items-center px-2"><span class="text-[7px] text-white/50 font-mono">yournewwebsite.com</span></div>
-                                <div class="px-1.5 py-0.5 rounded text-[7px] font-bold bg-green-500/20 text-green-400 border border-green-500/30">LIVE</div>
-                            </div>
-                            <div class="p-4">
-                                <div class="inline-flex items-center gap-1 bg-[#f0942e]/15 border border-[#f0942e]/30 rounded-full px-2 py-0.5 mb-2">
-                                    <svg width="8" height="8" viewBox="0 0 14 14" fill="#f0942e"><path d="M8 1L2 8h5l-0.5 5 7-7H8.5L9 1z"/></svg>
-                                    <span class="text-[8px] font-bold text-[#f0942e] uppercase tracking-wider">Optimized Asset</span>
-                                </div>
-                                <div class="text-white font-extrabold text-base leading-tight mb-3" style="letter-spacing:-0.02em">Revenue Machine<br><span class="text-[#0EA5E9]">Working 24/7</span></div>
-                                <div class="grid grid-cols-2 gap-2 mb-3">
-                                    <div class="bg-white/5 border border-white/10 rounded-lg p-2.5">
-                                        <div class="text-[#f0942e] font-extrabold text-base">+340%</div>
-                                        <div class="text-white/40 text-[7px] uppercase tracking-wider">Conversion</div>
-                                    </div>
-                                    <div class="bg-white/5 border border-white/10 rounded-lg p-2.5">
-                                        <div class="text-[#0EA5E9] font-extrabold text-base">0.8s</div>
-                                        <div class="text-white/40 text-[7px] uppercase tracking-wider">LCP Speed</div>
-                                    </div>
-                                </div>
-                                <div class="h-8 bg-[#f0942e] rounded-lg flex items-center justify-center">
-                                    <span class="text-white text-[8px] font-bold uppercase tracking-wider">Integrated. Scalable.</span>
+                        <!-- BEFORE panel -->
+                        <div class="absolute inset-0 flex flex-col bg-[#f4f5f7] z-0">
+                            <div class="h-8 bg-[#dfe1e5] flex items-center px-3 gap-2 flex-shrink-0 border-b border-black/10">
+                                <div class="flex gap-1 flex-shrink-0"><div class="w-2 h-2 rounded-full bg-[#ff5f57]"></div><div class="w-2 h-2 rounded-full bg-[#ffbd2e]"></div><div class="w-2 h-2 rounded-full bg-[#28c840]"></div></div>
+                                <div class="flex-1 bg-white/85 rounded h-4 mx-2 flex items-center px-2 gap-1">
+                                    <svg width="6" height="7" viewBox="0 0 12 14" fill="none" stroke="#d1d5db" stroke-width="1.5"><rect x="1" y="5" width="10" height="8" rx="1.5"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5"/></svg>
+                                    <span class="text-[8px] text-gray-400 font-mono">yourwebsite.com</span>
                                 </div>
                             </div>
-                            <div class="absolute bottom-3 right-3">
-                                <span class="text-[8px] uppercase font-bold bg-[#f0942e] text-white px-2 py-1 rounded-full">Azuretech Model</span>
+                            <div class="h-9 bg-white border-b border-gray-100 flex items-center px-3 gap-2 flex-shrink-0">
+                                <div class="w-16 h-2.5 bg-gray-300 rounded"></div>
+                                <div class="ml-auto flex gap-2 items-center"><div class="w-7 h-1.5 bg-gray-200 rounded"></div><div class="w-7 h-1.5 bg-gray-200 rounded"></div><div class="w-11 h-5 bg-gray-200 rounded"></div></div>
+                            </div>
+                            <div class="px-4 pt-4 pb-3 flex-shrink-0" style="background:linear-gradient(135deg,#f1f3f5 0%,#e4e7eb 100%)">
+                                <div class="w-20 h-2 bg-gray-300 rounded mb-2"></div>
+                                <div class="w-40 h-3.5 bg-[#adb5bd] rounded mb-1.5"></div>
+                                <div class="w-32 h-3.5 bg-[#adb5bd] rounded mb-2.5"></div>
+                                <div class="w-48 h-1.5 bg-[#ced4da] rounded mb-1"></div>
+                                <div class="w-40 h-1.5 bg-[#ced4da] rounded mb-3"></div>
+                                <div class="flex gap-2"><div class="w-20 h-6 bg-[#6c757d] rounded"></div><div class="w-16 h-6 rounded border border-[#adb5bd]"></div></div>
+                            </div>
+                            <div class="bg-white px-3 pt-2.5 pb-2 flex-shrink-0">
+                                <div class="text-[7px] font-bold uppercase tracking-widest text-gray-400 mb-1.5">Our Services</div>
+                                <div class="flex gap-1.5">
+                                    <div class="flex-1 bg-gray-50 border border-gray-200 rounded-lg p-2"><div class="w-4 h-4 bg-gray-200 rounded mb-1.5"></div><div class="w-10 h-1.5 bg-gray-300 rounded mb-1"></div><div class="w-8 h-1 bg-gray-200 rounded"></div></div>
+                                    <div class="flex-1 bg-gray-50 border border-gray-200 rounded-lg p-2"><div class="w-4 h-4 bg-gray-200 rounded mb-1.5"></div><div class="w-10 h-1.5 bg-gray-300 rounded mb-1"></div><div class="w-8 h-1 bg-gray-200 rounded"></div></div>
+                                    <div class="flex-1 bg-gray-50 border border-gray-200 rounded-lg p-2"><div class="w-4 h-4 bg-gray-200 rounded mb-1.5"></div><div class="w-10 h-1.5 bg-gray-300 rounded mb-1"></div><div class="w-8 h-1 bg-gray-200 rounded"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 px-3 py-1.5 bg-[#fafafa] flex-shrink-0">
+                                <div class="flex-1 h-px bg-gray-200"></div>
+                                <span class="text-[7px] font-bold uppercase tracking-widest text-gray-400 whitespace-nowrap">Performance Audit</span>
+                                <div class="flex-1 h-px bg-gray-200"></div>
+                            </div>
+                            <div class="flex gap-1.5 px-3 pt-1.5 pb-1 flex-shrink-0 bg-[#fafafa]">
+                                <div class="flex-1 rounded-lg p-1.5 border border-red-100 bg-red-50"><div class="text-sm font-extrabold leading-none mb-0.5 text-red-500">4.8s</div><div class="text-[6.5px] uppercase tracking-wide text-red-400">Load Time</div></div>
+                                <div class="flex-1 rounded-lg p-1.5 border border-red-100 bg-red-50"><div class="text-sm font-extrabold leading-none mb-0.5 text-red-500">34</div><div class="text-[6.5px] uppercase tracking-wide text-red-400">Perf Score</div></div>
+                                <div class="flex-1 rounded-lg p-1.5 border border-gray-200 bg-white"><div class="text-sm font-extrabold leading-none mb-0.5 text-gray-400">~3</div><div class="text-[6.5px] uppercase tracking-wide text-gray-400">Leads/month</div></div>
+                            </div>
+                            <div class="flex-1 bg-[#fafafa] px-3 pt-1 pb-2 flex flex-col gap-1 overflow-hidden">
+                                <div class="flex items-center gap-1.5 px-2 py-1 bg-red-50 border border-red-200 rounded-lg"><div class="w-1 h-1 rounded-full bg-red-500 flex-shrink-0"></div><span class="text-[8px] font-semibold text-red-600">No CRM — leads fall through the cracks</span></div>
+                                <div class="flex items-center gap-1.5 px-2 py-1 bg-red-50 border border-red-200 rounded-lg"><div class="w-1 h-1 rounded-full bg-red-500 flex-shrink-0"></div><span class="text-[8px] font-semibold text-red-600">Manual entry — hours of wasted effort</span></div>
+                                <div class="flex items-center gap-1.5 px-2 py-1 bg-red-50 border border-red-200 rounded-lg"><div class="w-1 h-1 rounded-full bg-red-500 flex-shrink-0"></div><span class="text-[8px] font-semibold text-red-600">4.8s load — 40% of visitors bounce</span></div>
                             </div>
                         </div>
 
-                        <!-- Before card (front, swipeable) -->
-                        <div id="mc-before-card" class="absolute inset-0 rounded-xl overflow-hidden bg-[#f0f2f5]" style="transform:translateX(0);will-change:transform;border:1px solid rgba(0,0,0,0.08)">
-                            <div class="h-9 bg-[#e8eaed] flex items-center px-3 gap-2 border-b border-black/10">
-                                <div class="flex gap-1.5"><div class="w-2 h-2 rounded-full bg-[#ff5f57]"></div><div class="w-2 h-2 rounded-full bg-[#ffbd2e]"></div><div class="w-2 h-2 rounded-full bg-[#28c840]"></div></div>
-                                <div class="flex-1 bg-white/80 rounded h-4 mx-2 flex items-center px-2"><span class="text-[7px] text-gray-400 font-mono">yourwebsite.com</span></div>
-                            </div>
-                            <div class="p-4">
-                                <div class="h-8 bg-white border-b border-gray-100 -mx-4 -mt-4 mb-3 flex items-center px-4 gap-3">
-                                    <div class="w-14 h-2 bg-gray-300 rounded"></div>
-                                    <div class="ml-auto flex gap-2"><div class="w-6 h-1.5 bg-gray-200 rounded"></div><div class="w-6 h-1.5 bg-gray-200 rounded"></div></div>
+                        <!-- AFTER panel -->
+                        <div id="mob-after-panel" class="absolute inset-0 flex flex-col bg-[#080e1c] z-[1]" style="clip-path:polygon(45% 0%,100% 0%,100% 100%,55% 100%)">
+                            <div class="absolute pointer-events-none" style="width:200px;height:200px;background:rgba(240,148,46,0.055);border-radius:50%;filter:blur(50px);top:-60px;right:-40px;z-index:0"></div>
+                            <div class="h-8 bg-[#040b15] flex items-center px-3 gap-1.5 flex-shrink-0 border-b border-white/5 relative z-[1]">
+                                <div class="flex gap-1 flex-shrink-0"><div class="w-2 h-2 rounded-full bg-[#ff5f57]"></div><div class="w-2 h-2 rounded-full bg-[#ffbd2e]"></div><div class="w-2 h-2 rounded-full bg-[#28c840]"></div></div>
+                                <div class="flex-1 rounded h-4 mx-2 flex items-center px-2 gap-1" style="background:rgba(255,255,255,0.07)">
+                                    <div class="w-1 h-1 rounded-full bg-green-400 flex-shrink-0" style="box-shadow:0 0 4px #4ade80"></div>
+                                    <span class="text-[8px] text-white/50 font-mono truncate">yournewwebsite.com</span>
                                 </div>
-                                <div class="w-1/2 h-2.5 bg-gray-300 rounded mb-1.5"></div>
-                                <div class="w-3/4 h-3.5 rounded mb-1.5" style="background:#d1d5db"></div>
-                                <div class="w-full h-1.5 rounded mb-1" style="background:#ebebeb"></div>
-                                <div class="w-4/5 h-1.5 rounded mb-3" style="background:#ebebeb"></div>
-                                <div class="w-full rounded-lg border border-dashed border-gray-300 bg-gray-100 flex flex-col items-center justify-center gap-1 mb-3" style="height:80px">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 9 5-5 4 5 3-4 6 7"/><line x1="3" y1="21" x2="21" y2="3" stroke="#fca5a5" stroke-width="1.3"/></svg>
-                                    <span class="text-[7px] text-gray-300 font-mono">Image failed to load</span>
-                                </div>
-                                <div class="bg-red-50 border border-red-200 rounded-lg p-2.5">
-                                    <p class="text-[8px] font-bold text-red-600 mb-1.5">Disconnected from sales. Static.</p>
-                                    <div class="space-y-1">
-                                        <div class="flex items-center gap-1"><span class="text-red-400 text-[8px] font-bold">&#10005;</span><span class="text-[7px] text-red-500">No analytics</span></div>
-                                        <div class="flex items-center gap-1"><span class="text-red-400 text-[8px] font-bold">&#10005;</span><span class="text-[7px] text-red-500">Manual lead mgmt</span></div>
-                                        <div class="flex items-center gap-1"><span class="text-red-400 text-[8px] font-bold">&#10005;</span><span class="text-[7px] text-red-500">Slow loading</span></div>
-                                    </div>
+                                <div class="flex gap-1 flex-shrink-0">
+                                    <div class="px-1 py-0.5 rounded text-[6px] font-bold bg-green-500/20 text-green-400 border border-green-500/30 uppercase">LIVE</div>
+                                    <div class="px-1 py-0.5 rounded text-[6px] font-bold bg-blue-400/20 text-blue-400 border border-blue-400/30 uppercase">SYNC</div>
                                 </div>
                             </div>
-                            <div class="absolute bottom-3 left-3">
-                                <span class="text-[8px] uppercase font-bold bg-slate-700 text-white px-2 py-1 rounded-full">Old Model</span>
+                            <div class="h-9 flex items-center px-3 gap-2 flex-shrink-0 border-b border-white/5 relative z-[1]" style="background:rgba(255,255,255,0.02)">
+                                <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded bg-[#f0942e] flex items-center justify-center flex-shrink-0"><span class="text-[8px] font-black text-white">AT</span></div><span class="text-[10px] font-bold text-white">Azuretech</span></div>
+                                <div class="ml-auto flex gap-2 items-center"><div class="w-6 h-1.5 bg-white/10 rounded"></div><div class="w-6 h-1.5 bg-white/10 rounded"></div><div class="px-2 py-1 bg-[#f0942e] rounded text-[7px] font-bold text-white flex-shrink-0">Book Call →</div></div>
+                            </div>
+                            <div class="px-3 pt-3 pb-2 flex-shrink-0 relative z-[1]">
+                                <div class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 mb-1.5 border" style="background:rgba(240,148,46,0.1);border-color:rgba(240,148,46,0.22)">
+                                    <svg width="7" height="7" viewBox="0 0 14 14" fill="#f0942e"><path d="M8 1L2 8h5l-0.5 5 7-7H8.5L9 1z"/></svg>
+                                    <span class="text-[7.5px] font-bold text-[#f0942e]">Revenue-generating website</span>
+                                </div>
+                                <div class="text-white font-extrabold text-base leading-tight mb-1" style="letter-spacing:-0.02em">Is your site an <span class="text-[#f0942e]">asset</span><br>or expense?</div>
+                                <div class="text-[8px] leading-relaxed mb-2" style="color:rgba(255,255,255,0.35)">CRM, analytics, and automation built in — not bolted on.</div>
+                                <div class="flex gap-1.5"><div class="px-2.5 py-1 bg-[#f0942e] rounded text-[7.5px] font-bold text-white">Analyze My Site →</div><div class="px-2.5 py-1 rounded text-[7.5px] border" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);color:rgba(255,255,255,0.4)">See the Diff</div></div>
+                            </div>
+                            <div class="px-3 pt-0.5 pb-1.5 flex-shrink-0 relative z-[1]">
+                                <div class="text-[7px] font-bold uppercase tracking-widest mb-1" style="color:rgba(255,255,255,0.25)">Your New Stack</div>
+                                <div class="flex gap-1.5">
+                                    <div class="flex-1 rounded-lg p-1.5 border" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.07)"><div class="w-1.5 h-1.5 rounded-full bg-green-400 mb-1" style="box-shadow:0 0 4px rgba(74,222,128,0.5)"></div><div class="text-[8px] font-bold" style="color:rgba(255,255,255,0.7)">CRM</div><div class="text-[6.5px]" style="color:rgba(255,255,255,0.3)">3 leads today</div></div>
+                                    <div class="flex-1 rounded-lg p-1.5 border" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.07)"><div class="w-1.5 h-1.5 rounded-full bg-blue-400 mb-1" style="box-shadow:0 0 4px rgba(96,165,250,0.5)"></div><div class="text-[8px] font-bold" style="color:rgba(255,255,255,0.7)">Analytics</div><div class="text-[6.5px]" style="color:rgba(255,255,255,0.3)">Live tracking</div></div>
+                                    <div class="flex-1 rounded-lg p-1.5 border" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.07)"><div class="w-1.5 h-1.5 rounded-full bg-[#f0942e] mb-1" style="box-shadow:0 0 4px rgba(240,148,46,0.5)"></div><div class="text-[8px] font-bold" style="color:rgba(255,255,255,0.7)">Automation</div><div class="text-[6.5px]" style="color:rgba(255,255,255,0.3)">24/7 active</div></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1.5 px-3 py-1 flex-shrink-0 relative z-[1]"><div class="flex-1 h-px" style="background:rgba(255,255,255,0.07)"></div><span class="text-[7px] font-bold uppercase tracking-widest whitespace-nowrap" style="color:rgba(255,255,255,0.22)">Performance Results</span><div class="flex-1 h-px" style="background:rgba(255,255,255,0.07)"></div></div>
+                            <div class="flex gap-1.5 px-3 pb-1.5 flex-shrink-0 relative z-[1]">
+                                <div class="flex-1 rounded-lg p-1.5 border" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.06)"><div class="text-green-400 font-extrabold text-sm leading-none mb-0.5">0.8s</div><div class="text-[6.5px] uppercase tracking-wide" style="color:rgba(255,255,255,0.3)">LCP Speed</div></div>
+                                <div class="flex-1 rounded-lg p-1.5 border" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.06)"><div class="text-blue-400 font-extrabold text-sm leading-none mb-0.5">98</div><div class="text-[6.5px] uppercase tracking-wide" style="color:rgba(255,255,255,0.3)">Perf Score</div></div>
+                                <div class="flex-1 rounded-lg p-1.5 border" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.06)"><div class="text-[#f0942e] font-extrabold text-sm leading-none mb-0.5">+47</div><div class="text-[6.5px] uppercase tracking-wide" style="color:rgba(255,255,255,0.3)">Leads/month</div></div>
+                            </div>
+                            <div class="flex items-center gap-1.5 px-3 py-1 flex-shrink-0 relative z-[1]"><div class="flex-1 h-px" style="background:rgba(255,255,255,0.06)"></div><span class="text-[7px] font-bold uppercase tracking-widest whitespace-nowrap" style="color:rgba(255,255,255,0.18)">Live Intelligence</span><div class="flex-1 h-px" style="background:rgba(255,255,255,0.06)"></div></div>
+                            <div class="flex-1 px-3 pb-1 flex flex-col gap-1 overflow-hidden relative z-[1]">
+                                <div class="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 border" style="background:rgba(255,255,255,0.025);border-color:rgba(255,255,255,0.05)"><div class="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" style="box-shadow:0 0 4px #4ade80"></div><span class="text-[8px] font-semibold flex-1" style="color:rgba(255,255,255,0.6)">HubSpot CRM</span><span class="text-[7.5px] font-semibold text-green-400">3 leads captured</span></div>
+                                <div class="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 border" style="background:rgba(255,255,255,0.025);border-color:rgba(255,255,255,0.05)"><div class="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" style="box-shadow:0 0 4px #60a5fa"></div><span class="text-[8px] font-semibold flex-1" style="color:rgba(255,255,255,0.6)">Analytics + Heatmaps</span><span class="text-[7.5px] font-semibold text-blue-400">Live tracking</span></div>
+                                <div class="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 border" style="background:rgba(255,255,255,0.025);border-color:rgba(255,255,255,0.05)"><div class="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" style="box-shadow:0 0 4px #4ade80"></div><span class="text-[8px] font-semibold flex-1" style="color:rgba(255,255,255,0.6)">Email Automation</span><span class="text-[7.5px] font-semibold text-green-400">Active</span></div>
+                            </div>
+                            <div class="h-8 bg-[#f0942e] flex items-center justify-center flex-shrink-0 relative z-[1]">
+                                <span class="text-white text-[9px] font-bold uppercase tracking-widest">Integrated. Scalable. Profit-generating.</span>
                             </div>
                         </div>
 
-                        <!-- Swipe hint -->
-                        <div id="mc-swipe-hint" class="absolute left-0 right-0 flex items-center justify-center gap-1.5" style="bottom:-28px">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"><path d="M9 18l-6-6 6-6"/></svg>
-                            <span class="text-xs text-slate-400 font-medium">Swipe to reveal the Azuretech model</span>
+                        <!-- SVG Divider -->
+                        <svg id="mob-divider-svg" class="absolute inset-0 pointer-events-none z-[22]" width="100%" height="100%" style="overflow:visible;transition:opacity 0.15s ease">
+                            <defs>
+                                <linearGradient id="mob-lg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="470">
+                                    <stop offset="0%"   stop-color="#f0942e" stop-opacity="0"/>
+                                    <stop offset="8%"   stop-color="#f0942e"/>
+                                    <stop offset="92%"  stop-color="#f0942e"/>
+                                    <stop offset="100%" stop-color="#f0942e" stop-opacity="0"/>
+                                </linearGradient>
+                                <filter id="mob-glow" x="-600%" y="-5%" width="1300%" height="110%">
+                                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b1"/>
+                                    <feGaussianBlur in="SourceGraphic" stdDeviation="8"  result="b2"/>
+                                    <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                            </defs>
+                            <line id="mob-divider-line" x1="162" y1="0" x2="198" y2="470"
+                                  stroke="url(#mob-lg)" stroke-width="3" filter="url(#mob-glow)" stroke-linecap="butt"/>
+                        </svg>
+
+                        <!-- Labels -->
+                        <div id="mob-lbl-b" class="absolute z-30 pointer-events-none" style="top:40px;left:10px;transition:opacity 0.2s ease">
+                            <span class="text-[8px] uppercase tracking-widest font-bold bg-white/90 text-slate-600 px-2 py-1 rounded-full border border-slate-200/80" style="box-shadow:0 1px 4px rgba(0,0,0,0.08)">Before</span>
+                        </div>
+                        <div id="mob-lbl-a" class="absolute z-30 pointer-events-none" style="top:40px;right:10px;transition:opacity 0.2s ease">
+                            <span class="text-[8px] uppercase tracking-widest font-bold bg-[#f0942e] text-white px-2 py-1 rounded-full" style="box-shadow:0 1px 6px rgba(240,148,46,0.4)">After</span>
+                        </div>
+
+                        <!-- Drag hint -->
+                        <div id="mob-hint" class="absolute inset-0 flex items-center justify-center pointer-events-none z-40" style="transition:opacity 0.3s ease">
+                            <div style="display:flex;align-items:center;gap:10px;background:rgba(8,14,28,0.6);backdrop-filter:blur(6px);border-radius:50px;padding:10px 18px;border:1px solid rgba(255,255,255,0.1)">
+                                <svg width="20" height="11" viewBox="0 0 22 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6H1M1 6L4 3M1 6L4 9"/><path d="M16 6h5M21 6l-3-3M21 6l-3 3"/></svg>
+                                <span style="color:white;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap">Drag to compare</span>
+                            </div>
                         </div>
                     </div>
 
@@ -1719,10 +1785,10 @@
                             var p=Math.min(Math.max(((cx-r.left)/W)*100,0),100);
                             var tl=p-diag,bl=p+diag,cp;
                             if(p>=100-diag){
-                                cp='polygon(0% 0%,100% 0%,100% 100%,0% 100%)';
+                                cp='polygon(100% 0%,100% 0%,100% 100%,100% 100%)';
                                 if(svgEl)svgEl.style.opacity='0';
                             }else if(p<=diag){
-                                cp='polygon(0% 0%,0% 0%,0% 100%,0% 100%)';
+                                cp='polygon(0% 0%,100% 0%,100% 100%,0% 100%)';
                                 if(svgEl)svgEl.style.opacity='0';
                             }else{
                                 cp='polygon('+tl+'% 0%,100% 0%,100% 100%,'+bl+'% 100%)';
@@ -1745,22 +1811,38 @@
                         };
                     })();
                     (function(){
-                        var card=document.getElementById('mc-before-card');
-                        var hint=document.getElementById('mc-swipe-hint');
-                        if(!card)return;
-                        var sx=0,drag=false,gone=false;
-                        card.addEventListener('touchstart',function(e){if(gone)return;sx=e.touches[0].clientX;drag=true;},{passive:true});
-                        card.addEventListener('touchmove',function(e){
-                            if(!drag||gone)return;
-                            var dx=e.touches[0].clientX-sx;
-                            if(dx<0)card.style.transform='translateX('+dx+'px) rotate('+(dx*0.025)+'deg)';
-                        },{passive:true});
-                        card.addEventListener('touchend',function(e){
-                            if(!drag||gone)return;drag=false;
-                            var dx=e.changedTouches[0].clientX-sx;
-                            if(dx<-70){gone=true;card.style.transition='transform 0.35s ease';card.style.transform='translateX(-120%) rotate(-8deg)';if(hint)hint.style.display='none';}
-                            else{card.style.transition='transform 0.25s ease';card.style.transform='translateX(0)';setTimeout(function(){card.style.transition='';},250);}
-                        });
+                        var diag=5,active=false;
+                        var mob=document.getElementById('mob-split');
+                        var mobAfter=document.getElementById('mob-after-panel');
+                        var mobSvg=document.getElementById('mob-divider-svg');
+                        var mobLine=document.getElementById('mob-divider-line');
+                        var mobGrad=document.getElementById('mob-lg');
+                        var mobHint=document.getElementById('mob-hint');
+                        var mobLblB=document.getElementById('mob-lbl-b');
+                        var mobLblA=document.getElementById('mob-lbl-a');
+                        function mobUpdate(p){
+                            p=Math.min(Math.max(p,0),100);
+                            var tl=p-diag,bl=p+diag,cp;
+                            var r=mob.getBoundingClientRect();var W=r.width,H=r.height;
+                            if(p>=100-diag){cp='polygon(100% 0%,100% 0%,100% 100%,100% 100%)';if(mobSvg)mobSvg.style.opacity='0';}
+                            else if(p<=diag){cp='polygon(0% 0%,100% 0%,100% 100%,0% 100%)';if(mobSvg)mobSvg.style.opacity='0';}
+                            else{
+                                cp='polygon('+tl+'% 0%,100% 0%,100% 100%,'+bl+'% 100%)';
+                                if(mobLine){mobLine.setAttribute('x1',(tl/100*W).toFixed(2));mobLine.setAttribute('y1','0');mobLine.setAttribute('x2',(bl/100*W).toFixed(2));mobLine.setAttribute('y2',H.toFixed(2));}
+                                if(mobGrad)mobGrad.setAttribute('y2',H.toFixed(2));
+                                if(mobSvg)mobSvg.style.opacity='1';
+                            }
+                            if(mobAfter)mobAfter.style.clipPath=cp;
+                            if(mobLblB)mobLblB.style.opacity=p<=4?'0':'1';
+                            if(mobLblA)mobLblA.style.opacity=p>=96?'0':'1';
+                            if(mobHint)mobHint.style.opacity='0';
+                        }
+                        function getPct(cx){var r=mob.getBoundingClientRect();return((cx-r.left)/r.width)*100;}
+                        if(mob){
+                            mob.addEventListener('touchstart',function(e){active=true;mobUpdate(getPct(e.touches[0].clientX));},{passive:true});
+                            mob.addEventListener('touchmove',function(e){if(active){mobUpdate(getPct(e.touches[0].clientX));e.preventDefault();}},{passive:false});
+                            mob.addEventListener('touchend',function(){active=false;});
+                        }
                     })();
                     </script>
                 </div>            </div>
@@ -1771,12 +1853,6 @@
                 0%, 100% { transform: translateY(0px); }
                 50% { transform: translateY(-10px); }
             }
-            @keyframes mc-bounce {
-                0%, 100% { transform: translateX(0) rotate(0deg); }
-                25% { transform: translateX(-10px) rotate(-1.5deg); }
-                75% { transform: translateX(-5px) rotate(-0.5deg); }
-            }
-            #mc-before-card { animation: mc-bounce 2s ease-in-out 1.5s 3; }
         </style>
     </section>
     <!-- WHY AZURETECH SECTION -->
