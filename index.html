@@ -1,4 +1,4 @@
-<html lang="en" class="scroll-smooth" id="html-root">
+﻿<html lang="en" class="scroll-smooth" id="html-root">
 
 <head>
     <meta charset="UTF-8">
@@ -1140,7 +1140,7 @@
                     </div>
 
                     <!-- Headline (Updated Style) -->
-                    <h2 class="leading-tight sm:text-7xl text-6xl font-bold text-slate-900 tracking-tight mb-8">
+                    <h2 class="leading-tight text-4xl sm:text-5xl lg:text-7xl font-bold text-slate-900 tracking-tight mb-8">
                         Is your website an
                         <span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600">asset</span>
@@ -1519,373 +1519,196 @@
                     </div>
                 </div>
 
-                <!-- Right Visual: Futuristic 3D Dashboard -->
-                <div
-                    class="flex lg:justify-end group w-full h-[800px] relative perspective-[1200px] space-y-20 items-center justify-center">
-                    <!-- New Localized Grid Background -->
-                    <div
-                        class="absolute inset-0 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none -z-20 [mask-image:radial-gradient(closest-side,black_40%,transparent)]">
+                <!-- Right Visual: Before/After Comparison Slider -->
+                <div class="flex lg:justify-end w-full items-center justify-center">
+                    <!-- Desktop: Drag-reveal before/after slider (hidden on mobile) -->
+                    <div id="split-comp" class="hidden md:block relative w-full max-w-[540px] rounded-2xl overflow-hidden select-none shadow-2xl border border-slate-200/60 cursor-ew-resize"
+                         style="height:420px"
+                         onmousedown="splitDragStart(event)"
+                         onmousemove="splitDragMove(event)"
+                         onmouseup="splitDragEnd()"
+                         onmouseleave="splitDragEnd()">
+
+                        <!-- Before panel -->
+                        <div class="absolute inset-0 bg-white flex flex-col">
+                            <span class="absolute top-4 left-4 z-10 text-[10px] font-bold tracking-widest uppercase bg-slate-800 text-white px-3 py-1 rounded-full">Before</span>
+                            <div class="h-10 bg-gray-100 flex items-center px-4 gap-3 border-b border-gray-200 flex-shrink-0">
+                                <div class="w-24 h-3 bg-gray-400 rounded"></div>
+                                <div class="ml-auto flex gap-3">
+                                    <div class="w-10 h-2.5 bg-gray-300 rounded"></div>
+                                    <div class="w-10 h-2.5 bg-gray-300 rounded"></div>
+                                    <div class="w-10 h-2.5 bg-gray-300 rounded"></div>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-1">
+                                <div class="w-2/3 h-4 bg-gray-300 rounded mb-2"></div>
+                                <div class="w-full h-2.5 bg-gray-200 rounded mb-1"></div>
+                                <div class="w-4/5 h-2.5 bg-gray-200 rounded mb-5"></div>
+                                <div class="w-full h-28 bg-gray-200 rounded-xl mb-4 flex items-center justify-center">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 9 6-6 4 4 3-3 6 6"/><circle cx="8" cy="8" r="1.5" fill="#9ca3af"/></svg>
+                                </div>
+                                <p class="text-gray-400 text-xs mb-4 leading-relaxed" style="font-family:Georgia,serif">Welcome to our website. We provide services for your business needs. Contact us today to learn more.</p>
+                                <span class="text-blue-500 text-xs underline">Contact Us</span>
+                            </div>
+                            <div class="px-5 pb-4 flex flex-wrap gap-2">
+                                <span class="text-[9px] font-bold uppercase tracking-wider bg-red-100 text-red-500 px-2 py-1 rounded border border-red-200">No clear CTA</span>
+                                <span class="text-[9px] font-bold uppercase tracking-wider bg-red-100 text-red-500 px-2 py-1 rounded border border-red-200">Generic copy</span>
+                                <span class="text-[9px] font-bold uppercase tracking-wider bg-red-100 text-red-500 px-2 py-1 rounded border border-red-200">No brand identity</span>
+                            </div>
+                        </div>
+
+                        <!-- After panel (revealed by drag) -->
+                        <div id="split-after-panel" class="absolute inset-0 bg-[#0c1424] flex flex-col" style="clip-path:polygon(50% 0%,100% 0%,100% 100%,50% 100%)">
+                            <span class="absolute top-4 right-4 z-10 text-[10px] font-bold tracking-widest uppercase bg-[#f0942e] text-white px-3 py-1 rounded-full">After</span>
+                            <div class="h-10 bg-[#0a1628] flex items-center px-4 border-b border-white/10 flex-shrink-0">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-[#0EA5E9] flex-shrink-0"></div>
+                                    <div class="w-20 h-2.5 bg-white/30 rounded"></div>
+                                </div>
+                                <div class="ml-auto px-3 py-1 bg-[#f0942e] rounded text-[9px] font-bold text-white whitespace-nowrap">Get Free Audit</div>
+                            </div>
+                            <div class="p-6 flex-1">
+                                <div class="text-[9px] font-bold text-[#0EA5E9] uppercase tracking-widest mb-3">Trusted IT Partner · South Florida</div>
+                                <div class="text-white font-bold text-xl leading-tight mb-3">Your website should<br>work <span class="text-[#f0942e]">while you sleep.</span></div>
+                                <p class="text-white/50 text-xs leading-relaxed mb-4">We build intelligent platforms that capture leads, sync your CRM, and convert visitors — 24/7.</p>
+                                <div class="flex gap-2 mb-4">
+                                    <div class="px-3 py-2 bg-[#0EA5E9] rounded-lg text-white text-[10px] font-bold whitespace-nowrap">Review My Site →</div>
+                                    <div class="px-3 py-2 border border-white/20 rounded-lg text-white/50 text-[10px] whitespace-nowrap">See Our Work</div>
+                                </div>
+                                <div class="flex gap-3 text-[9px] text-white/40 font-mono">
+                                    <span>98% Uptime</span><span>·</span><span>4.9★ Rating</span><span>·</span><span>200+ Clients</span>
+                                </div>
+                            </div>
+                            <div class="px-5 pb-4 flex flex-wrap gap-2">
+                                <span class="text-[9px] font-bold uppercase tracking-wider bg-green-900/60 text-green-400 px-2 py-1 rounded border border-green-500/30">Clear CTA</span>
+                                <span class="text-[9px] font-bold uppercase tracking-wider bg-green-900/60 text-green-400 px-2 py-1 rounded border border-green-500/30">Brand identity</span>
+                                <span class="text-[9px] font-bold uppercase tracking-wider bg-green-900/60 text-green-400 px-2 py-1 rounded border border-green-500/30">Converts</span>
+                            </div>
+                        </div>
+
+                        <!-- Divider handle -->
+                        <div id="split-divider-line" class="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_10px_rgba(255,255,255,0.7)] pointer-events-none" style="left:50%">
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 bg-white rounded-full shadow-lg flex items-center justify-center pointer-events-auto cursor-ew-resize">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6-6 6-6"/><path d="M15 6l6 6-6 6"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- Bottom expense/asset labels -->
+                        <div class="absolute bottom-0 left-0 right-0 flex pointer-events-none">
+                            <div class="flex-1 flex items-center gap-1.5 px-4 pb-2">
+                                <span class="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0"></span>
+                                <span class="text-[9px] uppercase tracking-wider font-semibold text-slate-500">Expense</span>
+                            </div>
+                            <div class="flex-1 flex items-center justify-end gap-1.5 px-4 pb-2">
+                                <span class="w-2 h-2 rounded-full bg-[#f0942e] flex-shrink-0"></span>
+                                <span class="text-[9px] uppercase tracking-wider font-semibold text-[#f0942e]">Asset</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Background Glow -->
-                    <div
-                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[100px] -z-10 animate-pulse">
-                    </div>
+                    <!-- Mobile: Swipeable stacked cards (hidden on md+) -->
+                    <div class="md:hidden relative w-full max-w-[320px] mx-auto" style="height:370px">
 
-                    <!-- Main Rotatable Container -->
-                    <div class="[transform-style:preserve-3d] transition-transform duration-200 ease-out w-[600px] h-[500px] relative"
-                        style="transform: rotateX(10deg) rotateY(-15deg);"
-                        onmousemove="const r=this.getBoundingClientRect();const x=event.clientX-r.left;const y=event.clientY-r.top;const rx=((r.height/2-y)/(r.height/2))*10;const ry=((x-r.width/2)/(r.width/2))*10;this.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';"
-                        onmouseleave="this.style.transform='rotateX(10deg) rotateY(-15deg)';">
-
-                        <!-- Animated Connecting Lines -->
-                        <svg class="absolute inset-0 w-full h-full pointer-events-none"
-                            style="transform: translateZ(-10px);">
-                            <g>
-                                <path d="M100,100 C200,100 200,250 300,250" fill="none" stroke="rgba(56, 189, 248, 0.2)"
-                                    stroke-width="1">
-                                </path>
-                                <circle r="3" fill="#38bdf8">
-                                    <animateMotion dur="4s" repeatCount="indefinite"
-                                        path="M100,100 C200,100 200,250 300,250" keyPoints="0;1" keyTimes="0;1"
-                                        calcMode="linear"></animateMotion>
-                                    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite">
-                                    </animate>
-                                </circle>
-                            </g>
-                            <g>
-                                <path d="M500,120 C400,120 400,250 300,250" fill="none" stroke="rgba(56, 189, 248, 0.2)"
-                                    stroke-width="1">
-                                </path>
-                                <circle r="3" fill="#38bdf8">
-                                    <animateMotion dur="5s" repeatCount="indefinite"
-                                        path="M500,120 C400,120 400,250 300,250" keyPoints="0;1" keyTimes="0;1"
-                                        calcMode="linear"></animateMotion>
-                                    <animate attributeName="opacity" values="0;1;1;0" dur="5s" repeatCount="indefinite">
-                                    </animate>
-                                </circle>
-                            </g>
-                            <g>
-                                <path d="M100,400 C200,400 200,250 300,250" fill="none" stroke="rgba(56, 189, 248, 0.2)"
-                                    stroke-width="1">
-                                </path>
-                                <circle r="3" fill="#38bdf8">
-                                    <animateMotion dur="6s" repeatCount="indefinite"
-                                        path="M100,400 C200,400 200,250 300,250" keyPoints="0;1" keyTimes="0;1"
-                                        calcMode="linear"></animateMotion>
-                                    <animate attributeName="opacity" values="0;1;1;0" dur="6s" repeatCount="indefinite">
-                                    </animate>
-                                </circle>
-                            </g>
-                            <g>
-                                <path d="M500,380 C400,380 400,250 300,250" fill="none" stroke="rgba(56, 189, 248, 0.2)"
-                                    stroke-width="1">
-                                </path>
-                                <circle r="3" fill="#38bdf8">
-                                    <animateMotion dur="4.5s" repeatCount="indefinite"
-                                        path="M500,380 C400,380 400,250 300,250" keyPoints="0;1" keyTimes="0;1"
-                                        calcMode="linear"></animateMotion>
-                                    <animate attributeName="opacity" values="0;1;1;0" dur="4.5s"
-                                        repeatCount="indefinite"></animate>
-                                </circle>
-                            </g>
-                            <g>
-                                <path d="M300,50 C300,50 300,150 300,150" fill="none" stroke="rgba(56, 189, 248, 0.2)"
-                                    stroke-width="1">
-                                </path>
-                                <circle r="3" fill="#38bdf8">
-                                    <animateMotion dur="3s" repeatCount="indefinite"
-                                        path="M300,50 C300,50 300,150 300,150" keyPoints="0;1" keyTimes="0;1"
-                                        calcMode="linear"></animateMotion>
-                                    <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite">
-                                    </animate>
-                                </circle>
-                            </g>
-                        </svg>
-
-                        <!-- Center Card -->
-                        <div class="absolute top-1/2 left-1/2 w-[380px] h-[240px] bg-slate-900/80 backdrop-blur-xl border border-indigo-500/30 rounded-xl shadow-[0_0_50px_rgba(79,70,229,0.3)] [transform-style:preserve-3d]"
-                            style="transform: translate(-50%, -50%) translateZ(0px);">
-                            <div class="h-8 border-b border-white/10 flex items-center px-4 gap-2">
-                                <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-                                <div class="ml-auto w-20 h-1.5 rounded-full bg-white/10"></div>
+                        <!-- After card (behind) -->
+                        <div class="absolute inset-0 bg-[#0c1424] rounded-2xl border border-white/10 overflow-hidden" style="transform:rotate(2deg) translateY(10px)">
+                            <div class="h-9 bg-[#0a1628] flex items-center px-4 border-b border-white/10">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 rounded-full bg-[#0EA5E9] flex-shrink-0"></div>
+                                    <div class="w-16 h-2 bg-white/30 rounded"></div>
+                                </div>
+                                <div class="ml-auto px-2 py-0.5 bg-[#f0942e] rounded text-[8px] font-bold text-white">Free Audit</div>
                             </div>
-                            <div class="p-5 flex flex-col h-[calc(100%-32px)]">
-                                <div class="flex justify-between items-start mb-4">
-                                    <div class="">
-                                        <div class="h-2 w-24 bg-indigo-500/50 rounded mb-2 animate-pulse"></div>
-                                        <div class="h-2 w-16 bg-white/10 rounded"></div>
-                                    </div>
-                                    <div
-                                        class="px-2 py-1 bg-indigo-500/20 text-indigo-300 text-[10px] rounded border border-indigo-500/30 font-medium">
-                                        LIVE</div>
-                                </div>
-                                <div class="grid grid-cols-2 gap-3 flex-1">
-                                    <div
-                                        class="bg-white/5 rounded-lg p-3 border border-white/5 flex flex-col justify-between group hover:bg-white/10 transition-colors">
-                                        <div class="p-1.5 bg-cyan-500/20 w-fit rounded-md text-cyan-400 mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="lucide lucide-users">
-                                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" class=""></path>
-                                                <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
-                                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                                                <circle cx="9" cy="7" r="4" class=""></circle>
-                                            </svg>
-                                        </div>
-                                        <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                                            <div class="h-full bg-cyan-500 w-[75%]"></div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="bg-white/5 rounded-lg p-3 border border-white/5 flex flex-col justify-between group hover:bg-white/10 transition-colors">
-                                        <div class="p-1.5 bg-purple-500/20 w-fit rounded-md text-purple-400 mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="lucide lucide-chart-column">
-                                                <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
-                                                <path d="M18 17V9"></path>
-                                                <path d="M13 17V5"></path>
-                                                <path d="M8 17v-3"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="flex items-end gap-1 h-6">
-                                            <div class="w-1.5 bg-purple-500/40 h-[40%] rounded-t-sm"></div>
-                                            <div class="w-1.5 bg-purple-500/60 h-[70%] rounded-t-sm"></div>
-                                            <div class="w-1.5 bg-purple-500 h-[50%] rounded-t-sm"></div>
-                                            <div class="w-1.5 bg-purple-500/80 h-[90%] rounded-t-sm"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 h-8 bg-white/5 rounded flex items-center px-3 justify-between">
-                                    <div class="h-1.5 w-32 bg-white/10 rounded"></div>
-                                    <div
-                                        class="h-4 w-12 bg-indigo-600 rounded text-[8px] text-white flex items-center justify-center font-medium">
-                                        SYNC</div>
-                                </div>
+                            <div class="p-4">
+                                <div class="text-[9px] font-bold text-[#0EA5E9] uppercase tracking-wider mb-2">Trusted IT Partner · South Florida</div>
+                                <div class="text-white font-bold text-base leading-tight mb-2">Your website should work <span class="text-[#f0942e]">while you sleep.</span></div>
+                                <p class="text-white/50 text-xs leading-relaxed mb-3">Intelligent platforms that capture leads and convert visitors — 24/7.</p>
+                                <div class="px-3 py-2 bg-[#0EA5E9] rounded-lg text-white text-[10px] font-bold inline-block">Review My Site →</div>
+                                <div class="mt-3 flex gap-2 text-[9px] text-white/40 font-mono"><span>98% Uptime</span><span>·</span><span>4.9★</span></div>
+                            </div>
+                            <div class="absolute bottom-3 left-4">
+                                <span class="text-[9px] uppercase font-bold bg-[#f0942e] text-white px-2 py-1 rounded-full">After — Asset</span>
                             </div>
                         </div>
 
-                        <!-- Floating Mail (Top Left) -->
-                        <div class="[transform-style:preserve-3d] w-[140px] h-[90px] absolute top-[10%] left-[5%]"
-                            style="transform: translateZ(20px) rotateY(-1deg)">
-                            <div
-                                class="animate-[float_6s_ease-in-out_1s_infinite] overflow-hidden flex flex-col bg-slate-900/60 w-full h-full border-white/20 border rounded-xl pt-3 pr-3 pb-3 pl-3 shadow-[0_0_20px_rgba(0,0,0,0.2)] backdrop-blur-md justify-between">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none">
+                        <!-- Before card (front, swipeable) -->
+                        <div id="mc-before-card" class="absolute inset-0 bg-white rounded-2xl overflow-hidden" style="transform:translateX(0);will-change:transform">
+                            <div class="h-9 bg-gray-100 flex items-center px-4 gap-2 border-b border-gray-200">
+                                <div class="w-20 h-2.5 bg-gray-400 rounded"></div>
+                                <div class="ml-auto flex gap-2">
+                                    <div class="w-8 h-2 bg-gray-300 rounded"></div>
+                                    <div class="w-8 h-2 bg-gray-300 rounded"></div>
                                 </div>
-                                <div class="flex justify-between items-center relative z-10">
-                                    <div class="p-1.5 bg-blue-500/20 rounded-md text-blue-400">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail">
-                                            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
-                                            <rect x="2" y="4" width="20" height="16" rx="2" class=""></rect>
-                                        </svg>
-                                    </div>
-                                    <div
-                                        class="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.8)]">
-                                    </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="w-2/3 h-3.5 bg-gray-300 rounded mb-2"></div>
+                                <div class="w-full h-2 bg-gray-200 rounded mb-1"></div>
+                                <div class="w-4/5 h-2 bg-gray-200 rounded mb-4"></div>
+                                <div class="w-full h-20 bg-gray-200 rounded-lg mb-3 flex items-center justify-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 9 6-6 4 4 3-3 6 6"/></svg>
                                 </div>
-                                <div class="space-y-1.5 relative z-10">
-                                    <div class="h-1.5 w-full bg-white/20 rounded-full"></div>
-                                    <div class="h-1.5 w-[60%] bg-white/10 rounded-full"></div>
-                                </div>
+                                <p class="text-gray-400 text-xs leading-relaxed mb-2" style="font-family:Georgia,serif">Welcome to our website. We provide services for your needs. Contact us to learn more.</p>
+                                <span class="text-blue-500 text-xs underline">Contact Us</span>
+                            </div>
+                            <div class="absolute bottom-3 left-4">
+                                <span class="text-[9px] uppercase font-bold bg-slate-700 text-white px-2 py-1 rounded-full">Before — Expense</span>
                             </div>
                         </div>
 
-                        <!-- Floating Stats (Top Right) -->
-                        <div class="[transform-style:preserve-3d] w-[150px] h-[100px] absolute top-[12%] right-[5%]"
-                            style="transform: translateZ(25px) rotateY(-1deg)">
-                            <div
-                                class="animate-[float_6s_ease-in-out_2.5s_infinite] overflow-hidden flex flex-col bg-slate-900/60 w-full h-full border-white/20 border rounded-xl pt-3 pr-3 pb-3 pl-3 shadow-[0_0_20px_rgba(0,0,0,0.2)] backdrop-blur-md">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none">
-                                </div>
-                                <div class="flex items-center gap-2 mb-2 relative z-10">
-                                    <div class="p-1 bg-emerald-500/20 rounded text-emerald-400">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap">
-                                            <path
-                                                d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <span class="text-[10px] text-emerald-200 font-mono">+24.5%</span>
-                                </div>
-                                <div
-                                    class="flex-1 flex gap-1 z-10 pb-1 relative gap-x-1 gap-y-1 items-end justify-between">
-                                    <div class="w-full bg-gradient-to-t from-emerald-500/10 to-emerald-400 rounded-t-sm transition-all duration-300"
-                                        style="height: 40%; opacity: 0.6;"></div>
-                                    <div class="w-full bg-gradient-to-t from-emerald-500/10 to-emerald-400 rounded-t-sm transition-all duration-300"
-                                        style="height: 65%; opacity: 0.65;"></div>
-                                    <div class="w-full bg-gradient-to-t from-emerald-500/10 to-emerald-400 rounded-t-sm transition-all duration-300"
-                                        style="height: 45%; opacity: 0.7;"></div>
-                                    <div class="w-full bg-gradient-to-t from-emerald-500/10 to-emerald-400 rounded-t-sm transition-all duration-300"
-                                        style="height: 80%; opacity: 0.75;"></div>
-                                    <div class="w-full bg-gradient-to-t from-emerald-500/10 to-emerald-400 rounded-t-sm transition-all duration-300"
-                                        style="height: 55%; opacity: 0.8;"></div>
-                                    <div class="w-full bg-gradient-to-t from-emerald-500/10 to-emerald-400 rounded-t-sm transition-all duration-300"
-                                        style="height: 90%; opacity: 0.85;"></div>
-                                    <div class="w-full bg-gradient-to-t from-emerald-500/10 to-emerald-400 rounded-t-sm transition-all duration-300"
-                                        style="height: 75%; opacity: 0.9;"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Floating Database (Bottom Left) -->
-                        <div class="[transform-style:preserve-3d] w-[160px] h-[90px] absolute bottom-[15%] left-[8%]">
-                            <div
-                                class="animate-[float_6s_ease-in-out_0.5s_infinite] overflow-hidden text-[8px] text-pink-300/80 font-mono bg-slate-900/60 w-full h-full border-white/20 border rounded-xl pt-3 pr-3 pb-3 pl-3 shadow-[0_0_20px_rgba(0,0,0,0.2)] backdrop-blur-md space-y-1">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none">
-                                </div>
-                                <div class="flex items-center gap-2 mb-2 pb-1 border-b border-white/5 relative z-10">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-database text-pink-400">
-                                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                                        <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-                                        <path d="M3 12A9 3 0 0 0 21 12"></path>
-                                    </svg>
-                                    <span class="">API_STATUS: OK</span>
-                                </div>
-                                <p class="opacity-70 relative z-10">{ "leads": 420,</p>
-                                <p class="opacity-70 relative z-10"> "sync": true }</p>
-                                <div class="h-1 w-full bg-pink-500/20 rounded-full mt-1 overflow-hidden relative z-10">
-                                    <div class="h-full bg-pink-500 w-[80%] animate-pulse"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Floating AI Assistant (Bottom Right) -->
-                        <div class="[transform-style:preserve-3d] w-[130px] h-[110px] absolute right-[10%] bottom-[12%]"
-                            style="transform: translateZ(20px) rotateY(-1deg);">
-                            <div
-                                class="animate-[float_6s_ease-in-out_3s_infinite] overflow-hidden flex flex-col text-center bg-slate-900/60 w-full h-full border-white/20 border rounded-xl pt-3 pr-3 pb-3 pl-3 shadow-[0_0_20px_rgba(0,0,0,0.2)] backdrop-blur-md items-center justify-center">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none">
-                                </div>
-                                <div class="relative mb-2 z-10">
-                                    <div class="absolute inset-0 bg-violet-500 blur-lg opacity-40 animate-pulse"></div>
-                                    <div class="relative p-2 bg-violet-600 rounded-full text-white shadow-lg">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu">
-                                            <path d="M12 20v2"></path>
-                                            <path d="M12 2v2"></path>
-                                            <path d="M17 20v2"></path>
-                                            <path d="M17 2v2"></path>
-                                            <path d="M2 12h2"></path>
-                                            <path d="M2 17h2"></path>
-                                            <path d="M2 7h2"></path>
-                                            <path d="M20 12h2"></path>
-                                            <path d="M20 17h2"></path>
-                                            <path d="M20 7h2"></path>
-                                            <path d="M7 20v2"></path>
-                                            <path d="M7 2v2" class=""></path>
-                                            <rect x="4" y="4" width="16" height="16" rx="2" class=""></rect>
-                                            <rect x="8" y="8" width="8" height="8" rx="1" class=""></rect>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="text-[10px] font-semibold text-white mb-1 tracking-tight z-10">AI Assistant
-                                </div>
-                                <div class="flex gap-0.5 z-10">
-                                    <span class="w-1 h-1 bg-violet-400 rounded-full animate-bounce"
-                                        style="animation-delay: 0s;"></span>
-                                    <span class="w-1 h-1 bg-violet-400 rounded-full animate-bounce"
-                                        style="animation-delay: 0.2s;"></span>
-                                    <span class="w-1 h-1 bg-violet-400 rounded-full animate-bounce"
-                                        style="animation-delay: 0.4s;"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Floating Secure Badge (Top Center) -->
-                        <div class="absolute top-[0%] left-1/2 w-[100px] h-[40px] [transform-style:preserve-3d]"
-                            style="transform: translate(-50%, 0) translateZ(20px);">
-                            <div
-                                class="w-full h-full animate-[float_6s_ease-in-out_4s_infinite] bg-slate-900/60 backdrop-blur-md border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.2)] rounded-xl overflow-hidden flex items-center justify-center gap-2 text-cyan-300">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none">
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="lucide lucide-shield-check z-10">
-                                    <path
-                                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
-                                        class=""></path>
-                                    <path d="m9 12 2 2 4-4" class=""></path>
-                                </svg>
-                                <span class="text-[9px] font-semibold tracking-wider z-10">SECURE</span>
-                            </div>
-                        </div>
-
-                        <!-- Depth Glow -->
-                        <div class="absolute inset-0 -z-10 opacity-30 pointer-events-none"
-                            style="background-image: radial-gradient(circle, rgba(99, 102, 241, 0.2) 1px, transparent 1px); background-size: 20px 20px; transform: translateZ(-50px) scale(1.5);">
+                        <!-- Swipe hint -->
+                        <div id="mc-swipe-hint" class="absolute left-0 right-0 flex items-center justify-center gap-1.5" style="bottom:-28px">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"><path d="M9 18l-6-6 6-6"/></svg>
+                            <span class="text-xs text-slate-400 font-medium">Swipe to reveal the after</span>
                         </div>
                     </div>
+
+                    <script>
+                    (function(){
+                        var dragging=false;
+                        function update(cx){
+                            var c=document.getElementById('split-comp');if(!c)return;
+                            var r=c.getBoundingClientRect();
+                            var p=Math.min(Math.max(((cx-r.left)/r.width)*100,5),95);
+                            document.getElementById('split-after-panel').style.clipPath='polygon('+p+'% 0%,100% 0%,100% 100%,'+p+'% 100%)';
+                            document.getElementById('split-divider-line').style.left=p+'%';
+                        }
+                        window.splitDragStart=function(e){dragging=true;update(e.clientX);};
+                        window.splitDragMove=function(e){if(dragging)update(e.clientX);};
+                        window.splitDragEnd=function(){dragging=false;};
+                    })();
+                    (function(){
+                        var card=document.getElementById('mc-before-card');
+                        var hint=document.getElementById('mc-swipe-hint');
+                        if(!card)return;
+                        var sx=0,drag=false,gone=false;
+                        card.addEventListener('touchstart',function(e){if(gone)return;sx=e.touches[0].clientX;drag=true;},{passive:true});
+                        card.addEventListener('touchmove',function(e){
+                            if(!drag||gone)return;
+                            var dx=e.touches[0].clientX-sx;
+                            if(dx<0)card.style.transform='translateX('+dx+'px) rotate('+(dx*0.025)+'deg)';
+                        },{passive:true});
+                        card.addEventListener('touchend',function(e){
+                            if(!drag||gone)return;drag=false;
+                            var dx=e.changedTouches[0].clientX-sx;
+                            if(dx<-70){gone=true;card.style.transition='transform 0.35s ease';card.style.transform='translateX(-120%) rotate(-8deg)';if(hint)hint.style.display='none';}
+                            else{card.style.transition='transform 0.25s ease';card.style.transform='translateX(0)';setTimeout(function(){card.style.transition='';},250);}
+                        });
+                    })();
+                    </script>
                 </div>
             </div>
         </div>
 
-        <style class="">
+        <style>
             @keyframes float {
-
-                0%,
-                100% {
-                    transform: translateY(0px) translateZ(var(--tw-translate-z, 0));
-                }
-
-                50% {
-                    transform: translateY(-10px) translateZ(var(--tw-translate-z, 0));
-                }
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
             }
-
-            @keyframes loading {
-                0% {
-                    transform: translateX(-100%);
-                }
-
-                100% {
-                    transform: translateX(100%);
-                }
+            @keyframes mc-bounce {
+                0%, 100% { transform: translateX(0) rotate(0deg); }
+                25% { transform: translateX(-10px) rotate(-1.5deg); }
+                75% { transform: translateX(-5px) rotate(-0.5deg); }
             }
-
-            .perspective-distant {
-                perspective: 2000px;
-            }
-
-            .transform-style-3d {
-                transform-style: preserve-3d;
-            }
-
-            .translate-z-10 {
-                --tw-translate-z: 20px;
-                transform: translateZ(20px);
-            }
-
-            .translate-z-20 {
-                --tw-translate-z: 40px;
-                transform: translateZ(40px);
-            }
-
-            .translate-z-30 {
-                --tw-translate-z: 60px;
-                transform: translateZ(60px);
-            }
-
-            .translate-z-40 {
-                --tw-translate-z: 80px;
-                transform: translateZ(80px);
-            }
+            #mc-before-card { animation: mc-bounce 2s ease-in-out 1.5s 3; }
         </style>
     </section>
     <!-- WHY AZURETECH SECTION -->
@@ -2784,6 +2607,10 @@
                         .preserve-3d {
                             transform-style: preserve-3d;
                         }
+                        @media (hover: none) {
+                            .rotate-y-\[-10deg\] { transform: rotateY(0deg) !important; }
+                            .preserve-3d { transform-style: flat !important; }
+                        }
                     </style>
 
                     <div
@@ -3647,7 +3474,7 @@
     <footer
         class="dark:border-white/10 dark:bg-[#0b0e14] transition-colors duration-300 bg-slate-50 border-slate-200 border-t pt-16 pb-12">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
                 <div class="col-span-2 lg:col-span-2 pr-8">
                     <a href="#" class="flex items-center gap-2.5 mb-6 group">
                         <img src="assets/logos/at-blue-orange.png"
