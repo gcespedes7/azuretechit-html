@@ -124,19 +124,44 @@
       el.style.top = n.y + 'px';
       el.style.width = '180px';
       el.dataset.id = n.id;
-      el.innerHTML = `
-        <div class="absolute top-0 left-0 w-[3px] h-full rounded-l-lg" style="background:${style.accent}"></div>
-        <div class="p-4 pl-5">
-          <div class="flex items-start justify-between mb-3">
-            <div class="p-2 rounded-md border" style="background:${style.accent}14; border-color:${style.accent}33; color:${style.accent}">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${ICONS[n.icon] || ''}</svg>
-            </div>
-            <div class="mono text-[9px] tracking-[0.14em] uppercase opacity-60" style="color:${style.accent}">${style.label}</div>
-          </div>
-          <div class="text-white text-sm font-medium leading-tight">${n.label}</div>
-          <div class="mono text-[10px] text-white/45 mt-1.5 truncate">${n.meta}</div>
-        </div>
-      `;
+      // Build node DOM safely — no innerHTML for user-supplied data
+      const accentBar = document.createElement('div');
+      accentBar.className = 'absolute top-0 left-0 w-[3px] h-full rounded-l-lg';
+      accentBar.style.background = style.accent;
+
+      const inner = document.createElement('div');
+      inner.className = 'p-4 pl-5';
+
+      const topRow = document.createElement('div');
+      topRow.className = 'flex items-start justify-between mb-3';
+
+      const iconWrap = document.createElement('div');
+      iconWrap.className = 'p-2 rounded-md border';
+      iconWrap.style.cssText = `background:${style.accent}14; border-color:${style.accent}33; color:${style.accent}`;
+      // ICONS values are trusted static SVG path strings defined in this file
+      iconWrap.innerHTML = `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${ICONS[n.icon] || ''}</svg>`;
+
+      const kindLabel = document.createElement('div');
+      kindLabel.className = 'mono text-[9px] tracking-[0.14em] uppercase opacity-60';
+      kindLabel.style.color = style.accent;
+      kindLabel.textContent = style.label;
+
+      topRow.appendChild(iconWrap);
+      topRow.appendChild(kindLabel);
+
+      const nodeLabel = document.createElement('div');
+      nodeLabel.className = 'text-white text-sm font-medium leading-tight';
+      nodeLabel.textContent = n.label;
+
+      const nodeMeta = document.createElement('div');
+      nodeMeta.className = 'mono text-[10px] text-white/45 mt-1.5 truncate';
+      nodeMeta.textContent = n.meta;
+
+      inner.appendChild(topRow);
+      inner.appendChild(nodeLabel);
+      inner.appendChild(nodeMeta);
+      el.appendChild(accentBar);
+      el.appendChild(inner);
       $nodes.appendChild(el);
       n._h = el.offsetHeight;
       makeDraggable(el, n);
