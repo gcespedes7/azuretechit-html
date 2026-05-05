@@ -430,8 +430,9 @@
 <script>
 
 // ── Config ──────────────────────────────────────────────────
-const WORKER_URL   = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/audit-website';
-const LEAD_WEBHOOK = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/submit-lead';
+const WORKER_BASE  = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev';
+const WORKER_URL   = WORKER_BASE + '/audit-website';
+const LEAD_WEBHOOK = WORKER_BASE + '/submit-lead';
 
 // ── State ───────────────────────────────────────────────────
 const answers = { businessName: '', websiteUrl: '', city: '', industry: '', frustrations: [] };
@@ -651,6 +652,7 @@ function renderResults(cards) {
     const list = document.getElementById('cards-list');
     list.innerHTML = cards.map((c, i) => {
         const blurClass = i >= 2 ? 'blur-card' : '';
+        const safeScore = DOMPurify.sanitize(c.score, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
         const scoreCls = c.score === 'Strong' ? 'score-strong' : c.score === 'Critical' ? 'score-critical' : 'score-needs';
         const scoreIcon = c.score === 'Strong' ? '✓' : c.score === 'Critical' ? '!' : '△';
         const impactColor = c.impact === 'High' ? '#22c55e' : c.impact === 'Low' ? '#94a3b8' : '#f0942e';
@@ -663,15 +665,15 @@ function renderResults(cards) {
                 <div class="flex-1 min-w-0">
                     <div class="flex flex-wrap items-center gap-2 mb-1.5">
                         <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full ${scoreCls}">
-                            ${scoreIcon} ${c.score}
+                            ${scoreIcon} ${safeScore}
                         </span>
                         ${c.impact === 'High' ? '<span class="text-[10px] font-semibold text-green-600 dark:text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full">High Impact</span>' : ''}
                     </div>
-                    <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">${DOMPurify.sanitize(c.title)}</h3>
-                    <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed mb-3">${DOMPurify.sanitize(c.description)}</p>
+                    <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">${DOMPurify.sanitize(c.title, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })}</h3>
+                    <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed mb-3">${DOMPurify.sanitize(c.description, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })}</p>
                     <div class="flex items-start gap-2 bg-slate-50 dark:bg-white/5 rounded-lg px-3 py-2.5">
                         <span class="text-[#f0942e] text-sm mt-0.5 flex-shrink-0">→</span>
-                        <p class="text-xs text-slate-600 dark:text-gray-300 leading-relaxed"><span class="font-medium">Fix:</span> ${DOMPurify.sanitize(c.recommendation)}</p>
+                        <p class="text-xs text-slate-600 dark:text-gray-300 leading-relaxed"><span class="font-medium">Fix:</span> ${DOMPurify.sanitize(c.recommendation, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })}</p>
                     </div>
                 </div>
             </div>
@@ -717,23 +719,34 @@ if (_menuBtn && _mobileMenu) {
 // ── Contact Submission ───────────────────────────────────────
 async function submitContact(e) {
     e.preventDefault();
-    const btn = document.getElementById('modal-submit-btn');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
     const name  = document.getElementById('contact-name').value.trim();
     const email = document.getElementById('contact-email').value.trim();
     const phone = document.getElementById('contact-phone').value.trim();
 
+    // Client-side email validation before submission
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name || !emailOk) {
+        document.getElementById('contact-email').focus();
+        return;
+    }
+
+    const btn = document.getElementById('modal-submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
     try {
-        fetch(LEAD_WEBHOOK, {
+        const res = await fetch(LEAD_WEBHOOK, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, phone, ...answers, auditType: 'website', cards: generatedCards }),
         });
-    } catch(err) { /* silent fail */ }
+        if (!res.ok) throw new Error('Worker error');
+    } catch(err) {
+        btn.textContent = 'Unlock My Free Report →';
+        btn.disabled = false;
+        return;
+    }
 
-    await new Promise(r => setTimeout(r, 600));
     closeModal();
     unlockResults();
 }

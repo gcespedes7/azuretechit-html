@@ -66,7 +66,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="design-tokens.css"></head>
+    <link rel="stylesheet" href="design-tokens.css">
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script></head>
 <body class="bg-white dark:bg-[#0B0E14] text-slate-900 dark:text-white min-h-screen flex flex-col transition-colors duration-300">
 
 <!-- Navbar -->
@@ -447,7 +448,7 @@
 
 // ── Config ──────────────────────────────────────────────────
 const WORKER_URL   = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/';
-const LEAD_WEBHOOK = 'https://quiz-ai-worker.giovanni-cespedes19.workers.dev/submit-lead';
+const LEAD_WEBHOOK = WORKER_URL + 'submit-lead';
 
 // ── State ───────────────────────────────────────────────────
 const answers = { companyName: '', industry: '', teamSize: '', painPoints: [], tools: '' };
@@ -703,12 +704,24 @@ function generateClientResults() {
     });
 }
 
+// ── Sanitize helper (uses DOMPurify; text-only fallback) ────
+function san(str) {
+    if (typeof str !== 'string') return '';
+    return typeof DOMPurify !== 'undefined'
+        ? DOMPurify.sanitize(str, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
+        : str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 // ── Render Results ──────────────────────────────────────────
 function renderResults(opps) {
     const list = document.getElementById('cards-list');
     list.innerHTML = opps.map((o, i) => {
         const color = CATEGORY_COLORS[o.category] || '#f0942e';
         const blurClass = i >= 2 ? 'blur-card' : '';
+        const safeCategory  = san(o.category);
+        const safeTitle     = san(o.title);
+        const safeDesc      = san(o.description);
+        const safeTimeSaved = san(o.time_saved);
         return `
         <div class="result-card ${blurClass} bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-xl p-5 sm:p-6 transition-all duration-200 hover:shadow-md hover:border-slate-300 dark:hover:border-white/20 hover:-translate-y-0.5">
             <div class="flex items-start gap-4">
@@ -717,12 +730,12 @@ function renderResults(opps) {
                 </div>
                 <div class="flex-1 min-w-0">
                     <div class="flex flex-wrap items-center gap-2 mb-1.5">
-                        <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full" style="background:${color}22; color:${color}">${o.category}</span>
+                        <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full" style="background:${color}22; color:${color}">${safeCategory}</span>
                         ${o.priority === 'High' ? '<span class="text-[10px] font-semibold text-green-600 dark:text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full">High Priority</span>' : ''}
                     </div>
-                    <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">${o.title}</h3>
-                    <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed">${o.description}</p>
-                    <p class="text-xs text-[#f0942e] font-medium mt-2">⏱ Saves approx. ${o.time_saved}</p>
+                    <h3 class="text-base font-semibold text-slate-900 dark:text-white mb-1">${safeTitle}</h3>
+                    <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed">${safeDesc}</p>
+                    <p class="text-xs text-[#f0942e] font-medium mt-2">⏱ Saves approx. ${safeTimeSaved}</p>
                 </div>
             </div>
         </div>`;
@@ -730,15 +743,36 @@ function renderResults(opps) {
 
     document.getElementById('opp-count').textContent = opps.length;
     document.getElementById('unlock-count').textContent = opps.length;
-    // Personalize headline with company name
+    // Personalize headline with company name — use textContent to avoid XSS
     const name = answers.companyName;
     const headlineEl = document.getElementById('results-headline');
     if (name) {
-        headlineEl.innerHTML = `We found <span class="text-[#f0942e]">${opps.length}</span> automation opportunities for <span class="text-[#f0942e]">${name}</span>`;
+        headlineEl.textContent = '';
+        const pre = document.createTextNode('We found ');
+        const countSpan = document.createElement('span');
+        countSpan.className = 'text-[#f0942e]';
+        countSpan.textContent = opps.length;
+        const mid = document.createTextNode(' automation opportunities for ');
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'text-[#f0942e]';
+        nameSpan.textContent = name;
+        headlineEl.appendChild(pre);
+        headlineEl.appendChild(countSpan);
+        headlineEl.appendChild(mid);
+        headlineEl.appendChild(nameSpan);
     }
-    // Personalized subheading
+    // Personalized subheading — use textContent for data values
     const teamLabel = answers.teamSize === 'Solo' ? 'a solo operator' : `a ${answers.teamSize}-person team`;
-    document.getElementById('results-subtitle').innerHTML = `Based on <span class="text-slate-900 dark:text-white font-medium">${answers.industry || 'your business'}</span> workflows with ${teamLabel}`;
+    const subtitleEl = document.getElementById('results-subtitle');
+    subtitleEl.textContent = '';
+    const based = document.createTextNode('Based on ');
+    const indSpan = document.createElement('span');
+    indSpan.className = 'text-slate-900 dark:text-white font-medium';
+    indSpan.textContent = answers.industry || 'your business';
+    const rest = document.createTextNode(' workflows with ' + teamLabel);
+    subtitleEl.appendChild(based);
+    subtitleEl.appendChild(indSpan);
+    subtitleEl.appendChild(rest);
 
     showScreen('screen-results');
     document.getElementById('step-label').textContent = 'Report Ready';
@@ -771,24 +805,34 @@ if (_menuBtn && _mobileMenu) {
 // ── Contact Submission ──────────────────────────────────────
 async function submitContact(e) {
     e.preventDefault();
-    const btn = document.getElementById('modal-submit-btn');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
     const name  = document.getElementById('contact-name').value.trim();
     const email = document.getElementById('contact-email').value.trim();
     const phone = document.getElementById('contact-phone').value.trim();
 
-    // Fire and forget to n8n (don't block UX on failure)
+    // Client-side email validation before submission
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name || !emailOk) {
+        const errEl = document.getElementById('modal-submit-btn').closest('form').querySelector('input[type="email"]');
+        if (errEl) errEl.focus();
+        return;
+    }
+
+    const btn = document.getElementById('modal-submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
     try {
-        fetch(LEAD_WEBHOOK, {
+        const res = await fetch(LEAD_WEBHOOK, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, phone, ...answers, businessName: answers.companyName, auditType: 'automation', opportunities: generatedOpportunities }),
         });
-    } catch(err) { /* silent fail — UX unaffected */ }
-
-    await new Promise(r => setTimeout(r, 600)); // small UX delay
+        if (!res.ok) throw new Error('Worker error');
+    } catch(err) {
+        btn.textContent = 'Unlock My Free Report →';
+        btn.disabled = false;
+        return;
+    }
 
     closeModal();
     unlockResults();

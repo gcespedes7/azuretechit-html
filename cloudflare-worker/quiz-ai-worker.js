@@ -48,11 +48,14 @@ function validateHttpsUrl(val) {
 // Uses run-sync-get-dataset-items so we don't need polling.
 async function runApifyActor(actorId, input, token, limit = 15) {
     const encodedId = encodeURIComponent(actorId);
-    const url = `https://api.apify.com/v2/acts/${encodedId}/run-sync-get-dataset-items?token=${token}&limit=${limit}&timeout=22`;
+    const url = `https://api.apify.com/v2/acts/${encodedId}/run-sync-get-dataset-items?limit=${limit}&timeout=22`;
     try {
         const res = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
             body: JSON.stringify(input),
         });
         if (!res.ok) return [];
@@ -434,11 +437,16 @@ async function handleSubmitLead(request, env, headers) {
     };
 
     try {
-        await fetch(env.N8N_WEBHOOK_URL, {
+        const n8nRes = await fetch(env.N8N_WEBHOOK_URL, {
             method:  'POST',
             headers: { 'Content-Type': 'application/json' },
             body:    JSON.stringify(payload),
         });
+        if (!n8nRes.ok) {
+            return new Response(JSON.stringify({ error: 'Notification failed' }), {
+                status: 502, headers: { ...headers, 'Content-Type': 'application/json' },
+            });
+        }
         return new Response(JSON.stringify({ ok: true }), {
             status: 200, headers: { ...headers, 'Content-Type': 'application/json' },
         });
