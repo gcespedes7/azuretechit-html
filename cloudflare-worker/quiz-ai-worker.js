@@ -8,6 +8,7 @@
 const ALLOWED_ORIGINS = [
     'https://azuretechit.com',
     'https://www.azuretechit.com',
+    'http://localhost:3000',
 ];
 
 // Default tools to scrape per industry — used when user doesn't enter tools,
